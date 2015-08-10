@@ -11,6 +11,6 @@ use Think\Controller;
 
 class MapController extends BaseController {
     public function index(){
-        $this->display('/map');
+        $this->display('Map/index');
     }
 }

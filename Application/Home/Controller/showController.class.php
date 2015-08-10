@@ -11,7 +11,7 @@ use Think\Controller;
 
 class ShowController extends BaseController {
     public function index() {
-        $this->display('/show');
+        $this->display('Show/index');
     }
 
 }
