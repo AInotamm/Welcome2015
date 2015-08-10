@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/map.css">
+</head>
+<body>
+	<include file="Public:header" />
+	<div class="timer">
+		<img src="__PUBLIC__/image/global/maptimerbg.png">
+		<div class="timer_container">
+			<img id="cloud01" class="cloud01" src="__PUBLIC__/image/global/cloud01.png">
+			<img id="cloud02" class="cloud02" src="__PUBLIC__/image/global/cloud03.png">
+			<img id="cloud03" class="cloud03" src="__PUBLIC__/image/global/cloud04.png">
+			<img id="cloud04" class="cloud04" src="__PUBLIC__/image/global/cloud05.png">
+			<div class="logo"></div>
+			<img class="car" src="__PUBLIC__/image/global/car.png">
+			<img src="__PUBLIC__/image/hotball.png"class="hotball">
+			<img class="line"src="__PUBLIC__/image/global/map_line.png">
+		</div>
+	</div>
+	<div class="container">
+		<img src="__PUBLIC__/image/global/mapground.png">
+		<div class="container_content">
+			<img class="line_right01" src="__PUBLIC__/image/global/line_right01.png">
+			<div class="mapwrapper">
+				<a class="active" id = "btu_2D">2D地图</a>
+				<a id = "btu_3D">街景地图</a>
+				<img src="__PUBLIC__/image/map/maptitle.png" alt="" class="maptitle">
+				<div class = "mapstatic">
+					<div id="D2map">
+						<p>过头了哦~<br>恭喜你获得<br>拖地图狂魔称号</p>
+						<img src="__PUBLIC__/image/map/map.jpg" id="map">
+						<div id="map-face"></div>
+						<div id="smallmap"><img src="__PUBLIC__/image/map/smallmap.png"></div>
+						<div id="smallmap-face"></div>
+						<div id="smallmap-border"></div>
+					</div>
+					<div id="D3map" style = "height:586px; width:912px;">
+					</div>
+				</div>
+				<img src="__PUBLIC__/image/global/grass.png" class = "grass">
+			</div>
+		</div>
+		<a id="go_top" href="#"></a>
+	</div>
+	<include file="Public:footer" />
+	<script src="__PUBLIC__/js/map.js"></script>
+	<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=d84d6d83e0e51e481e50454ccbe8986b"></script>
+</body>
+</html>

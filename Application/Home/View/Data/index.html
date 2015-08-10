@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/data.css">
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.4.4/jquery.js"></script>
+    <script type = "text/javascript" src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+</head>
+<body>
+    <include file="Public:header" />
+    <div class="timer">
+        <img src="__PUBLIC__/image/global/maptimerbg.png">
+        <div class="timer_container">
+            <img id="cloud01" class="cloud01" src="__PUBLIC__/image/global/cloud01.png">
+            <img id="cloud02" class="cloud02" src="__PUBLIC__/image/global/cloud03.png">
+            <img id="cloud03" class="cloud03" src="__PUBLIC__/image/global/cloud04.png">
+            <img id="cloud04" class="cloud04" src="__PUBLIC__/image/global/cloud05.png">
+            <div class="logo"></div>
+            <img class="car" src="__PUBLIC__/image/global/car.png">
+            <img src="__PUBLIC__/image/hotball.png"class="hotball">
+            <img class="line"src="__PUBLIC__/image/global/map_line.png">
+        </div>
+    </div>
+    <div class="container">
+        <img src="__PUBLIC__/image/global/mapground.png">
+        <div class="container_content">
+            <img class="line_right01" src="__PUBLIC__/image/global/line_right01.png">
+            <div class="mapwrapper">
+                <a id = "btu_2D">查询信息</a>
+                <a class="active" id = "btu_3D">数据展示</a>
+                <img src="__PUBLIC__/image/datatitle.png" alt="" class="maptitle">
+                <img src="__PUBLIC__/image/map/mapbg.png" class= "mapbg">
+                <div class = "mapstatic">
+                    <div id="D2map">
+                        <div class="page_top">
+                        </div>
+                        <div class="page_mid_big">
+                        	<div id="page_mid_first"></div>
+                        </div>
+                        <div class="page_bottom">
+                        </div>
+                    </div>
+                    <div id="D3map" >
+                        <div class="page_top" class="page">
+                            <ul class="page_ul" id="an_page_ul">
+                                <li class="stu_li"><a id = "data_btu1">同乡比例</a></li>
+                                <li class="stu_li"><a id = "data_btu2">男女比例</a></li>
+                                <li class="stu_li"><a id = "data_btu3">同年同月</a></li>
+                                <li class="stu_li"><a id = "data_btu4">最难科目</a></li>
+                                <li class="stu_li"><a id = "data_btu5">毕业去向数据</a></li>
+                            </ul>
+                        </div>
+                        <div class="page_mid_big">
+                        	<div id="page_mid_next"></div>
+                            <div class="page_mid_next" id = "row">
+                                <h1 id = "WH1">你所在学院及学校的男女比</h1>
+                                <h1 id = "WH2">学校里与你同年同月及同星座的比例为</h1>
+                                <div id="row1"></div>
+                                <div id="row2"></div>
+                            </div>
+                            <div class="page_mid_next" id = "clomu">
+                                <div id="clomu1"></div>
+                                <div id="clomu2"></div>
+                            </div>
+                            <div class="share">
+                                <div class="jiathis_style_32x32">
+                                    <a class="jiathis_button_tsina share1"></a>
+                                    <a class="jiathis_button_weixin share2" ></a>
+                                    <a class="jiathis_button_qzone share3"></a>
+                                </div>
+                            <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+                            </div>
+                        </div>
+                        <div class="page_bottom">
+                        </div>
+                    </div>
+                </div> 
+                <img src="__PUBLIC__/image/global/grass.png" class = "grass">
+            </div>
+        </div>
+        <a id="go_top" href="#"></a>
+    </div>
+    <include file="Public:footer" />
+    <script src="__PUBLIC__/js/data.js"></script>
+    <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+    <script>
+        window.onload = function(){
+            var NAME = ["重庆","其余人数","脱单男","脱单女"];
+            var VALUE = [{"name":"重庆","value":100},
+                {"name":"其余人数","value":900},
+            ];
+            var TITLE = "在重邮，你的老乡人数占全校人数的比例为";
+            var BILI = "10%";
+            charst(NAME,VALUE,TITLE,BILI);
+        }
+        data_btu1.onclick = function(){
+            var NAME = ["重庆","其余人数","脱单男","脱单女"];
+            var VALUE = [{"name":"重庆","value":100},
+                {"name":"其余人数","value":900},
+            ];
+            var TITLE = "在重邮，你的老乡人数占全校人数的比例为";
+            var BILI = "10%";
+            charst(NAME,VALUE,TITLE,BILI);
+        }
+        data_btu2.onclick = function(){
+            var singleDog = [
+                {"name":"男","value":"30"},
+                {"name":"女","value":"70"},
+            ]
+            var notalone =[
+                {"name":"脱单男","value":"30"},
+                {"name":"脱单女","value":"70"},
+            ]
+            charst_sex(singleDog,notalone);
+        }
+        data_btu3.onclick = function(){
+            var age = ["同年同月","其他"];
+            var agevalue = [
+                {"name":"同年同月","value":"30"},
+                {"name":"其他","value":"70"},
+            ]
+            var star = ["天蝎","其他"];
+            var starvalue = [
+                {"name":"天蝎","value":"30"},
+                {"name":"其他","value":"70"},
+            ]
+            chart_age(age,agevalue,star,starvalue);
+        }
+        data_btu4.onclick = function(){
+            charst_subject();
+        }
+        data_btu5.onclick = function(){
+            var content = "通信学院的出国升学率为22.3%，灵活就业率为0.48%，待就业率为2.08%，就业率为97.92%";//学院的文字数据介绍
+            charst_end(content);
+        }
+
+    </script>
+</body>
+</html>
