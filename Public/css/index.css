@@ -55,18 +55,18 @@ li{
 	background: #d0ea59;
 	color: #50930c;
 }
-[id^=login]{
+li[id^=login]{
 	position: absolute;
 	right: -120px;
 	filter:alpha(opacity=100);
 }
-[id^=login] a{
+li[id^=login] a{
 	cursor: pointer;
 	color: #ff9e4d !important;
 }
 .nav .last a{
 	width: 88px;
-	text-align: right;
+	/*text-align: center;*/
 }
 .cqupt img{
 	float: left;
@@ -98,7 +98,7 @@ li{
 	width: 960px;
 	margin: 0 auto;
 	position: relative;
-	background: url("../image/line_top.png") no-repeat;
+	background: url("../image/global/line_top.png") no-repeat;
 	background-position: 248px 434px;
 }
 .timer_container > img{
@@ -118,7 +118,7 @@ li{
 	position: absolute;
 	top: 245px;
 	left: 175px;
-	background: url("../image/count_down.png") no-repeat;
+	background: url("../image/index/countdown/count_down.png") no-repeat;
 }
 .count_down div{
 	padding-top: 78px;
@@ -211,13 +211,13 @@ li{
 	width: 960px;
 	margin: 0 auto;
 	padding: 30px 0 130px 0;
-	background: url("../image/line_03.png") no-repeat;
+	background: url("../image/global/line_03.png") no-repeat;
 }
 .map{
 	margin: 0 0 -20px -8px;
 	width: 1100px;
 	height: 570px;
-	background: url("../image/map.png") no-repeat;
+	background: url("../image/index/map.png") no-repeat;
 	z-index: 1;
 	position: relative;
 }
@@ -237,24 +237,25 @@ li{
 	top: 1286px;
 }
 .map .dibiao{
+	cursor: pointer;
 	width: 38px;
 	height: 47px;
 	position: absolute;
 	text-decoration: none;
 	display: block;
-	background: url("../image/small_dibiao.png");
+	background: url("../image/index/small_dibiao.png");
 }
 #taiji{
 	width: 48px;
 	height: 59px;
-	background: url("../image/big_dibiao.png");
+	background: url("../image/index/big_dibiao.png");
 	top: 140px;
 	left: 355px;
 }
 #laocao{
 	width: 42px;
 	height: 51px;
-	background: url("../image/mid_dibiao.png");
+	background: url("../image/index/mid_dibiao.png");
 	top: 264px;
 	left: 372px;
 }
@@ -342,7 +343,7 @@ li{
 	width: 164px;
 	height: 48px;
 	line-height: 42px;
-	background: url("../image/total.png");
+	background: url("../image/index/total.png");
 	margin: 160px 0 0 766px;
 	font-size: 24px;
 	color: #ffffff;
@@ -357,7 +358,7 @@ li{
 }
 .warp{
 	width: 990px;
-	background: url("../image/bg01.png");
+	background: url("../image/index/bg01.png");
 	margin-top: 50px;
 	overflow: hidden;
 }
@@ -380,6 +381,7 @@ li{
 	left: 0px;
 }
 .warp > a{
+	cursor: pointer;
 	width: 35px;
 	height: 48px;
 	display: block;
@@ -393,7 +395,7 @@ li{
 }
 .prv{
 	margin: 73px 36px 0 43px;
-	background: url("../image/prv.png");
+	background: url("../image/index/prv.png");
 }
 .prv:hover{
 	opacity: 1.0;
@@ -401,7 +403,7 @@ li{
 }
 .nex{
 	margin: 73px 36px 0 43px;
-	background: url("../image/next.png");
+	background: url("../image/index/next.png");
 }
 .nex:hover{
 	opacity: 1.0;
@@ -420,13 +422,13 @@ li{
 .show{
 	margin-left: -14px;
 	float: left;
-	background: url("../image/show_bg.png") 0px -10px no-repeat;
+	background: url("../image/index/show_bg.png") 0px -10px no-repeat;
 }
 .know{
 	width: 488px !important;
 	float: right;
 	margin-right: 14px;
-	background: url("../image/know_bg.png") no-repeat;
+	background: url("../image/index/know_bg.png") no-repeat;
 }
 .show img{
 	margin: 34px 210px;
@@ -484,16 +486,16 @@ li{
 }
 .we{
 	width: 326px;
-	background: url("../image/youzifengcai.png") no-repeat;
+	background: url("../image/index/youzifengcai.png") no-repeat;
 }
 .hi{
 	width: 303px;
-	background: url("../image/hi.png") no-repeat;
+	background: url("../image/index/hi.png") no-repeat;
 	margin: 0 14px ;
 }
 .about_us{
 	width: 315px;
-	background: url("../image/about_us.png") no-repeat;
+	background: url("../image/index/about_us.png") no-repeat;
 }
 .de{
 	margin: 88px 0 70px 114px;
@@ -535,7 +537,7 @@ li{
 	width: 78px;
 	height: 96px;
 	z-index: 1000;
-	background: url("../image/go_top.png");
+	background: url("../image/global/go_top.png");
 	opacity: 0;
 	filter:alpha(opacity=0);
 }
@@ -572,7 +574,7 @@ li{
 	display: block;
 	width: 23px;
 	height: 23px;
-	background: url("../image/close.png");
+	background: url("../image/login/close.png");
 	float: right;
 	margin: 30px 30px 0 0;
 }
