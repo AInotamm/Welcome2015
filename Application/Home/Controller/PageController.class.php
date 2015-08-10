@@ -9,9 +9,8 @@
 namespace Home\Controller;
 use Think\Controller;
 
-class ShowController extends BaseController {
+class PageController extends BaseController {
     public function index() {
-        $this->display('/show');
+        $this->display('Page/index');
     }
-
 }
