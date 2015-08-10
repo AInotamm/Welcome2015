@@ -1,0 +1,210 @@
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/__PUBLIC__/css/index.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000075s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000660s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/js/main.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000064s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001145s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/js/demo.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000071s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000586s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/login_bg.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000072s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001828s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/new.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000330s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/login_img.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000054s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000381s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/pass_img.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000370s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/phone.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000047s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000354s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/qq.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000075s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000600s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/behavior.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000075s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000601s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/cqupt.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000053s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000462s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/cqupt_f.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000390s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/timer_bg.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000376s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/tree_right.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000368s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/cloud01.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000379s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/cloud02.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000048s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000359s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/cloud03.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000051s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000383s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/cloud04.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000377s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/cloud05.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000378s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/num0.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000048s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000362s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/stone.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000047s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000368s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/car.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000369s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/shaoma.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000052s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000437s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/erweima.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000051s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000389s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/line_top.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000059s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000566s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/line_right01.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000047s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000374s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/ground.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000045s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000355s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/line_left01.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000416s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000748s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/right_line02.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000051s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000385s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/show_t.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000058s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000504s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/img01.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000044s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000328s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/know_t.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000046s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000354s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/img02.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000048s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000361s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/tree_car.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000383s ]
+ERR: 无法加载模块:Application
+
+[ 2015-08-10T13:59:53+08:00 ] 127.0.0.1 /Application/View/image/gg.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000047s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000354s ]
+ERR: 无法加载模块:Application
+
