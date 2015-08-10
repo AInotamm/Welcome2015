@@ -192,10 +192,8 @@
         c1R();
         c5R();
             
-    })();
-
-
-    (function(){//登录
+  })();
+  (function(){//登录
         var user_name_c = document.getElementById("user_name"),
             password_c = document.getElementById("password"),
             phone_d = document.getElementById("phone_d"),
@@ -216,8 +214,8 @@
             xhr = ajaxObject.createXhr(),
             send,
             b_arr = [false,false],
-            userTest = /[0-9]+/,
-            passwordTest = /\s+/,
+            userTest = /2015[0-9]{6}/,
+            passwordTest = /[0-9]{5}([0-9]|[Xx])/,
             b_c = true,
             timer;
         eventHandler.addEvent(window,"resize",function(){
@@ -228,36 +226,36 @@
             },300)
         })
         eventHandler.addEvent(user_name_c,"blur",function(){
-           if(this.value.match(userTest)!=null&&this.value.match(userTest)[0].length != 10 || this.value.length != 10){
+            if((this.value.match(userTest) == null && this.value.length == 10) || this.value.length != 10){
                 if(this.value != ""){
                     this.style.border = "2px solid #FF3030";
                 }else{
                     this.style.border = "none";
                 }
                 b_arr[0] = false;
-           }else{
+            }else{
                 this.style.border = "2px solid #50930c";
                 b_arr[0] = true;
-           }
+            }
         })
         eventHandler.addEvent(password_c,"blur",function(){
-           if(this.value.length == 0||this.value.length < 6||passwordTest.test(this.value)){
+            if(this.value.length != 6 || (this.value.length == 6 && !passwordTest.test(this.value))){
                 if(this.value != ""){
                     this.style.border = "2px solid #FF3030";
                 }else{
                     this.style.border = "none";
                 }
                 b_arr[1] = false;
-           }else{
+            }else{
                 this.style.border = "2px solid #50930c";
                 b_arr[1] = true;
-           }
+            }
         })
         eventHandler.addEvent(sub,"click",function(){
            if(b_arr[0] && b_arr[1]){
                 send = ajaxObject.encode({"user_name":user_name_c.value,"password":password_c.value});
                 //ajaxObject.POST(xhr,send,"xxx.php");
-                logo.src = "image/finish.png";
+                logo.src = "/Public/image/finish.png";
                 animation.move(big,{"height":"460","top":(document.documentElement.clientHeight - 460)/2 + ""},500);
                 animation.move(div01,{"left":"-100","opacity":"0"},500);
                 setTimeout(function(){
@@ -337,163 +335,208 @@
                         obtn[index].removeAttribute("class","page_active");
                         obtn[i].setAttribute("class","page_active");
                         index = i;
+                        if(i == 0){
+                            ostuturn();
+                        }
+                        else if(i == 1){
+                            oteaturn(0);
+                        }
+                        else if(i == 2){
+                            opicturn(0);
+                        }
+                        else if(i == 3){
+                            ovideoturn(0,1,1,2);
+                        }
                     }
                 })(i);
             }
-    })();
-    (function (){
+        var stu = document.getElementById("stu").getElementsByTagName("a");
+        function ostuturn(){
+            for(var i = 0;i < stu.length; i++){
+                var num = i+1;
+                stu[i].style.background="url('/Public/image/person/person_"+ num +".png') no-repeat 50% 50%";
+                stu[i].style.backgroundSize = "cover";
+            }
+        }
+
         var opic_btn = document.getElementById("pic_btn"),
             opic = document.getElementById("pic_main"),
             main_page = opic.querySelectorAll(".page_fix"),
-            obtn = opic_btn.querySelectorAll(".page_bottom_li"),
-            obtnstyle = opic_btn.getElementsByTagName("a");
-            pre = opic_btn.querySelectorAll(".page_bottom_li_special")[0],
-            nex = opic_btn.querySelectorAll(".page_bottom_li_special")[1];
-            index = 0;
-            function turn(page){
-              if( page < 0 ){
-                page = 0;
-              }
-              if(page > 3){
-                page = 3;
-                index = 2;
-              }
-              main_page[index].style.display = "none";
-              main_page[page].style.display = "block";
-              obtnstyle[index+1].removeAttribute("id","page_bottom_spe");
-              obtnstyle[page+1].setAttribute("id","page_bottom_spe");
-              index = page;
+            opicbtn = opic_btn.querySelectorAll(".page_bottom_li"),
+            opicbtnstyle = opic_btn.getElementsByTagName("a");
+            opicpre = opic_btn.querySelectorAll(".page_bottom_li_special")[0],
+            opicnex = opic_btn.querySelectorAll(".page_bottom_li_special")[1],
+            opicindex = 0,
+            oimg0 = document.getElementById("win_img_1"),
+            oimg1 = document.getElementById("win_img_2"),
+            oimg2 = document.getElementById("win_img_3"),
+            oimg3 = document.getElementById("win_img_4"),
+            img0  = oimg0.getElementsByTagName("a"),
+            img1  = oimg1.getElementsByTagName("a"),
+            img2  = oimg2.getElementsByTagName("a"),
+            img3  = oimg3.getElementsByTagName("a");
+            function opicturn(page){
+                if( page < 0 ){
+                    page = 0;
+                }
+                else if(page > 3){
+                    page = 3;
+                    opicindex = 2;
+                }
+                else if(page == 0){
+                    for(var i = 0;i < img0.length;i++){
+                        img0[i].style.background = "url('/Public/image/thumbnail/color/color_"+ i +".png') no-repeat";
+                        img0[i].style.backgroundSize = "cover";
+                    }
+                }
+                else if(page == 1){
+                    for(var i = 0;i < img1.length;i++){
+                        var num = i+8;
+                        img1[i].style.background = "url('/Public/image/thumbnail/color/color_"+ num +".png') no-repeat";
+                        img1[i].style.backgroundSize = "cover";
+                    }
+                }
+                else if(page == 2){
+                    for(var i = 0;i < img2.length;i++){
+                        var num = i+16;
+                        img2[i].style.background = "url('/Public/image/thumbnail/color/color_"+ num +".png') no-repeat";
+                        img2[i].style.backgroundSize = "cover";
+                    }
+                }
+                else if(page == 3){
+                    for(var i = 0;i < img3.length;i++){
+                        var num = i+24;
+                        img3[i].style.background = "url('/Public/image/thumbnail/color/color_"+ num +".png') no-repeat";
+                        img3[i].style.backgroundSize = "cover";
+                    }
+                }
+                main_page[opicindex].style.display = "none";
+                main_page[page].style.display = "block";
+                opicbtnstyle[opicindex+1].removeAttribute("class","page_bottom_spe");
+                opicbtnstyle[page+1].setAttribute("class","page_bottom_spe");
+                opicindex = page;
+
             }
-              pre.onclick = function (){
-                turn(index-1)
-              }  ;
-              nex.onclick = function (){
-                turn(index+1)
-              }  ;
-              obtn[0].onclick = function (){
-                turn(0)
-              }  ;
-              obtn[1].onclick = function (){
-                turn(1)
-              }  ;
-              obtn[2].onclick = function (){
-                turn(2)
-              }  ;
-              obtn[3].onclick = function (){
-                turn(3)
-              }  ;
-    })();
-    (function (){
+            opicpre.onclick = function (){
+                opicturn(opicindex-1)
+            };
+            opicnex.onclick = function (){
+                opicturn(opicindex+1)
+            };
+            opicbtn[0].onclick = function (){
+                opicturn(0)
+            };
+            opicbtn[1].onclick = function (){
+                opicturn(1)
+            };
+            opicbtn[2].onclick = function (){
+                opicturn(2)
+            };
+            opicbtn[3].onclick = function (){
+                opicturn(3)
+            };
+
         var teacher_btn = document.getElementById("teacher_choose"),
             oteacher = document.getElementById("teacher_page"),
             teacher_page = oteacher.querySelectorAll(".page_fix"),
-            obtn = teacher_btn.querySelectorAll(".page_bottom_li"),
-            obtnstyle = teacher_btn.getElementsByTagName("a");
-            pre = teacher_btn.querySelectorAll(".page_bottom_li_special")[0],
-            nex = teacher_btn.querySelectorAll(".page_bottom_li_special")[1];
-            oindex = 0;
-            function turn(page){
-              if( page < 0 ){
+            oteabtn = teacher_btn.querySelectorAll(".page_bottom_li"),
+            oteabtnstyle = teacher_btn.getElementsByTagName("a");
+            oteapre = teacher_btn.querySelectorAll(".page_bottom_li_special")[0],
+            oteanex = teacher_btn.querySelectorAll(".page_bottom_li_special")[1],
+            oteaindex = 0,
+            oteacher1 =  document.getElementById("teacher_1"),
+            oteacher2 =  document.getElementById("teacher_2"),
+            oteacher3 =  document.getElementById("teacher_3"),
+            teacher1  = oteacher1.getElementsByTagName("a"),
+            teacher2  = oteacher2.getElementsByTagName("a"),
+            teacher3  = oteacher3.getElementsByTagName("a");
+
+        function oteaturn(page){
+            if( page < 0 ){
                 page = 0;
-              }
-              if(page > 2){
-                page = 2;
-                oindex = 1;
-              }
-              teacher_page[oindex].style.display = "none";
-              teacher_page[page].style.display = "block";
-              obtnstyle[oindex+1].removeAttribute("id","page_bottom_spe");
-              obtnstyle[page+1].setAttribute("id","page_bottom_spe");
-              oindex = page;
             }
-              pre.onclick = function (){
-                turn(oindex-1)
-              }  ;
-              nex.onclick = function (){
-                turn(oindex+1)
-              }  ;
-              obtn[0].onclick = function (){
-                turn(0)
-              }  ;
-              obtn[1].onclick = function (){
-                turn(1)
-              }  ;
-              obtn[2].onclick = function (){
-                turn(2)
-              }  ;
-    })();
-    (function (){
+            else if(page > 2){
+                page = 2;
+                oteaindex = 1;
+            }
+            else if(page == 0){
+                for(var i = 0;i < teacher1.length;i++){
+                    var num = i+1;
+                    teacher1[i].style.background = "url('/Public/image/teacher/teacher_"+ num +".jpg') no-repeat 50% 50%";
+                    teacher1[i].style.backgroundSize = "cover";
+                }
+            }
+            else if(page == 1){
+                for(var i = 0;i < teacher2.length;i++){
+                    var num = i+9;
+                    teacher2[i].style.background = "url('/Public/image/teacher/teacher_"+ num +".jpg') no-repeat 50% 50%";
+                    teacher2[i].style.backgroundSize = "cover";
+                }
+            }
+            else if(page == 2){
+                for(var i = 0;i < teacher3.length;i++){
+                    var num = i+17;
+                    teacher3[i].style.background = "url('/Public/image/teacher/teacher_"+ num +".jpg') no-repeat 50% 50%";
+                    teacher3[i].style.backgroundSize = "cover";
+                }
+            }
+            teacher_page[oteaindex].style.display = "none";
+            teacher_page[page].style.display = "block";
+            oteabtnstyle[oteaindex+1].removeAttribute("class","page_bottom_spe");
+            oteabtnstyle[page+1].setAttribute("class","page_bottom_spe");
+            oteaindex = page;
+        }
+        oteapre.onclick = function (){
+            oteaturn(oteaindex-1)
+        };
+        oteanex.onclick = function (){
+            oteaturn(oteaindex+1)
+        };
+        oteabtn[0].onclick = function (){
+            oteaturn(0)
+        };
+        oteabtn[1].onclick = function (){
+            oteaturn(1)
+        };
+        oteabtn[2].onclick = function (){
+            oteaturn(2)
+        };
+
         var ovideo = document.getElementById("choose_video"),
             turn_video = ovideo.querySelectorAll(".page_fix"),
             ovideo_btn = document.getElementById("video_btn"),
-            obtn = ovideo_btn.getElementsByTagName("a");  
-            function turn(a,b,x,y){
-              turn_video[a].style.display = "block";
-              turn_video[b].style.display = "none";
-              obtn[x].setAttribute("id","page_bottom_spe");
-              obtn[y].removeAttribute("id","page_bottom_spe");
-            } 
-            obtn[0].onclick = function (){
-              turn(0,1,1,2);
-            } 
-            obtn[1].onclick = function (){
-              turn(0,1,1,2);
-            } 
-            obtn[2].onclick = function (){
-              turn(1,0,2,1);
-            } 
-            obtn[3].onclick = function (){
-              turn(1,0,2,1);
-            } 
+            ovideobtn = ovideo_btn.getElementsByTagName("a"),
+            ovideo = document.getElementById("video"),
+            ovideo1 = document.getElementById("video1"),
+            video = ovideo.getElementsByTagName("a"),
+            video1 = ovideo1.getElementsByTagName("a");
+        function ovideoturn(a,b,x,y){
+            turn_video[a].style.display = "block";
+            turn_video[b].style.display = "none";
+            ovideobtn[x].setAttribute("class","page_bottom_spe");
+            ovideobtn[y].removeAttribute("class","page_bottom_spe");
+            if(a == 0){
+                for(var i = 0;i < video.length;i++){
+                    video[i].style.background = "url('/Public/image/video.png') no-repeat 50% 50%";
+                }
+            }
+            else if(a == 1){
+                for(var i = 0;i < video1.length;i++){
+                    video1[i].style.background = "url('/Public/image/video.png') no-repeat 50% 50%";
+                }
+            }
+        }
+        ovideobtn[0].onclick = function (){
+            ovideoturn(0,1,1,2);
+        }
+        ovideobtn[1].onclick = function (){
+            ovideoturn(0,1,1,2);
+        }
+        ovideobtn[2].onclick = function (){
+            ovideoturn(1,0,2,1);
+        }
+        ovideobtn[3].onclick = function (){
+            ovideoturn(1,0,2,1);
+        }
+        opicturn(0);
     })();
-    window.onload = function (){
-        var oimg1 = document.getElementById("win_img_1"),
-            oimg2 = document.getElementById("win_img_2"),
-            oimg3 = document.getElementById("win_img_3"),
-            oimg4 = document.getElementById("win_img_4"),
-            img1  = oimg1.getElementsByTagName("a"),
-            img2  = oimg2.getElementsByTagName("a"),
-            img3  = oimg3.getElementsByTagName("a"),
-            img4  = oimg4.getElementsByTagName("a"),
-            teacher_oimg1 = document.getElementById("teacher_1"),
-            teacher_oimg2 = document.getElementById("teacher_2"),
-            teacher_oimg3 = document.getElementById("teacher_3"),
-            teacher_img1 = teacher_oimg1.getElementsByTagName("a"),
-            teacher_img2 = teacher_oimg2.getElementsByTagName("a"),
-            teacher_img3 = teacher_oimg3.getElementsByTagName("a");
-            for(var i = 0;i < img1.length;i++){
-              img1[i].style.background = "url('image/color_"+ i +".jpg') no-repeat 50% 50%";
-              img1[i].style.backgroundSize = "cover";
-            }
-            for(var i = 0;i < img2.length;i++){
-              var num = i+8;
-              img2[i].style.background = "url('image/color_"+ num +".jpg') no-repeat 50% 50%";
-              img2[i].style.backgroundSize = "cover";
-            }
-            for(var i = 0;i < img3.length;i++){
-              var num = i+16;
-              img3[i].style.background = "url('image/color_"+ num +".jpg') no-repeat 50% 50%";
-              img3[i].style.backgroundSize = "cover";
-            }
-            for(var i = 0;i < img4.length;i++){
-              var num = i+24;
-              img4[i].style.background = "url('image/color_"+ num +".jpg') no-repeat 50% 50%";
-              img4[i].style.backgroundSize = "cover";
-            }
-            for(var i = 0;i < teacher_img1.length;i++){
-              var num = i+1;
-              teacher_img1[i].style.background = "url('image/teacher_"+ num +".jpg') no-repeat 50% 50%";
-              teacher_img1[i].style.backgroundSize = "cover";
-            }
-            for(var i = 0;i < teacher_img2.length;i++){
-              var num = i+9;
-              teacher_img2[i].style.background = "url('image/teacher_"+ num +".jpg') no-repeat 50% 50%";
-              teacher_img2[i].style.backgroundSize = "cover";
-            }
-            for(var i = 0;i < teacher_img3.length;i++){
-              var num = i+17;
-              teacher_img3[i].style.background = "url('image/teacher_"+ num +".jpg') no-repeat 50% 50%";
-              teacher_img3[i].style.backgroundSize = "cover";
-            }
-
-    }

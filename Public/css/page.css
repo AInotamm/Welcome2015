@@ -115,7 +115,7 @@ strong{
     width: 659px;
     height: 296px;
     padding: 32px 0 0 220px;
-    background: url("../image/maplogo.png") no-repeat 220px 32px;
+    background: url("../image/map/maplogo.png") no-repeat 220px 32px;
 }
 .count_down{
     width: 730px;
@@ -123,7 +123,7 @@ strong{
     position: relative;
     top: -82px;
     left: 175px;
-    background: url("../image/count_down.png") no-repeat;
+    background: url("../image/index/countdown/count_down.png") no-repeat;
 }
 .count_down div{
     padding-top: 78px;
@@ -261,7 +261,7 @@ strong{
     left: 485px;
 }
 .mapwrapper .active {
-    background: url("../image/maptotal.png");
+    background: url("../image/map/maptotal.png");
     color: #fff;
 }
 
@@ -432,7 +432,7 @@ strong{
     line-height: 25px;
     cursor: pointer;
 }
-#page_bottom_spe{
+a.page_bottom_spe{
     background:url("../image/page_choose_blue.png");
     width: 25px;
     height: 25px;
@@ -514,7 +514,7 @@ strong{
     display: block;
     width: 78px;
     height: 96px;
-    background: url("../image/go_top.png");
+    background: url("../image/global/go_top.png");
     opacity: 0;
     filter:alpha(opacity=0);
 }
@@ -552,7 +552,7 @@ strong{
     display: block;
     width: 23px;
     height: 23px;
-    background: url("../image/close.png");
+    background: url("../image/login/close.png");
     float: right;
     margin: 30px 30px 0 0;
 }

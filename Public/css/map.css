@@ -5,24 +5,21 @@ body,div,p,ul,li{
 body{
 	font-family: "Microsoft YaHei",Arial,Helvetica,sans-serif;
 }
-li{ 
+li{
 	list-style: none;
 }
 .header, .timer, .container ,.footer,.big_header{
 	width: 100%;
-    min-width: 960px;
 }
 .header{
 	z-index: 100;
 	background: #ffffff;
 	border-bottom: 1px solid #9de6f1;
-	overflow: hidden;
 }
 #H{
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	overflow: hidden;
 }
 .big_header{
 	height: 60px;
@@ -62,13 +59,13 @@ li{
 }
 
 #login1,#login2{
-    position: absolute;
-    right: -120px;
-    filter:alpha(opacity=100);
+	position: absolute;
+	right: -120px;
+	filter:alpha(opacity=100);
 }
 #login1 a,#login2 a{
-    cursor: pointer;
-    color: #ff9e4d;
+	cursor: pointer;
+	color: #ff9e4d;
 }
 
 .nav li a:hover {
@@ -98,7 +95,7 @@ li{
 	z-index: -1;
 	position: absolute;
 	left: 0;
-	top: 0;	
+	top: 0;
 }
 .timer_container{
 	width: 960px;
@@ -112,7 +109,7 @@ li{
 	width: 659px;
 	height: 296px;
 	padding: 32px 0 0 220px;
-	background: url("../image/maplogo.png") no-repeat 220px 32px;
+	background: url("../image/map/maplogo.png") no-repeat 220px 32px;
 }
 .count_down{
 	width: 730px;
@@ -120,7 +117,7 @@ li{
 	position: relative;
 	top: -82px;
 	left: 175px;
-	background: url("../image/count_down.png") no-repeat;
+	background: url("../image/index/countdown/count_down.png") no-repeat;
 }
 .count_down div{
 	padding-top: 78px;
@@ -198,7 +195,7 @@ li{
 	z-index: -1;
 	position: absolute;
 	left: 0;
-	top: 0;	
+	top: 0;
 }
 
 .container_content .line_right01{
@@ -215,12 +212,12 @@ li{
 }
 
 .mapwrapper{
-	position: relative;	
+	position: relative;
 	width: 972px;
 	height: 717px;
 	margin: 0 auto;
 	top: 10.5%;
-	background: url("../image/mapbg.png") no-repeat;
+	background: url("../image/map/mapbg.png") no-repeat;
 }
 
 .mapwrapper .mapbg {
@@ -228,7 +225,7 @@ li{
 	z-index: 0;
 	position: absolute;
 	left: 0;
-	top: 0;	
+	top: 0;
 }
 
 .mapwrapper .maptitle {
@@ -261,7 +258,7 @@ li{
 
 
 .mapwrapper .active {
-	background: url("../image/maptotal.png");
+	background: url("../image/map/maptotal.png");
 	color: #fff;
 }
 
@@ -273,6 +270,20 @@ li{
 	width: 912px;
 	height: 586px;
 	overflow: hidden;
+}
+
+.mapwrapper p {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
+	font-size: 20px;
+	font-weight: bold;
+	margin: auto;
+	height: 200px;
+	width: 200px;
+	color: red;
 }
 #D3map{
 	display: none;
@@ -328,7 +339,7 @@ li{
 	border: 1px solid #FF6520;
 	background-color: black;
 	opacity: 0.1;
-	
+
 }
 
 .footer{
@@ -363,7 +374,7 @@ li{
 	display: block;
 	width: 78px;
 	height: 96px;
-	background: url("../image/go_top.png");
+	background: url("../image/global/go_top.png");
 	opacity: 0;
 	filter:alpha(opacity=0);
 }
@@ -401,7 +412,7 @@ li{
 	display: block;
 	width: 23px;
 	height: 23px;
-	background: url("../image/close.png");
+	background: url("../image/login/close.png");
 	float: right;
 	margin: 30px 30px 0 0;
 }

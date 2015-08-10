@@ -217,8 +217,8 @@
             xhr = ajaxObject.createXhr(),
             send,
             b_arr = [false,false],
-            userTest = /[0-9]+/,
-            passwordTest = /\s+/,
+            userTest = /2015[0-9]{6}/,
+            passwordTest = /[0-9]{5}([0-9]|[Xx])/,
             b_c = true,
             timer;
         eventHandler.addEvent(window,"resize",function(){
@@ -229,7 +229,7 @@
             },300)
         })
         eventHandler.addEvent(user_name_c,"blur",function(){
-           if(this.value.match(userTest)!=null&&this.value.match(userTest)[0].length != 10 || this.value.length != 10){
+           if((this.value.match(userTest) == null && this.value.length == 10) || this.value.length != 10){
                 if(this.value != ""){
                     this.style.border = "2px solid #FF3030";
                 }else{
@@ -242,7 +242,7 @@
            }
         })
         eventHandler.addEvent(password_c,"blur",function(){
-           if(this.value.length == 0||this.value.length < 6||passwordTest.test(this.value)){
+           if(this.value.length != 6 || (this.value.length == 6 && !passwordTest.test(this.value))){
                 if(this.value != ""){
                     this.style.border = "2px solid #FF3030";
                 }else{
@@ -258,7 +258,7 @@
            if(b_arr[0] && b_arr[1]){
                 send = ajaxObject.encode({"user_name":user_name_c.value,"password":password_c.value});
                 //ajaxObject.POST(xhr,send,"xxx.php");
-                logo.src = "image/finish.png";
+                logo.src = "/Public/image/finish.png";
                 animation.move(big,{"height":"460","top":(document.documentElement.clientHeight - 460)/2 + ""},500);
                 animation.move(div01,{"left":"-100","opacity":"0"},500);
                 setTimeout(function(){
@@ -399,8 +399,8 @@
               function turn(a,b,x,y){
                 a.style.display = "block";
                 b.style.display = "none";
-                x.setAttribute("id","page_bottom_spe");
-                y.removeAttribute("id","page_bottom_spe");
+                x.setAttribute("class","page_bottom_spe");
+                y.removeAttribute("class","page_bottom_spe");
               } 
               obtn_peo[0].onclick = function (){
                 turn(turn_people[0],turn_people[1],obtn_peo[1],obtn_peo[2]);
@@ -496,8 +496,8 @@
               }
               oturn_2[index].style.display = "none";
               oturn_2[page].style.display = "block";
-              obtn_2[index+1].removeAttribute("id","page_bottom_spe");
-              obtn_2[page+1].setAttribute("id","page_bottom_spe");
+              obtn_2[index+1].removeAttribute("class","page_bottom_spe");
+              obtn_2[page+1].setAttribute("class","page_bottom_spe");
               index = page;
             }
               pre.onclick = function (){

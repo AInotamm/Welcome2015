@@ -107,7 +107,7 @@
 
             for(var key in json){
                 //运动算法
-               if(window.getComputedStyle){
+                if(window.getComputedStyle){
            			oldValue = parseFloat(window.getComputedStyle(target,null)[key]);
 	        	}else{
 	        		oldValue = parseFloat(target.currentStyle[key]);
@@ -135,7 +135,7 @@
         },timeScale);
     }
     (function(){//轮播
-    	var b = document.getElementsByTagName("ul")[1],
+    	var b = document.getElementsByTagName("ul")[2],
 			a = new Carousel(740,5000),
 			prv = document.getElementById("prv"),
 			nex = document.getElementById("nex");
@@ -184,14 +184,14 @@
 	    		if(seconds < 10){
 	    			seconds = "0" + seconds;
 	    		}
-    			dayH.children[0].src = '/Public/image/num'+(day + "").slice(0,1)+".png";
-    			dayH.children[1].src = '/Public/image/num'+(day + "").slice(1,2)+".png";
-    			houtH.children[0].src = '/Public/image/num'+(hour + "").slice(0,1)+".png";
-    			houtH.children[1].src = '/Public/image/num'+(hour + "").slice(1,2)+".png";
-    			branchH.children[0].src = '/Public/image/num'+(branch + "").slice(0,1)+".png";
-    			branchH.children[1].src = '/Public/image/num'+(branch + "").slice(1,2)+".png";
-    			secondsH.children[0].src = '/Public/image/num'+(seconds + "").slice(0,1)+".png";
-    			secondsH.children[1].src = '/Public/image/num'+(seconds+ "").slice(1,2)+".png";
+    			dayH.children[0].src = '/Public/image/index/countdown/num'+(day + "").slice(0,1)+".png";
+    			dayH.children[1].src = '/Public/image/index/countdown/num'+(day + "").slice(1,2)+".png";
+    			houtH.children[0].src = '/Public/image/index/countdown/num'+(hour + "").slice(0,1)+".png";
+    			houtH.children[1].src = '/Public/image/index/countdown/num'+(hour + "").slice(1,2)+".png";
+    			branchH.children[0].src = '/Public/image/index/countdown/num'+(branch + "").slice(0,1)+".png";
+    			branchH.children[1].src = '/Public/image/index/countdown/num'+(branch + "").slice(1,2)+".png";
+    			secondsH.children[0].src = '/Public/image/index/countdown/num'+(seconds + "").slice(0,1)+".png";
+    			secondsH.children[1].src = '/Public/image/index/countdown/num'+(seconds+ "").slice(1,2)+".png";
     	}
     	timer();
     	setInterval(timer,1000);
@@ -297,7 +297,7 @@
             send,
             b_arr = [false,false],
             userTest = /2015[0-9]{6}/,
-            passwordTest = /[0-9]{5}[0-9X]/,
+            passwordTest = /[0-9]{5}([0-9]|[Xx])/,
             b_c = true,
             timer;
         eventHandler.addEvent(window,"resize",function(){
@@ -308,36 +308,36 @@
             },300)
         })
         eventHandler.addEvent(user_name_c,"blur",function(){
-           if(this.value.match(userTest)!=null&&this.value.match(userTest)[0].length != 10 || this.value.length != 10){
+            if((this.value.match(userTest) == null && this.value.length == 10) || this.value.length != 10){
                 if(this.value != ""){
                     this.style.border = "2px solid #FF3030";
                 }else{
                     this.style.border = "none";
                 }
                 b_arr[0] = false;
-           }else{
+            }else{
                 this.style.border = "2px solid #50930c";
                 b_arr[0] = true;
-           }
+            }
         })
         eventHandler.addEvent(password_c,"blur",function(){
-           if(this.value.length == 0||this.value.length < 6||passwordTest.test(this.value)){
+            if(this.value.length != 6 || (this.value.length == 6 && !passwordTest.test(this.value))){
                 if(this.value != ""){
                     this.style.border = "2px solid #FF3030";
                 }else{
                     this.style.border = "none";
                 }
                 b_arr[1] = false;
-           }else{
+            }else{
                 this.style.border = "2px solid #50930c";
                 b_arr[1] = true;
-           }
+            }
         })
         eventHandler.addEvent(sub,"click",function(){
-           if(b_arr[0] && b_arr[1]){
+            if(b_arr[0] && b_arr[1]){
                 send = ajaxObject.encode({"user_name":user_name_c.value,"password":password_c.value});
                 //ajaxObject.POST(xhr,send,"xxx.php");
-                logo.src = "image/finish.png";
+                logo.src = "/Public/image/finish.png";
                 animation.move(big,{"height":"460","top":(document.documentElement.clientHeight - 460)/2 + ""},500);
                 animation.move(div01,{"left":"-100","opacity":"0"},500);
                 setTimeout(function(){
@@ -356,13 +356,13 @@
                     sub.style.display = "none";
                 });
 
-           }else{
+            }else{
                 if(!b_c){
                     return;
                 }
                 notice.style.display = "block";
                 b_c = false;
-               animation.move(notice,{"top":"110","opacity":"1.0"},1000,
+                animation.move(notice,{"top":"110","opacity":"1.0"},1000,
                     function(){
                         animation.move(notice,{"top":"80","opacity":"0"},1000,function(){
                             notice.style.top = "140px";
@@ -370,11 +370,11 @@
                             b_c = true;
                         })
                     }
-               );
-           }
+                );
+            }
         })
 
-        eventHandler.addEvent(login,"click",function(){
+        eventHandler.addEvent(login1,"click",function(){
             wap.style.display = "block";
             big.style.display = "block";
             animation.move(big,{"top":"300","opacity":"1.0"},500,function(){
@@ -386,10 +386,10 @@
             });
         })
          eventHandler.addEvent(close,"click",function(){
-            wap.style.display = "none";
-            animation.move(big,{"top":"-280","opacity":"0"},1000,function(){
+             wap.style.display = "none";
+             animation.move(big,{"top":"-280","opacity":"0"},1000,function(){
                 big.style.display = "none";
-            })
+             })
         })
     })();
 
@@ -449,7 +449,7 @@
              });
         }
         eventHandler.addEvent(d1,"click",function(){
-            window.location.href = "map.html";
+            window.location.href = "http://localhost/index.php/home/map/index.html";
         })
         eventHandler.addEvent(d1,"mouseover",function(e){
              move(this);
