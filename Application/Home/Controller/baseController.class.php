@@ -9,12 +9,4 @@
 namespace Home\Controller;
 use Think\Controller;
 
-abstract class BaseController extends Controller {
-    public function _before_index() {
-        $this->display('/header');
-    }
-    public function index(){}
-    public function _after_index() {
-        $this->display('/footer');
-    }
-}
+abstract class BaseController extends Controller {}

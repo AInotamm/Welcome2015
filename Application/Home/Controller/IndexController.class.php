@@ -2,7 +2,7 @@
 namespace Home\Controller;
 use Think\Controller;
 
-class IndexController extends baseController {
+class IndexController extends BaseController {
     public function index(){
         $this->display('/index');
     }

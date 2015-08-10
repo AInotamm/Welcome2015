@@ -11,6 +11,6 @@ use Think\Controller;
 
 class PageController extends BaseController {
     public function index() {
-        $this->index('/page');
+        $this->display('/page');
     }
 }
