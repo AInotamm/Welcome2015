@@ -2,10 +2,9 @@
 /**
  * Created by PhpStorm.
  * User: Haku
- * Date: 15/8/10
- * Time: 15:31
+ * Date: 15/8/11
+ * Time: 03:08
  */
-
 namespace Home\Controller;
 use Think\Controller;
 

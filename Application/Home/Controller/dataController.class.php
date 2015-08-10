@@ -11,6 +11,6 @@ use Think\Controller;
 
 class DataController extends BaseController {
     public function index(){
-        $this->display('/data');
+        $this->display('Data/index');
     }
 }
