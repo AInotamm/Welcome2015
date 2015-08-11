@@ -138,7 +138,7 @@ var ajaxObject = {
 	GET:function(xhr,target,callback,string) {
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4) {
-				if (xhr.status >= 200&&xhr.status < 300||xhr.status == 304) {
+				if (xhr.status >= 200 && xhr.status < 300||xhr.status == 304) {
 					callback(xhr.responseText);
 				} else {
 					return;
@@ -155,7 +155,7 @@ var ajaxObject = {
 	POST:function(xhr,string,target,callback) {
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4) {
-				if (xhr.status >= 200&&xhr.status < 300||xhr.status == 304) {
+				if (xhr.status >= 200 && xhr.status < 300||xhr.status == 304) {
 					callback(xhr.responseText);
 				} else {
 					return;
@@ -201,6 +201,14 @@ function nodeFor(node) {
 		element = element.nextSibling;
 	}
 	return arr;
+}
+function anlyDomain() {
+    var result = [];
+    var domain = window.location.hostname.toString().split('.');
+    var length = domain.length;
+    result = window.location.href.toString().match(new RegExp("(?="+ domain[length - 1] + ")\\w+(\\/((\\w*)\\/*)*)(index?)"));
+    if (result == null) result = ['', '/'];
+    return result[1];
 }
 var animation = {
 	move:function(target,json,speed,callback) {//1.target目标2.json需求变化3.变化的速度4.动画完成后回调
@@ -608,7 +616,7 @@ function constant(target,json,speed,callback) {
 		if(b_arr[0] && b_arr[1]) {
 			send = ajaxObject.encode({"user_name":user_name_c.value,"password":password_c.value});
 			ajaxObject.POST(xhr,send,"login");
-			logo.src = "/Public/image/finish.png";
+			logo.src = anlyDomain() + "/Public/image/finish.png";
 			animation.move(big,{"height":"460","top":(document.documentElement.clientHeight - 460)/2 + ""},500);
 			animation.move(div01,{"left":"-100","opacity":"0"},500);
 			setTimeout(function(){

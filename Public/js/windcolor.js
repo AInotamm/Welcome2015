@@ -2,6 +2,7 @@
         var opage_ul = document.getElementById("color_ul"),
             opage = document.querySelectorAll(".page_mid"),
             obtn = opage_ul.getElementsByTagName("a");
+            prefix = anlyDomain();
             for(var i = 0; i<opage.length;i++){
                 var index = 2;
                 obtn[i].onclick = (function (i){       
@@ -30,7 +31,7 @@
         function ostuturn(){
             for(var i = 0;i < stu.length; i++){
                 var num = i+1;
-                stu[i].style.background="url('/Public/image/person/person_"+ num +".png') no-repeat 50% 50%";
+                stu[i].style.background="url('" + prefix + "Public/image/person/person_"+ num +".png') no-repeat 50% 50%";
                 stu[i].style.backgroundSize = "cover";
             }
         }
@@ -61,28 +62,28 @@
                 }
                 else if(page == 0){
                     for(var i = 0;i < img0.length;i++){
-                        img0[i].style.background = "url('/Public/image/thumbnail/color/color_"+ i +".png') no-repeat";
+                        img0[i].style.background = "url('" + prefix + "Public/image/thumbnail/color/color_"+ i +".png') no-repeat";
                         img0[i].style.backgroundSize = "cover";
                     }
                 }
                 else if(page == 1){
                     for(var i = 0;i < img1.length;i++){
                         var num = i+8;
-                        img1[i].style.background = "url('/Public/image/thumbnail/color/color_"+ num +".png') no-repeat";
+                        img1[i].style.background = "url('" + prefix + "Public/image/thumbnail/color/color_"+ num +".png') no-repeat";
                         img1[i].style.backgroundSize = "cover";
                     }
                 }
                 else if(page == 2){
                     for(var i = 0;i < img2.length;i++){
                         var num = i+16;
-                        img2[i].style.background = "url('/Public/image/thumbnail/color/color_"+ num +".png') no-repeat";
+                        img2[i].style.background = "url('" + prefix + "Public/image/thumbnail/color/color_"+ num +".png') no-repeat";
                         img2[i].style.backgroundSize = "cover";
                     }
                 }
                 else if(page == 3){
                     for(var i = 0;i < img3.length;i++){
                         var num = i+24;
-                        img3[i].style.background = "url('/Public/image/thumbnail/color/color_"+ num +".png') no-repeat";
+                        img3[i].style.background = "url('" + prefix + "Public/image/thumbnail/color/color_"+ num +".png') no-repeat";
                         img3[i].style.backgroundSize = "cover";
                     }
                 }
@@ -138,21 +139,21 @@
             else if(page == 0){
                 for(var i = 0;i < teacher1.length;i++){
                     var num = i+1;
-                    teacher1[i].style.background = "url('/Public/image/teacher/teacher_"+ num +".jpg') no-repeat 50% 50%";
+                    teacher1[i].style.background = "url('" + prefix + "Public/image/teacher/teacher_"+ num +".jpg') no-repeat 50% 50%";
                     teacher1[i].style.backgroundSize = "cover";
                 }
             }
             else if(page == 1){
                 for(var i = 0;i < teacher2.length;i++){
                     var num = i+9;
-                    teacher2[i].style.background = "url('/Public/image/teacher/teacher_"+ num +".jpg') no-repeat 50% 50%";
+                    teacher2[i].style.background = "url('" + prefix + "Public/image/teacher/teacher_"+ num +".jpg') no-repeat 50% 50%";
                     teacher2[i].style.backgroundSize = "cover";
                 }
             }
             else if(page == 2){
                 for(var i = 0;i < teacher3.length;i++){
                     var num = i+17;
-                    teacher3[i].style.background = "url('/Public/image/teacher/teacher_"+ num +".jpg') no-repeat 50% 50%";
+                    teacher3[i].style.background = "url('" + prefix + "Public/image/teacher/teacher_"+ num +".jpg') no-repeat 50% 50%";
                     teacher3[i].style.backgroundSize = "cover";
                 }
             }
@@ -193,12 +194,12 @@
             ovideobtn[y].removeAttribute("class","page_bottom_spe");
             if(a == 0){
                 for(var i = 0;i < video.length;i++){
-                    video[i].style.background = "url('/Public/image/video.png') no-repeat 50% 50%";
+                    video[i].style.background = "url('" + prefix + "Public/image/video.png') no-repeat 50% 50%";
                 }
             }
             else if(a == 1){
                 for(var i = 0;i < video1.length;i++){
-                    video1[i].style.background = "url('/Public/image/video.png') no-repeat 50% 50%";
+                    video1[i].style.background = "url('" + prefix + "Public/image/video.png') no-repeat 50% 50%";
                 }
             }
         }

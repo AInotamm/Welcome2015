@@ -47,14 +47,14 @@
             if(seconds < 10) {
                 seconds = "0" + seconds;
             }
-            dayH.children[0].style.backgroundPositionY = -2 + (day.toString().substr(0,1)) * -50 + 'px';
-            dayH.children[1].style.backgroundPositionY = -2 + (day.toString().substr(1,2)) * -50 + 'px';
-            houtH.children[0].style.backgroundPositionY = -2 + (hour.toString().substr(0,1)) * -50 + 'px';
-            houtH.children[1].style.backgroundPositionY = -2 + (hour.toString().substr(1,2)) * -50 + 'px';
-            branchH.children[0].style.backgroundPositionY = -2 + (branch.toString().substr(0,1)) * -50 + 'px';
-            branchH.children[1].style.backgroundPositionY = -2 + (branch.toString().substr(1,2)) * -50 + 'px';
-            secondsH.children[0].style.backgroundPositionY = -2 + (seconds.toString().substr(0,1)) * -50 + 'px';
-            secondsH.children[1].style.backgroundPositionY = -2 + (seconds.toString().substr(1,2)) * -50 + 'px';
+            dayH.children[0].style.backgroundPosition = '-12px ' + (-2 + (day.toString().substr(0,1)) * -50) + 'px';
+            dayH.children[1].style.backgroundPosition = '-12px ' + (-2 + (day.toString().substr(1,2)) * -50) + 'px';
+            houtH.children[0].style.backgroundPosition = '-12px ' + (-2 + (hour.toString().substr(0,1)) * -50) + 'px';
+            houtH.children[1].style.backgroundPosition = '-12px ' + (-2 + (hour.toString().substr(1,2)) * -50) + 'px';
+            branchH.children[0].style.backgroundPosition = '-12px ' +(-2 + (branch.toString().substr(0,1)) * -50) + 'px';
+            branchH.children[1].style.backgroundPosition = '-12px ' + (-2 + (branch.toString().substr(1,2)) * -50) + 'px';
+            secondsH.children[0].style.backgroundPosition = '-12px ' + (-2 + (seconds.toString().substr(0,1)) * -50) + 'px';
+            secondsH.children[1].style.backgroundPosition = '-12px ' + (-2 + (seconds.toString().substr(1,2)) * -50) + 'px';
     	}
     	timer();
     	setInterval(timer,1000);
@@ -115,7 +115,7 @@
             });
         }
         eventHandler.addEvent(d1,"click",function() {
-            window.location.href = "http://localhost/index.php/home/map/index.html";
+            window.location.href = "http://localhost" + anlyDomain() + "index.php/home/map/index.html";
         })
         eventHandler.addEvent(d1,"mouseover",function(e) {
              move(this);

@@ -568,7 +568,7 @@ span.qq_num {
     left: 36px !important;
     opacity: 0;
     filter:alpha(opacity=0);
-    z-index: -100;
+    z-index: -1000;
 }
 #phone{
     width: 254px !important;
@@ -582,7 +582,7 @@ span.qq_num {
     left: 40px !important;
     opacity: 0;
     filter:alpha(opacity=0);
-    z-index: -100;
+    z-index: -1000;
 }
 #qq{
     width: 254px !important;
