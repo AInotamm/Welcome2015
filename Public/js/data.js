@@ -474,6 +474,24 @@ var WH1 = document.getElementById("WH1");
 var WH2 = document.getElementById("WH2");
 var index = data_btu1;
 
+(function (){
+    var opage_ul = document.getElementById("page_ul"),
+        opage = document.querySelectorAll(".page_mid"),
+        obtn = opage_ul.getElementsByTagName("a");
+    for(var i = 0; i < opage.length;i++){
+        var index = 1;
+        obtn[i].onclick = (function (i){
+            return function(){
+                opage[index].style.display = "none";
+                opage[i].style.display = "block";
+                obtn[index].removeAttribute("class","page_active");
+                obtn[i].setAttribute("class","page_active");
+                index = i;
+            }
+        })(i);
+    }
+})();
+
 function charst_sex(singleDog,notalone){
     require([
         "echarts",
