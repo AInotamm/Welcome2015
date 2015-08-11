@@ -261,11 +261,9 @@ li{
 }
 .page_li{
     display: inline-block;
-    line-height: 53px;
     color: #ff6f30;
     font-size: 17px;
     margin-left:57px; 
-    width: 68px;
 }
 .page_li_first{
     display: inline-block;
@@ -293,6 +291,53 @@ li{
     width: 912px;
     background-color:#fffbbe; 
 }
+.info_list {
+    height: 500px;
+    overflow: scroll;
+    background: #FFFBBE;
+    /* margin-top: 28px; */
+    border-top: 1px solid #FCEEA6;
+    border-radius: 2px;
+    margin: 0 !important;
+}
+.info_list .info_title {
+    background: #FFFBBE;
+    height: 30px;
+    color: #FF6F30;
+}
+.info_list .info_content {
+    background: #FCEEA6;
+    height: 30px;
+    color: #FF6520;
+}
+.info_list div > span, .info_list li > span {
+    display: inline-block;
+    overflow: hidden;
+    height: 34px;
+    text-align: center;
+    line-height: 36px;
+}
+span.college {
+    width: 100px;
+}
+span.major {
+    width: 100px;
+}
+span.name {
+    width: 178px;
+}
+span.gender {
+    width: 178px;
+}
+span.city {
+    width: 178px;
+}
+span.tele_num {
+    width: 178px;
+}
+span.qq_num {
+    width: 178px;
+}
 .page_mid_big .share{
     margin: 0 auto;
     height: 48px;
@@ -319,12 +364,12 @@ li{
     margin-left: 10px;
     background: url(../image/share3.png);
 }
-#page_mid_first,
+.page_mid,
 #page_mid_next{
     width: 912px;
     height: 400px;
     position: absolute;
-    margin-top: 20px;
+    /*margin-top: 20px;*/
     display: none;
 }
 
