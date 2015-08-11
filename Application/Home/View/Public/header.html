@@ -23,19 +23,15 @@
 			</div>
 			<div id="behavior_d">
 				<img style="float:left;" src="__PUBLIC__/image/login/behavior.png">
-				<div>
-					<a href=""></a>
-					<a href=""></a>
-					<a href=""></a>
-					<a href=""></a>
-					<a href=""></a>
-					<a href=""></a>
-					<a href=""></a>
-					<a href=""></a>
-					<a href=""></a>
-					<a href=""></a>
-					<a href=""></a>
-					<a href=""></a>
+                <div id="post_behavior">
+                    <a href="#">足球</a>
+                    <a href="#">篮球</a>
+                    <a href="#">刀塔</a>
+                    <a href="#">LOL</a>
+                    <a href="#">网球</a>
+                    <a href="#">羽毛球</a>
+                    <a href="#">购物</a>
+                    <a href="#">美食</a>
 				</div>	
 			</div>
 		</form>
@@ -77,7 +73,7 @@
 					<a href="">关于我们</a>
 				</li>
 				<li id="login1">
-					<a>新生登录</a>
+					<a>{$checklogin}</a>
 				</li>
 			</ul>
 		</div>
@@ -111,7 +107,7 @@
 					<a href="">关于我们</a>
 				</li>
 				<li id="login2">
-					<a>新生登录</a>
+					<a href="{$checkState}">{$checklogin}</a>
 				</li>
 			</ul>
 		</div>

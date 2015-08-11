@@ -70,7 +70,7 @@ li[id^=login] a{
 }
 .cqupt img{
 	float: left;
-	margin-top: 16px;
+	margin-top: 12px;
 }
 
 .nav:after{
@@ -135,7 +135,9 @@ li[id^=login] a{
 }
 .count_down div p .number img{
 	margin-right:-4px;
-	background: #ffffff;
+	/*background-color: #ffffff;*/
+	background-image: url('../image/index/countdown/numline.png');
+	background-position-x: -12px;
 	border-radius: 6px;
 	width: 26px;
 	height: 42px;
