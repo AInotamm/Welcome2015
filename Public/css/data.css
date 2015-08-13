@@ -61,12 +61,12 @@ li{
     color: #50930c;
 }
 
-#login1,#login2{
+li[id^=login] {
     position: absolute;
     right: -120px;
     filter:alpha(opacity=100);
 }
-#login1 a,#login2 a{
+li[id^=login] a{
     cursor: pointer;
     color: #ff9e4d;
 }
@@ -324,19 +324,19 @@ span.major {
     width: 100px;
 }
 span.name {
-    width: 178px;
+    width: 173px;
 }
 span.gender {
-    width: 178px;
+    width: 173px;
 }
 span.city {
-    width: 178px;
+    width: 173px;
 }
 span.tele_num {
-    width: 178px;
+    width: 173px;
 }
 span.qq_num {
-    width: 178px;
+    width: 173px;
 }
 .page_mid_big .share{
     margin: 0 auto;

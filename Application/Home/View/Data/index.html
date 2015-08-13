@@ -43,8 +43,6 @@
                             </ul>
                         </div>
                         <div class="page_mid_big">
-                        	<div class="page_mid" style="display: none"></div>
-                            <div class="page_mid" style="display: block"></div>
                             <div class="page_mid" style="display: none">
                                 <ul class="info_list" style="overflow: hidden; outline: none;">
                                     <div class="info_title">
@@ -54,13 +52,35 @@
                                         <span class="tele_num">手机号码</span>
                                         <span class="qq_num">QQ</span>
                                     </div>
-                                    <li class="info_content">
-                                        <span class="name">石文俊</span>
-                                        <span class="gender">男</span>
-                                        <span class="city">重庆</span>
-                                        <span class="tele_num">18523154024</span>
-                                        <span class="qq_num">583008808</span>
-                                    </li>
+                                    <volist name="Fav" id="Fav">
+                                        <li class="info_content">
+                                            <span class="name">{$Fav.stu_name}</span>
+                                            <span class="gender">{$Fav.stu_sexy}</span>
+                                            <span class="city">{$Fav.stu_prov}</span>
+                                            <span class="tele_num">{$Fav.stu_tel}</span>
+                                            <span class="qq_num">{$Fav.stu_qq}</span>
+                                        </li>
+                                    </volist>
+                                </ul>
+                            </div>
+                            <div class="page_mid" style="display: block">
+                                <ul class="info_list" style="overflow: hidden; outline: none;">
+                                    <div class="info_title">
+                                        <span class="name">姓名</span>
+                                        <span class="gender">性别</span>
+                                        <span class="city">击败比例</span>
+                                        <span class="tele_num">手机号码</span>
+                                        <span class="qq_num">QQ</span>
+                                    </div>
+                                    <if condition="$user_student">
+                                        <li class="info_content">
+                                            <span class="name">{$user_student.stu_name}</span>
+                                            <span class="gender">{$user_student.stu_sexy}</span>
+                                            <span class="city">{$defeatScale}</span>
+                                            <span class="tele_num">{$user_student.stu_tel}</span>
+                                            <span class="qq_num">{$user_student.stu_qq}</span>
+                                        </li>
+                                    </if>
                                 </ul>
                             </div>
                             <div class="page_mid" style="display: none">
@@ -72,13 +92,35 @@
                                         <span class="tele_num">手机号码</span>
                                         <span class="qq_num">QQ</span>
                                     </div>
-                                    <li class="info_content">
-                                        <span class="name">石文俊</span>
-                                        <span class="gender">男</span>
-                                        <span class="city">重庆</span>
-                                        <span class="tele_num">18523154024</span>
-                                        <span class="qq_num">583008808</span>
-                                    </li>
+                                    <volist name="Class" id="Class">
+                                        <li class="info_content">
+                                            <span class="name">{$Class.stu_name}</span>
+                                            <span class="gender">{$Class.stu_sexy}</span>
+                                            <span class="city">{$Class.stu_prov}</span>
+                                            <span class="tele_num">{$Class.stu_tel}</span>
+                                            <span class="qq_num">{$Class.stu_qq}</span>
+                                        </li>
+                                    </volist>
+                                </ul>
+                            </div>
+                            <div class="page_mid" style="display: none">
+                                <ul class="info_list" style="overflow: hidden; outline: none;">
+                                    <div class="info_title">
+                                        <span class="name">姓名</span>
+                                        <span class="gender">性别</span>
+                                        <span class="city">籍贯</span>
+                                        <span class="tele_num">手机号码</span>
+                                        <span class="qq_num">QQ</span>
+                                    </div>
+                                    <volist name="Dorm" id="Dorm">
+                                        <li class="info_content">
+                                            <span class="name">{$Dorm.stu_name}</span>
+                                            <span class="gender">{$Dorm.stu_sexy}</span>
+                                            <span class="city">{$Dorm.stu_prov}</span>
+                                            <span class="tele_num">{$Dorm.stu_tel}</span>
+                                            <span class="qq_num">{$Dorm.stu_qq}</span>
+                                        </li>
+                                    </volist>
                                 </ul>
                             </div>
                             <div class="page_mid" style="display: none"></div>
@@ -130,43 +172,57 @@
     <script>
         window.onload = function(){
             var NAME = ["重庆","其余人数","脱单男","脱单女"];
-            var VALUE = [{"name":"重庆","value":100},
-                {"name":"其余人数","value":900},
+//            var VALUE = [{"name":"重庆","value":100},
+            var VALUE = [{"name": "<?php echo $city?>", "value": "<?php echo $city_wide ?>"},
+                {"name":"其余人数","value":"<?php echo $city_total?>"}
+//                {"name":"其余人数","value":900},
             ];
             var TITLE = "在重邮，你的老乡人数占全校人数的比例为";
-            var BILI = "10%";
+//            var BILI = "10%";
+            var BILI = "{$city_wide / ($city_wide + $city_total)}"
             charst(NAME,VALUE,TITLE,BILI);
         }
         data_btu1.onclick = function(){
             var NAME = ["重庆","其余人数","脱单男","脱单女"];
-            var VALUE = [{"name":"重庆","value":100},
-                {"name":"其余人数","value":900},
+//            var VALUE = [{"name":"重庆","value":100},
+            var VALUE = [{"name": "<?php echo $city?>", "value": "{$city_wide}"},
+                {"name":"其余人数","value":"<?php echo $city_total?>"}
+//                {"name":"其余人数","value":900},
             ];
             var TITLE = "在重邮，你的老乡人数占全校人数的比例为";
-            var BILI = "10%";
+//            var BILI = "10%";
+            var BILI = "{$city_wide / ($city_wide + $city_total)}"
             charst(NAME,VALUE,TITLE,BILI);
         }
         data_btu2.onclick = function(){
             var singleDog = [
-                {"name":"男","value":"30"},
-                {"name":"女","value":"70"},
+//                {"name":"男","value":"30"},
+//                {"name":"女","value":"70"},
+                {"name":"男","value":"<?php echo $men ?>"},
+                {"name":"女","value":"<?php echo $women ?>"},
             ]
             var notalone =[
-                {"name":"脱单男","value":"30"},
-                {"name":"脱单女","value":"70"},
+//                {"name":"脱单男","value":"30"},
+//                {"name":"脱单女","value":"70"},
+                {"name":"脱单男","value":"<?php echo $dog_men ?>"},
+                {"name":"脱单女","value":"<?php echo $dog_women ?>"},
             ]
             charst_sex(singleDog,notalone);
         }
         data_btu3.onclick = function(){
             var age = ["同年同月","其他"];
             var agevalue = [
-                {"name":"同年同月","value":"30"},
-                {"name":"其他","value":"70"},
+//                {"name":"同年同月","value":"30"},
+//                {"name":"其他","value":"70"},
+                {"name":"同年同月","value":"<?php echo $same_birthday?>"},
+                {"name":"其他","value":"<?php echo $other_birthday?>"},
             ]
             var star = ["天蝎","其他"];
             var starvalue = [
-                {"name":"天蝎","value":"30"},
-                {"name":"其他","value":"70"},
+//                {"name":"天蝎","value":"30"},
+//                {"name":"其他","value":"70"},
+                {"name":"天蝎","value":"<?php echo $same_hororray?>"},
+                {"name":"其他","value":"<?php echo $other_hororray?>"},
             ]
             chart_age(age,agevalue,star,starvalue);
         }
@@ -174,7 +230,7 @@
             charst_subject();
         }
         data_btu5.onclick = function(){
-            var content = "通信学院的出国升学率为22.3%，灵活就业率为0.48%，待就业率为2.08%，就业率为97.92%";//学院的文字数据介绍
+            var content = "{$dept}的出国升学率为{$goAbroad}%，灵活就业率为{$flexTP}%，待就业率为{$stayathome}%，就业率为{$TP}%";//学院的文字数据介绍
             charst_end(content);
         }
 

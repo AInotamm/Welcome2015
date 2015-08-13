@@ -1,6 +1,7 @@
 var eventHandler = {
 	addEvent:
         function(target,type,callback,useCapture) {
+            if (!target) return;
             if (!target["event" + type]) {
                 target["event" + type] = {};
             }
@@ -165,7 +166,13 @@ var ajaxObject = {
 		xhr.open("POST",target,true);
 		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 		xhr.send(string);
-	}
+	},
+    POST1:function(xhr,string,target,fn){
+        xhr.open("POST",target,false);
+        xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        xhr.send(string);
+        fn();
+    }
 }
 cookieObject = {
 	set:function(name,value,expiress,path,domain,secure) {
@@ -578,7 +585,6 @@ function constant(target,json,speed,callback) {
 		userTest = /2014[0-9]{6}/,
 		passwordTest = /[0-9]{5}([0-9]|[Xx])/,
 		b_c = true,
-        login = false,
 		completeInfo = false,
 		timer;
 	eventHandler.addEvent(window,"resize",function() {
@@ -637,68 +643,86 @@ function constant(target,json,speed,callback) {
                         div01.style.display = "none";
                         div02.style.display = "none";
                     });
+                    phone_d.style.visibility = "visible";
+                    qq_d.style.visibility = "visible";
                     animation.move(phone_d, {"top": "72", "opacity": "1.0"}, 1000);
                     animation.move(qq_d, {"top": "132", "opacity": "1.0"}, 1000);
                     animation.move(skip, {"top": "380", "opacity": "1.0"}, 1000);
                     animation.move(yes, {"top": "380", "opacity": "1.0"}, 1000);
                     b_c = true;
-                    login = true;
-                } else if (data.status >= 400) {
+                } else if (data.status >= 200 && data.status < 202) {
+                    b_c = true;
+                    wap.style.display = "none";
+                    animation.move(big,{"top":"-280","opacity":"0"},1000,function(){
+                        big.style.display = "none";
+                        window.location = window.location.href;
+                    })
+                } else if (data.status >= 400 || !data) {
                     b_c = false;
+                    notice.style.display = "block";
+                    animation.move(notice,{"top":"110","opacity":"1.0"},1000,
+                        function() {
+                            animation.move(notice,{"top":"80","opacity":"0"},1000,function(){
+                                notice.style.top = "140px";
+                                notice.style.display = "none";
+                            })
+                        }
+                    );
                 }
+                notice.style.display = "block";
+                animation.move(notice,{"top":"110","opacity":"1.0"},1000,
+                    function() {
+                        animation.move(notice,{"top":"80","opacity":"0"},1000,function(){
+                            notice.style.top = "140px";
+                            notice.style.display = "none";
+                        })
+                    }
+                );
             });
 		} else {
+            notice.style.display = "block";
+            animation.move(notice,{"top":"110","opacity":"1.0"},1000,
+                function() {
+                    animation.move(notice,{"top":"80","opacity":"0"},1000,function(){
+                        notice.style.top = "140px";
+                        notice.style.display = "none";
+                    })
+                }
+            );
 			if(!b_c) {return;}
 		}
-        notice.style.display = "block";
-        animation.move(notice,{"top":"110","opacity":"1.0"},100,
-            function() {
-                animation.move(notice,{"top":"80","opacity":"0"},100,function(){
-                    notice.style.top = "140px";
-                    notice.style.display = "none";
-                    b_c = true;
-                })
-            }
-        );
-        if(b_c) {
-            wap.style.display = "none";
-            animation.move(big,{"top":"-280","opacity":"0"},1000,function(){
-                big.style.display = "none";
-            })
-        }
-        b_c = false;
+
+        //console.log(b_c + "1");
+        //return b_c;
 	})
 
 	eventHandler.addEvent(login1,"click",function() {
-        if(!login) {
-            wap.style.display = "block";
-            big.style.display = "block";
-            animation.move(big, {"top": "300", "opacity": "1.0"}, 500, function () {
-                if (parseFloat(getStyle(big, "top")) > 280) {
-                    animation.move(big, {"top": "200"}, 300, function () {
-                        animation.move(big, {"top": "280"}, 300);
-                    });
-                };
-            });
-        }
+        wap.style.display = "block";
+        big.style.display = "block";
+        animation.move(big, {"top": "300", "opacity": "1.0"}, 500, function () {
+            if (parseFloat(getStyle(big, "top")) > 280) {
+                animation.move(big, {"top": "200"}, 300, function () {
+                    animation.move(big, {"top": "280"}, 300);
+                });
+            };
+        });
 	})
 	eventHandler.addEvent(login2,"click",function() {
-        if(!login) {
-            wap.style.display = "block";
-            big.style.display = "block";
-            animation.move(big, {"top": "300", "opacity": "1.0"}, 500, function () {
-                if (parseFloat(getStyle(big, "top")) > 280) {
-                    animation.move(big, {"top": "200"}, 300, function () {
-                        animation.move(big, {"top": "280"}, 300);
-                    });
-                };
-            });
-        }
+        wap.style.display = "block";
+        big.style.display = "block";
+        animation.move(big, {"top": "300", "opacity": "1.0"}, 500, function () {
+            if (parseFloat(getStyle(big, "top")) > 280) {
+                animation.move(big, {"top": "200"}, 300, function () {
+                    animation.move(big, {"top": "280"}, 300);
+                });
+            };
+        });
 	})
 	eventHandler.addEvent(close,"click",function(){
 		wap.style.display = "none";
 		animation.move(big,{"top":"-280","opacity":"0"},1000,function(){
 			big.style.display = "none";
+            return true;
 		})
 	})
     var post_beh = document.getElementById("post_behavior"),
@@ -744,7 +768,6 @@ function constant(target,json,speed,callback) {
 			var data = JSON.parse(res);
 			if(data.status == 203) {
 				completeInfo = true;
-                login = true;
 			}
         });
         return true;

@@ -633,6 +633,7 @@ li[id^=login] a{
 	filter:alpha(opacity=0);
 }
 #phone_d{
+	visibility: hidden;
 	width: auto !important;
 	position: absolute;
 	top: 112px;
@@ -647,6 +648,7 @@ li[id^=login] a{
 	padding: 10px 10px !important;
 }
 #qq_d{
+	visibility: hidden;
 	width: auto !important;
 	position: absolute;
 	top: 172px;
