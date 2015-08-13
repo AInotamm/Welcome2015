@@ -639,7 +639,7 @@ li[id^=login] a{
 	left: 36px !important;
 	opacity: 0;
 	filter:alpha(opacity=0);
-	z-index: -1000;
+	z-index: -100;
 }
 #phone{
 	width: 254px !important;
@@ -653,7 +653,7 @@ li[id^=login] a{
 	left: 40px !important;
 	opacity: 0;
 	filter:alpha(opacity=0);
-	z-index: -1000;
+	z-index: -100;
 }
 #qq{
 	width: 254px !important;
