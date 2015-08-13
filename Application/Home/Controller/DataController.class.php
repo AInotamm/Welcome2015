@@ -10,216 +10,260 @@ namespace Home\Controller;
 use Think\Controller;
 
 class DataController extends BaseController {
-    public function index(){//所有的查询你测试看看，最初有没有设置session
+
+    private $provScale = array( //省份比例，到时跑了改
+        '重庆'=>'', '成都'=>'', '贵阳'=>'', '西安'=>'', '昆明'=>'',
+        '湖南'=>'', '湖北'=>'', '兰州 ' =>'', '广西'=>'' , '河南' =>'',
+        '青海' =>'', '江西' =>'', '广东' =>'', '宁夏' =>'', '安徽' =>'',
+        '海南' =>'', '澳门' =>'', '山西' =>'', '香港' =>'', '河北' =>'',
+        '江苏' =>'', '山东' =>'', '福建' =>'', '浙江' =>'', '内蒙古' =>'',
+        '上海' =>'', '天津' =>'', '北京' =>'', '西藏' =>'', '台湾'=>'',
+        '辽宁' =>'', '吉林' =>'', '新疆' =>'', '黑龙江' =>'',
+    );
+    private $proDistance = array(
+        0 =>'重庆', 1 => '成都', 2 => '贵阳', 3 => '西安', 4 => '昆明',
+        5 =>'湖南', 6 =>'湖北', 7 => '兰州', 8 => '广西', 9 => '河南',
+        10 => '青海', 11 => '江西', 12 => '广东', 13 => '宁夏', 14 => '安徽',
+        15 => '海南', 16 => '澳门', 17 =>'山西', 18 =>'香港', 19 => '河北',
+        20 => '江苏', 21 =>'山东', 22 => '福建', 23 => '浙江', 24 => '内蒙古',
+        25 => '上海', 26 => '天津', 27 => '北京', 28 => '西藏', 29 => '台湾',
+        30 =>'辽宁', 31 => '吉林', 32 => '新疆', 33 => '黑龙江',
+    );
+
+    private $_stu_id;
+    private $_stu_class;
+    private $_stu_dorm;
+    private $_stu_dept;
+    private $total = 4711;
+    private $techer;
+    private $sameFav;
+    private $sameClass;
+    private $sameDorm;
+    private $sameProv;
+    private $otherProv;
+
+    public function index(){  //所有的查询你测试看看，最初有没有设置session
+        if(session('?stu_id')) {
+            $this->_stu_id = session('stu_id');
+            $this->_showInfo(false);
+            $this->_getExtraData(false);
+            $this->_getProv();
+
+            $this->assign(array(
+                'city' => session('stu_prov'),
+                'city_wide' => $this->sameProv,
+                'city_total' => $this->otherProv,
+                'men' => 10,
+                'women' => 1000,
+                'dog_men' => 100,
+                'dog_women' => 2,
+                'same_birthday' => 10,
+                'other_birthday' => 100,
+                'same_hororray' => 20,
+                'other_hororray' => 40,
+                'dept' => '通信学院',
+                'goAbroad' => '22.3',
+                'flexTP' => '0.48',
+                'stayathome' => '2.08',
+                'TP' => '97.92'
+            ));
+        }
         $this->display('Data/index');
     }
 
-    public function sameGoal(){//共同爱好的人s
-        $student = M('fav');
-        $stu_condition['stu_id'] = $_SESSION['stu_id'];
-        $stu_fav = $student->where($stu_condition)->find();
-        $condition = array();
-        for($i=0;$i<8;$i++){//判断爱好相同
-            if($stu_fav['fav_info'.$i] == 1){
-                $condition['fav_info'.$i] = 1;
+    private function _showInfo($transfer = true){ //个人信息
+        if($transfer) {
+            $this->_stu_id = I(trim('post.id'), '');
+            if(!$this->_stu_id) {
+                $this->ajaxReturn(array(
+                    'status' => 403,
+                    'info' => '查询参数错误,请重试'
+                ));
             }
         }
-        $same_goal = $student->where($condition)->find();
-        $goal_stu = M('stuinfo');
-        $goal_condition['stu_id'] = $same_goal['stu_id'];
-        $goal_condition['stu_prov'] = $_SESSION['stu_prov'];//设置共同省份
-        $goal_result = $goal_stu->where($goal_condition)->find();
-        if(empty($goal_result)){
-            return "无共同爱好和省份的人";
-        }else{
-            $this->assign('goal_result',$goal_result);
+        $student = M('stuinfo');
+        $condition['stu_id'] = $this->_stu_id;
+        $user_student = $student->where($condition)->find();
+        $opposite = array_flip($this->proDistance);
+        $defeatScale = 0;
+        for($i = 0;$i < $opposite[$_SESSION['stu_prov']];$i++){
+            $defeatScale += $this->provScale[$i];
         }
+        $defeatScale = 1 - $defeatScale;
+        if ($transfer) {
+            $this->ajaxReturn(array(
+                'status' => 100,
+                'info' => '个人信息',
+                'data' => $user_student
+            ));
+        } else {
+            $this->assign(array(
+                'user_student' => $user_student,
+                'defeatScale' => $defeatScale
+            ));
+        }
+
     }
 
-    public function sameClass(){//同班
-        if(!empty(session('stu_id'))){
-            $student = M('stuinfo');
-            $condition['stu_class'] = $_SESSION['stu_class'];
-            $class_student = $student->where($condition)->find();
-            $this->assign('class_student',$class_student);
-            foreach ($class_student as $key => $value) {
-                if($value['stu_prov'] == '新疆'){
-                    $this->assign('stu_prov','新疆');
-                }else{
-                    $this->assign('stu_prov',$value['stu_prov']);
+    private function _searchWith($where = '', $cond = null, $query = 'select', $list = false) {
+        $model = M($where);
+        if ($cond instanceof \Closure) {
+            $cond = $cond();
+        }
+        $condition = $cond;
+        $first_query_result = $model->where($condition)->$query();
+        if ($list) {
+            foreach($first_query_result as $key => &$val) {
+                if($val['stu_prov'] == '新疆') {
+                    $val['stu_prov'] = '故乡';
                 }
             }
-        }else{
-            return '请先登录';
         }
+
+        return $first_query_result;
     }
-    public function sameDorm(){//舍友
-        if(!empty(session('stu_id'))){
-            $student = M('stuinfo');
-            $condition['stu_dorm'] = $_SESSION['stu_dorm'];
-            $dorm_student = $student->where($condition)->find();
-            $this->assign('dorm_student',$dorm_student);
-            foreach ($dorm_student as $key => $value) {
-                if($value['stu_prov'] == '新疆'){
-                    $this->assign('stu_prov','新疆');
-                }else{
-                    $this->assign('stu_prov',$value['stu_prov']);
+
+    private function _getExtraData($transfer = true) {
+        if($transfer) {
+            $this->_stu_id = I(trim('post.id'), '');
+            $this->_stu_class = I(trim('post.class'), '');
+            $this->_stu_dorm = I(trim('post.dorm'), '');
+            $this->_stu_dept = I(trim('post.dept'), '');
+            if (!IS_POST) {
+                $this->ajaxReturn(array(
+                    'status' => 403,
+                    'info' => '查询参数错误,请重试'
+                ));
+            }
+        } else {
+            $this->_stu_class = session('stu_class');
+            $this->_stu_dorm = session('stu_dorm');
+            $this->_stu_dept = session('stu_dept');
+        }
+
+        $this->sameFav = $this->_searchWith('fav', function() {
+            $fav = $this->_searchWith('fav', array('stu_id' => $this->_stu_id), 'find');
+            for ($i = 5; $i < 6; $i++) {
+                if ($fav['fav_info' . $i] == 1) {
+                    $cond['fav_info' . $i] = 1;
                 }
             }
-        }else{
-            return '请先登录';
+            return $cond;
+        });
+
+        $this->sameClass = $this->_searchWith('stuinfo', array(
+            'stu_class' => $this->_stu_class
+        ), 'select', true);
+
+        $this->sameDorm = $this->_searchWith('stuinfo', array(
+            'stu_dorm' => $this->_stu_dorm
+        ), 'select', true);
+
+        $this->techer = $this->_searchWith('stuinfo', array(
+            'stu_dept' => $this->_stu_dept
+        ), 'find');
+        if($transfer) {
+            $this->ajaxReturn(array(
+                'status' => 100,
+                'info' => '大数据',
+                'data' => array(
+//                    'Fav' => $this->sameFav,
+                    'Class' => $this->sameClass,
+                    'Dorm' => $this->sameDorm,
+                    'Tech' => $this->techer
+                )
+            ));
+        } else {
+            $this->assign(array(
+                'Fav' => $this->sameFav,
+                'Class' => $this->sameClass,
+                'Dorm' => $this->sameDorm,
+                'Tech' => $this->techer
+            ));
         }
     }
 
-    public function showInfo(){//个人信息
-        if(!empty(session('stu_id'))){
-            $proDistance = array(
-                0 =>'重庆',
-                1 => '成都',
-                2 => '贵阳',
-                3 => '西安',
-                4 => '昆明',
-                5 =>'湖南',
-                6 =>'湖北',
-                7 => '兰州',
-                8 => '广西省',
-                9 => '河南',
-                10 => '青海',
-                11 => '江西',
-                12 => '广东',
-                13 => '宁夏',
-                14 => '安徽',
-                15 => '海南',
-                16 => '澳门',
-                17 =>'山西',
-                18 =>'香港',
-                19 => '河北',
-                20 => '江苏',
-                21 =>'山东',
-                22 => '福建',
-                23 => '浙江',
-                24 => '内蒙古',
-                25 => '上海',
-                26 => '天津',
-                27 => '北京',
-                28 => '西藏',
-                29 => '台湾',
-                30 =>'辽宁',
-                31 => '吉林',
-                32 => '新疆',
-                33 => '黑龙江',
-            );
-            $student = M('stuinfo');
-            $condition['stu_id'] = $_SESSION['stu_id'];
-            $dorm_student = $student->where($condition)->find();
-            $this->assign('dorm_student',$dorm_student);
-            $opposite = array_flip($proDistance);
-            $defeatScale = 0;
-            for($i = 0;$i < $opposite[$_SESSION['stu_prov']];$i++){
-                $defeatScale += $provScale[$i];
-            }
-            $defeatScale = 1 - $defeatScale;
-            $this->assign('defeatScale',$defeatScale);
-        }else{
-            return '请先登录';
-        }
-    }
+//    private function _sameGoal() {   //共同爱好的人
+//        $student = M('fav');
+//        $stu_condition['stu_id'] = $this->stu_id;
+//        $stu_fav = $student->where($stu_condition)->select();
+//
+////        $m = M('stuinfo');
+////        $i = 1000;
+////        foreach($this->proDistance as $val) {
+////            $i++;
+////            $m->where(array('id' => $i))->data(array(
+////                'stu_prov' => $val
+////            ))->save();
+////        }
+////        var_dump($m->getLastSql());
+////        exit;
+//        $condition = array();
+//        for($i = 0;$i < 8;$i++) { //判断爱好相同
+//            if($stu_fav['fav_info'.$i] == 1){
+//                $condition['fav_info'.$i] = 1;
+//            }
+//        }
+//        $same_goal = $student->where($condition)->find();
+//        $goal_stu = M('stuinfo');
+//        $goal_condition['stu_id'] = $same_goal['stu_id'];
+//        $goal_condition['stu_prov'] = $_SESSION['stu_prov'];//设置共同省份
+//        $goal_result = $goal_stu->where($goal_condition)->find();
+//        if (empty($goal_result)) {
+//            return "无共同爱好和省份的人";
+//        } else {
+//            foreach ($goal_result as $key => $value) {
+//                if($value['stu_prov'] == '新疆'){
+//                    $this->assign('stu_prov','故乡');
+//                }
+//            }
+//            $this->assign('goal_result',$goal_result);
+//        }
+//    }
+//
 
-    public function getProv(){
-        $provScale = array(//省份比例，到时跑了改
-            '重庆'=>'',
-            '成都'=>'',
-            '贵阳'=>'',
-            '西安'=>'',
-            '昆明'=>'',
-            '湖南'=>'',
-            '湖北'=>'',
-            '兰州 ' =>'',
-            '广西省'=>'' ,
-            '河南' =>'',
-            '青海' =>'',
-            '江西' =>'',
-            '广东' =>'',
-            '宁夏' =>'',
-            '安徽' =>'',
-            '海南' =>'',
-            '澳门' =>'',
-            '山西' =>'',
-            '香港' =>'',
-            '河北' =>'',
-            '江苏' =>'',
-            '山东' =>'',
-            '福建' =>'',
-            '浙江' =>'',
-            '内蒙古' =>'',
-            '上海' =>'',
-            '天津' =>'',
-            '北京' =>'',
-            '西藏' =>'',
-            '台湾'=>'',
-            '辽宁' =>'',
-            '吉林' =>'',
-            '新疆' =>'',
-            '黑龙江' =>'',
-        );
-        $proDistance = array(
-            0 =>'重庆',
-            1 => '成都',
-            2 => '贵阳',
-            3 => '西安',
-            4 => '昆明',
-            5 =>'湖南',
-            6 =>'湖北',
-            7 => '兰州',
-            8 => '广西省',
-            9 => '河南',
-            10 => '青海',
-            11 => '江西',
-            12 => '广东',
-            13 => '宁夏',
-            14 => '安徽',
-            15 => '海南',
-            16 => '澳门',
-            17 =>'山西',
-            18 =>'香港',
-            19 => '河北',
-            20 => '江苏',
-            21 =>'山东',
-            22 => '福建',
-            23 => '浙江',
-            24 => '内蒙古',
-            25 => '上海',
-            26 => '天津',
-            27 => '北京',
-            28 => '西藏',
-            29 => '台湾',
-            30 =>'辽宁',
-            31 => '吉林',
-            32 => '新疆',
-            33 => '黑龙江',
-        );
+    private function _getProv(){
         //省份比例跑的代码
         $DB = M('stuinfo');
-        $lastid = '';//最后一个人id
-        for($i = 0;$i<34 ; $i++){
-            $condition['stu_prov'] = $$proDistance[$i];
+        for ($i = 0; $i < 34 ;$i++) {
+            $condition['stu_prov'] = $this->proDistance[$i];
             $num = $DB->where($condition)->count();
-            $provScale[$proDistance[$i]] = $num/$lastid;
+            $this->provScale[$this->proDistance[$i]] = $num / $this->total;
         }
-        $sameProv = 1 - $provScale[$_SESSION['stu_prov']];
+        $this->sameProv = $this->provScale[session('stu_prov')] * $this->total;
+        $this->otherProv = (1 - $this->sameProv) * $this->total;
+
     }
 
-    public function getTeacher(){//查询老师
-        $tea_dept = M('teacher');
-        $condition['stu_dept'] = $_SESSION['stu_dept'];
-        $teacher = $tea_dept->where($condition)->find();
-        $this->assign('teacher',$teacher);
-        //老师名字是$teacher['tea_name'];
-        //老师简介$teacher['tea_content'];
-        //老师照片路径$teacher['tea_picpath'];
+//    private function _getTeacher(){//查询老师
+//        $tea_dept = M('teacher');
+//        $condition['stu_dept'] = $_SESSION['stu_dept'];
+//        $teacher = $tea_dept->where($condition)->find();
+//        $this->assign('teacher',$teacher);
+//        //老师名字是$teacher['tea_name'];
+//        //老师简介$teacher['tea_content'];
+//        //老师照片路径$teacher['tea_picpath'];
+//    }
+    private function _sexyScale(){
+
+        $deptName = array('通信', '计算机', '软件', '经管', '体育',
+            '自动化', '法院', '光电', '传媒', '先进制造');
+        $sexyScale = array('通信' => '', '计算机' => '', '软件' => '', '经管' => '',
+            '体育' => '','自动化' => '','法院' => '',
+            '光电' => '', '传媒' => '', '先进制造' => '');//男生人数比例
+        $getSexy = M('stu_info');
+        $condition['stu_sexy'] = 0;
+        for($i = 0;$i < 10 ; $i++){
+            $condition['stu_dept'] = $deptName[$i];
+            $dept_condition['stu_dept'] = $deptName[$i];
+            $manTotal = $getSexy->where($condition)->count();
+            $deptTotal = $getSexy->where($dept_condition)->count();
+            $sexyScale[$i] = $manTotal / $deptTotal;
+        }
+
     }
 
-    public function sameDate(){//数据展示的同年月及星座
+    private function _sameDate(){//数据展示的同年月及星座
         $birthday = M('stuinfo');
         $stuYM = substr($_SESSION['stu_date'],0,6);
         $stuMD = substr($_SESSION['stu_date'],4,4);

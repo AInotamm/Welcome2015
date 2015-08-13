@@ -26,11 +26,15 @@ abstract class BaseController extends Controller {
     public function _before_index(){
         if(!session('?stu_id')) {
             $this->assign(array(
+                'login1' => 'login1',
+                'login2' => 'login2',
                 'checkLogin' => '新生登录',
                 'checkState' => '#'
             ));
         } else {
             $this->assign(array(
+                'login1' => 'loginnot1',
+                'login2' => 'loginnot2',
                 'checkLogin' => '退出登录',
                 'checkState' => U(CONTROLLER_NAME . '/destroySession')
             ));
@@ -38,7 +42,6 @@ abstract class BaseController extends Controller {
     }
 
     public function login() {
-        ob_start();
         $this->_onLogging();
         $this->_getStuInfo();
     }
@@ -47,7 +50,10 @@ abstract class BaseController extends Controller {
         static::$username = I(trim('post.user_name'));
         static::$password = I(trim('post.password'));
         if (!IS_POST && empty(static::$username) && empty(static::$password)) {
-//            $this->display('Index/index');
+            $this->ajaxReturn(array(
+                'status' => 302,
+                'info' => '请求发生转移,请重试'
+            ));
         }
     }
 
@@ -73,10 +79,7 @@ abstract class BaseController extends Controller {
             if (!$stu['stu_status']) {
                 $this->_cinfo->where($condition)->save(array('stu_status' => 1));
             }
-            //
-            $this->status_msg = ob_get_contents();
-            ob_end_flush();
-            //
+
             $this->status_code = 200;
             $this->status_msg = "登录成功";
             $this->_checkExtraInfo();
@@ -92,7 +95,7 @@ abstract class BaseController extends Controller {
             }
             $this->ajaxReturn(array(
                 'status' => 400,
-                'info' => '登录失败,帐号或密码错误',
+                'info' => '登录失败,学号或身份证后六位错误',
             ));
         }
     }
@@ -101,24 +104,28 @@ abstract class BaseController extends Controller {
         $stu_tel = I(trim('post.stu_tel'));
         $stu_qq = I(trim('post.stu_qq'));
         $beh_arr = array(
-            'fav_info1' => I(trim('post.beh_arr0')),
-            'fav_info2' => I(trim('post.beh_arr1')),
-            'fav_info3' => I(trim('post.beh_arr2'))
+            I(trim('post.beh_arr0')),
+            I(trim('post.beh_arr1')),
+            I(trim('post.beh_arr2'))
         );
+        if (!IS_POST && !$stu_tel && !$stu_qq) {
+            $this->ajaxReturn(array(
+                'status' => 401,
+                'info' => '抱歉,信息未填写完整'
+            ));
+        }
         $this->_cfav = M('fav');
         $extraInfo['stu_id'] = session('stu_id');
         $extra_exist = $this->_cfav->where($extraInfo)->find();
         //兴趣爱好提交，如果填了一次第二次没有，就这么输入
         if (isset($extra_exist)) {
-            $this->_cfav->data(array(
-                'stu_id' => $extraInfo['stu_id'],
-                'fav_info1' => $beh_arr['fav_info1'],
-                'fav_info2' => $beh_arr['fav_info2'],
-                'fav_info3' => $beh_arr['fav_info3']
-            ))->add();
-            $str = implode(',', $beh_arr);
+            $this->_cfav->where($extraInfo)->filter('strip_tags')->data(array(
+                'fav_info1' => $beh_arr[0],
+                'fav_info2' => $beh_arr[1],
+                'fav_info3' => $beh_arr[2]
+            ))->save();
         }
-
+        $str = implode(',', $beh_arr);
         $this->_cinfo = M('stuinfo');
         $goal['stu_tel'] = $stu_tel;
         $goal['stu_qq'] = $stu_qq;
@@ -138,7 +145,7 @@ abstract class BaseController extends Controller {
             $extra = array_values(each($extra)[1]);
             list(, $tel, $qq, $fav) = $extra;
             $fav_arr = explode(',', $fav);
-            if (isset($tel, $qq, $fav) && count($fav_arr) == 3) {
+            if (!empty($tel) && !empty($qq) && count($fav_arr) == 3) {
                 $this->status_code = 201;
                 $this->status_msg .= ",信息完整";
             } else {
@@ -157,9 +164,10 @@ abstract class BaseController extends Controller {
 //        $_SESSION['stu_data'] = $data['stu_data'];
         $_SESSION['stu_id'] = $data['stu_id'];
         $_SESSION['stu_dept'] = $data['stu_dept'];
-//        $_SESSION['stu_qq'] = $data['stu_qq'];
-//        $_SESSION['stu_tel'] = $data['stu_tel'];
-//        $_SESSION['stu_class']= $data['stu_class'];
+        $_SESSION['stu_dorm'] = $data['stu_dorm'];
+        $_SESSION['stu_qq'] = $data['stu_qq'];
+        $_SESSION['stu_tel'] = $data['stu_tel'];
+        $_SESSION['stu_class']= $data['stu_class'];
     }
 
     /**
@@ -173,18 +181,8 @@ abstract class BaseController extends Controller {
 //         echo $area;
     }
 
-
     public function destroySession(){
         session(null);
-//        $proDistance = array(
-//            0 =>'重庆', 266 => '成都', 328 => '贵阳', 572 => '西安',
-//            621 => '昆明', 647 =>'湖南省', 762 =>'湖北', 768 => '兰州', 770 => '广西省',
-//            893 => '河南省', 906 => '青海省', 911 => '江西省', 977 => '广东省', 979 => '宁夏',
-//            1061 => '安徽', 1073 => '海南', 1075 => '澳门', 1081 =>'山西', 1108 =>'香港',
-//            1195 => '河北', 1207 => '江苏', 1253 =>'山东', 1312 => '福建', 1314 => '浙江',
-//            1342 => '内蒙古', 1445 => '上海', 1447 => '天津', 1465.2 => '北京', 1485 => '西藏',
-//            1561 => '台湾', 2040 =>'辽宁', 2301 => '吉林', 2306 => '新疆', 2515 => '黑龙江',
-//        );
         $this->redirect(CONTROLLER_NAME . '/index');
     }
 }
