@@ -11,6 +11,7 @@ use Think\Controller;
 abstract class BaseController extends Controller {
     public function login() {
         $this->_getStuInfo();
+        $this->_getExtraInfo();
     }
 
     /**
@@ -46,7 +47,7 @@ abstract class BaseController extends Controller {
         }
     }
 
-    private function _getInfo(){
+    private function _getExtraInfo(){
         $stu_tel = I(trim('post.stu_tel'));
         $stu_qq = I(trim('post.stu_qq'));
         $beh_arr0 = I(trim('post.beh_arr0'));
