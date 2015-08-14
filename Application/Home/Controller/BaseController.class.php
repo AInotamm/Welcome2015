@@ -50,6 +50,9 @@ class BaseController extends Controller {
                 'checkState' => U(CONTROLLER_NAME . '/destroySession')
             ));
         }
+        if(!cookie('IP_state')) {
+            cookie('IP_state', 0, array('expire' => 3600, 'httponly' => 1));
+        }
     }
 
     /**
@@ -94,18 +97,27 @@ class BaseController extends Controller {
         );
         $this->_cinfo = M('stuinfo');
         $stu = $this->_cinfo->where($condition)->find();
+
         //关于IP判断，防刷
         $this->_cip = M('blackip');
         $ban_ip = array('black_ip' => $this->_getIp());
         $blacktime = $this->_cip->where($ban_ip)->find();
-
-        if ($blacktime['blacktime'] > 5) {  //5次后永久gg这里添加个View层或者别的直接指向gg页面
-            $this->error('你的时间非常值钱,请不要在这里浪费时间');
-        } else if(session('IP_state') > 10) {  //该次登陆如果连续10次，session默认失效时间是24分钟
-            $goal['blacktime'] = $blacktime['blacktime'] + 1;
-            $this->_cip->where($ban_ip)->save($goal);
-
-
+        cookie('IP_state', cookie('IP_state') == 0 ? 1 : cookie('IP_state') + 1);
+        if ($blacktime['black_time'] > 5) {  //5次后永久gg这里添加个View层或者别的直接指向gg页面
+            $this->ajaxReturn(array(
+                'status' => 110,
+                'info' => '你的 IP 已被封禁,请联系网站管理员'
+            ));
+        } else if(cookie('IP_state') >= 10) {  //该次登陆如果连续10次，session默认失效时间是24分钟
+            if(!$blacktime) {
+                $goal['black_time'] = 1;
+                $goal['black_ip'] = $this->_getIp();
+                $this->_cip->add($goal);
+            } else {
+                $this->_cip->where($ban_ip)->data(array(
+                    'black_time' => $blacktime['black_time'] + 1
+                ))->save();
+            }
         } else if($stu && $stu['stu_name'] == static::$username) {
             $this->_saveSession($stu);
             if (!$stu['stu_status']) {
@@ -218,6 +230,7 @@ class BaseController extends Controller {
     private function _checkExtraInfo(){
         $id = session('stu_id');
         if($id) {
+            cookie('IP_state', 0);
             $extra = $this->_cinfo->where(array('stu_id' => $id))->getField('stu_id, stu_tel, stu_qq, stu_fav');
             $extra = array_values(each($extra)[1]);
             list(, $tel, $qq, $fav) = $extra;
