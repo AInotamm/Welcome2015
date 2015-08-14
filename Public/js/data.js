@@ -17,6 +17,15 @@ btu_3D.onclick = function(){
     btu_2D.removeAttribute("class","active");
 }
 
+var oUl = document.getElementById("page_mid"),
+    oFooter = document.getElementById("page_bottom");
+if(oUl && oFooter) {
+    page = new Paging(oUl,oFooter,1, true);
+    page.dispaly();
+    page.mclick(oFooter);
+    page.sclick(oFooter);
+}
+
 
 require.config({
     paths:{
@@ -24,7 +33,7 @@ require.config({
     }
 });
 
-function charst(name,value,title,bili) {
+function charst(name, value, value1, title, bili) {
     require([
         "echarts",
         "echarts/chart/pie"
@@ -47,7 +56,7 @@ function charst(name,value,title,bili) {
                         fontSize: 18,
                         fontWeight: 'bolder',
                         color: '#8e6946'
-                    }, 
+                    },
                     subtextStyle:{
                         fontSize: 16,
                         fontWeight: 'bolder',
@@ -92,10 +101,10 @@ function charst(name,value,title,bili) {
                             }
                         }
                     },
-                    data:value
+                    data:value1
                 },
                 {
-                    name:"脱单率",
+                    name:"男女比例",
                     type:'pie',
                     x:0,
                     y:0,
@@ -119,10 +128,11 @@ function charst(name,value,title,bili) {
                             }
                         }
                     },
-                    data:[
-                    {"name":"脱单男","value":"30"},
-                    {"name":"脱单女","value":"70"},
-                    ]
+                    data: value
+                    //    [
+                    //{"name":"男","value":"30"},
+                    //{"name":"女","value":"70"},
+                    //]
                 },
                 ]
             };
@@ -200,7 +210,7 @@ function charst_sex(singleDog,notalone){
                     orient : 'vertical',
                     x : 350,
                     y:200,
-                    data:["男","女","脱单女","脱单男"]
+                    data:["男","女","已脱单","未脱单"]
                 },
                 calculable : true,
                 series : [
@@ -290,7 +300,7 @@ require([
                 orient : 'vertical',
                 x : 350,
                 y:200,
-                data:["男","女","脱单男","脱单女"]
+                data:["男","女","已脱单","未脱单"]
             },
             calculable : true,
             series : [
@@ -320,8 +330,8 @@ require([
                     }
                 },
                 data:[
-                {"name":"男","value":"30"},
-                {"name":"女","value":"70"},
+                {"name":"男","value":"3026"},
+                {"name":"女","value":"1685"},
                 ]
             },
             {
@@ -350,8 +360,8 @@ require([
                     }
                 },
                 data:[
-                {"name":"脱单男","value":"30"},
-                {"name":"脱单女","value":"70"},
+                {"name":"已脱单","value":"1344"},
+                {"name":"未脱单","value":"3367"},
                 ]
             },
             ]

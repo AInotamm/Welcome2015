@@ -1,3 +1,173 @@
+function Paging(content,footer,maxONum, flag){
+    this.maxONum = maxONum;//一页中最多多少条评论
+    this.content = content.children;//评论的集合
+    if (flag && this.content[this.content.length - 1].className == 'page_bottom') {
+        var arr = [];
+        for(var s = 0; s < this.content.length - 1; s++) {
+            arr.push(content.children[s]);
+        }
+        this.content = arr;
+    }
+    this.num = Math.ceil(this.content.length/maxONum);//总共分多少页
+    this.footer = footer.children;//按钮的集合
+    this.focusPage = 1;//当前处于哪一页
+    this.hidden();
+}
+Paging.prototype = {
+    constructor:Paging,
+    getPageNum:function(target){//获取并且计算总共有多少页
+        var xhr = ajaxObject.createXhr(),
+            maxONum = this.maxONum,
+            allNum;
+        ajaxObject.GET(xhr,target,function(){
+            allNum = xhr.responseText;
+            this.num = Math.ceil(allNum/maxONum);
+        })
+    },
+    dispaly:function(value){//按钮的隐藏
+        var arr = this.footer,//按钮的集合
+            num = this.num,//总共分多少页
+            len = arr.length,
+            value = value || 1;
+        if(value == 1){
+            arr[0].className = "hidden";
+            arr[1].className = "hidden";
+        }
+        if(!num||num == 1){//没有评论&&评论只有一页的时候
+            for(var i = 0;i < len;i++){
+                arr[i].className = "hidden";
+            }
+            return;
+        }else if(num > 5){
+            for(var i = 2;i < len-2;i++){
+                arr[i].className = "show";
+                arr[i].value = i - 1;
+                arr[i].id = "";
+            }
+            arr[value + 1].id = "focus";
+            return;
+        }
+        for(i = 2;i < len - 2;i++){
+            arr[i].id = "";
+            arr[i].value = i - 1;
+            arr[i].className = "show";
+        }
+        for(i = num + 2;i < len - 2;i++){
+            arr[i].className = "hidden";
+        }
+        arr[value + 1].id = "focus";
+    },
+    click:function(e){
+        var that = this,
+            arr = that.footer,//按钮的集合
+            num = that.num,//总共分多少页
+            length = arr.length,
+            target = e.target || e,
+            value = parseInt(target.value) || e,
+            index = indexOf(arr,target);
+        that.lastFocusPage = that.focusPage;
+        that.focusPage = value;
+        that.showLi(that.focusPage);
+        arr[length - 1].className = "show";
+        arr[length - 2].className = "show";
+        arr[0].className = "show";
+        arr[1].className = "show";
+        if(value == 1){
+            arr[0].className = "hidden";
+            arr[1].className = "hidden";
+        }else if(value == num){
+            arr[length - 1].className = "hidden";
+            arr[length - 2].className = "hidden";
+        }
+        if(value < 5){
+            that.dispaly(value);
+        }else{
+            for(var i = 2,j = -2;i < length - 2;i++,j++){
+                if(value + j <= num){
+                    arr[i].className = "show";
+                    arr[i].value = value + j;
+                    arr[i].id = "";
+                    if(value + j == value){
+                        arr[i].id = "focus";
+                    }
+                }else{
+                    arr[i].className = "hidden";
+                }
+            }
+        }
+    },
+    mclick:function(oFooter){
+        var that = this,
+            target,
+            arr = that.footer,
+            length = arr.length,
+            index;
+        eventHandler.live(oFooter,oFooter.children,"click",function(e){
+            target = e.target,
+                index = indexOf(arr,target);
+            if(index < 2||indexOf(arr,target) >= length - 2){
+                return;
+            }
+            that.click(e);
+        })
+    },
+    sclick:function(oFooter){
+        var that = this,
+            target,
+            arr = that.footer,
+            length = arr.length,
+            index;
+
+        eventHandler.live(oFooter,oFooter.children,"click",function(e){
+            target = e.target;
+            if(!target.value){
+                target.value = target.textContent.replace(/\s/g,"");
+            }
+            console.log(target.value);
+            switch(target.value){
+                case "<<":
+                    that.click(1);
+                    break;
+                case ">>":
+                    that.click(that.num);
+                    break;
+                case "<":
+                    if(that.focusPage == 0) that.focusPage = 1;
+                    that.click(that.focusPage - 1);
+                    break;
+                case ">":
+                    if(that.focusPage == that.num) that.focusPage = that.num - 1;
+                    that.click(that.focusPage + 1);
+                    break;
+            }
+
+        })
+    },
+    GET:function(target,page){
+        var xhr = ajaxObject.createXhr();
+        json = ajaxObject.encode({"page":page})
+        ajaxObject.GET(xhr,target,function(){
+            //
+        },page)
+    },
+    showLi:function(focusPage){
+        focusPage--;
+        console.log(focusPage,this.maxONum);
+        for(var i = 0;i < this.content.length;i++){
+            if(i < focusPage * this.maxONum + this.maxONum&&i >= focusPage * this.maxONum){
+                this.content[i].style.display = "block";
+            }else{
+                this.content[i].style.display = "none";
+            }
+        }
+    },
+    hidden:function(){
+        for(var i = this.maxONum;i < this.content.length;i++){
+            this.content[i].style.display = "none";
+        }
+    }
+}
+
 var eventHandler = {
 	addEvent:
         function(target,type,callback,useCapture) {
@@ -582,7 +752,7 @@ function constant(target,json,speed,callback) {
 		xhr = ajaxObject.createXhr(),
 		send,
 		b_arr = [false,false],
-		userTest = /2014[0-9]{6}/,
+		userTest = /[\u4E00-\u9FA5]{2,}/,
 		passwordTest = /[0-9]{5}([0-9]|[Xx])/,
 		b_c = true,
 		completeInfo = false,
@@ -595,7 +765,7 @@ function constant(target,json,speed,callback) {
 		},300)
 	})
 	eventHandler.addEvent(user_name_c,"blur",function() {
-		if((this.value.match(userTest) == null && this.value.length == 10) || this.value.length != 10){
+		if(this.value.match(userTest) == null){
 			if(this.value != "") {
 				this.style.border = "2px solid #FF3030";
 			} else {
@@ -622,7 +792,7 @@ function constant(target,json,speed,callback) {
 	})
 	eventHandler.addEvent(sub,"click",function() {
 		if(b_arr[0] && b_arr[1]) {
-			send = ajaxObject.encode({"user_name":user_name_c.value,"password":password_c.value});
+			send = ajaxObject.encode({"name":user_name_c.value,"pwd":password_c.value});
 			ajaxObject.POST(xhr,send,"login", function(res) {
                 var data = JSON.parse(res);
                 if(data) {
@@ -692,8 +862,6 @@ function constant(target,json,speed,callback) {
 			if(!b_c) {return;}
 		}
 
-        //console.log(b_c + "1");
-        //return b_c;
 	})
 
 	eventHandler.addEvent(login1,"click",function() {
