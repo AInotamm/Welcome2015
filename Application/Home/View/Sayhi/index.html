@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+    <title>大声HI</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/sayhi.css">
+</head>
+<body>
+<include file="Public:header" />
+<div class="timer">
+    <img src="__PUBLIC__/image/global/maptimerbg.png">
+    <div class="timer_container">
+        <img id="cloud01" class="cloud01" src="__PUBLIC__/image/global/cloud01.png">
+        <img id="cloud02" class="cloud02" src="__PUBLIC__/image/global/cloud03.png">
+        <img id="cloud03" class="cloud03" src="__PUBLIC__/image/global/cloud04.png">
+        <img id="cloud04" class="cloud04" src="__PUBLIC__/image/global/cloud05.png">
+        <div class="logo"></div>
+        <img class="car" src="__PUBLIC__/image/global/car.png">
+        <img src="__PUBLIC__/image/hotball.png"class="hotball">
+        <img class="line"src="__PUBLIC__/image/global/map_line.png">
+    </div>
+</div>
+<div class="container">
+    <img src="__PUBLIC__/image/global/mapground.png">
+    <a id="go_top" href="#"></a>
+    <div class="title">
+        <div class="hi-title">
+            <p>
+                文章列表
+            </p>
+        </div>
+        <div class="hi-container">
+            <div class="write" id="write">
+                <form action="" method="post">
+                    <input style="text-align: center;" placeholder="文章标题" type="text" name="title_name">
+                    <textarea rows="20" cols="20" name="content"></textarea>
+                    <input type="submit" value="提交">
+                </form>
+                <a style="margin-left:600px;" class="w-btn" href="" id="cancel">取消</a>
+            </div>
+            <div class="write" id="show">
+                <div class="wapper" id="content">
+                    <span>{$remark_content.hi_title}</span>
+                    <p>{$remark_content.hi_content}</p>
+                </div>
+                <div id="big">
+                    <div class="pinglun" id="pinglun">
+                        <span>{$remark.remark_content}</span>
+                        <span class="data">{$remark.remark_data}</span>
+                        <span class="name">{$remark.stu_id}</span>
+                    </div>
+                </div>
+                <div id="foo">
+                    <input type="button" value="<<">
+                    <input type="button" value="<">
+                    <input type="button" value="1">
+                    <input type="button" value="2">
+                    <input type="button" value="3">
+                    <input type="button" value="4">
+                    <input type="button" value="5">
+                    <input type="button" value=">">
+                    <input type="button" value=">>">
+                </div>
+                <div class="hehe">
+                    <form action="__URL__/titleRemark" method="post">
+                        <textarea class="writeP" rows="3" cols="20" name = 'remark_content'></textarea>
+                        <input id="tijiao" type="submit" value="提交">
+                    </form>
+                </div>
+            </div>
+
+            <div class="hi-top">
+                <div class="list">标题</div>
+                <div style="float:right;margin-right:40px;" class="list">相关信息</div>
+            </div>
+            <div class="hi-artcle" id="hi-artcle">
+                <volist name = "title" id ="title">
+                    <div class="li">
+                        <a data_id="{$title.id}" class="t" href="">{$title.hi_title}</a>
+                        <div class="list-right">
+                            <span href="">{$title.stu_id}</span>
+                            <span>{$title.hi_time}</span>
+                            <span>{$title.remark_num}</span>
+                        </div>
+                    </div>
+                </volist>
+
+            </div>
+        </div>
+        <div class="bottom" >
+            <div id="bottom">
+                <input type="button" value="<<">
+                <input type="button" value="<">
+                <input type="button" value="1">
+                <input type="button" value="2">
+                <input type="button" value="3">
+                <input type="button" value="4">
+                <input type="button" value="5">
+                <input type="button" value=">">
+                <input type="button" value=">>">
+            </div>
+        </div>
+        <a href="" id="upload">上传文章</a>
+    </div>
+
+</div>
+<include file="Public:footer" />
+<script src="__PUBLIC__/js/sayhi.js"></script>
+<script>
+    (function(){
+        var oDiv = document.getElementById("write"),
+                oBtn1 = document.getElementById("upload"),
+                oBtn2 = document.getElementById("cancel"),
+                f = document.getElementById("hi-artcle"),
+                g = document.getElementById("show"),
+                xhr = ajaxObject.createXhr();
+        eventHandler.addEvent(oBtn1,"click",function(){
+            ajaxObject.POST(xhr,'',"checklogin",function(res){
+                var data = JSON.parse(res);
+                if(!data.status){
+                    animation.move(oDiv,{"width":972,"height":720},400)
+                } else {
+                    alert("请先登录");
+                }
+            })
+
+        });
+        eventHandler.addEvent(oBtn2,"click",function(){
+            animation.move(oDiv,{"width":0,"height":0},400);
+        });
+        for(var i = 0;i < f.children.length;i++){
+            eventHandler.addEvent(f.children[i].children[0],"click",function(){
+                var data_id = this.getAttribute("data_id");
+                ajaxObject.POST(xhr,"data_id=" + data_id,"showArticle",function(res){
+                    var data = JSON.parse(res);
+                    if(data){
+                        animation.move(g,{"width":972,"height":720},400);
+                        document.getElementById('content').children[0].textContent = data.content.hi_title;
+                        document.getElementById('content').children[1].textContent = data.content.hi_content;
+                        if(data.status == 100) {
+                            ajaxObject.POST(xhr, 'data_id=' + data_id, "showRemark",function(rres) {
+                                ddata = JSON.parse(rres);
+                                if(ddata.status == 100) {
+                                    var big = document.getElementById('big');
+                                    var ddata_length = ddata.data.length;
+                                    ddata.data.forEach(function(a) {
+                                        var obj_box = document.createElement('div');
+                                        var obj_content = document.createElement('span');
+                                        var obj_data = document.createElement('span');
+                                        var obj_id = document.createElement('span');
+                                        var obj = [obj_content, obj_data, obj_id];
+                                        obj_box.setAttribute('class','pinglun');
+                                        obj_content.textContent = a.remark_content;
+                                        obj_data.setAttribute('class', 'data');
+                                        obj_data.textContent = a.remark_data;
+                                        obj_id.setAttribute('class', 'name');
+                                        obj_id.textContent = a.stu_id;
+                                        obj.forEach(function(b){
+                                            obj_box.appendChild(b);
+                                        });
+                                        big.appendChild(obj_box);
+                                    })
+                                }
+                            })
+                        }
+                    }else{
+                        alert("请先登录");
+                    }
+                })
+            })
+        }
+    })();
+</script>
+</body>
+</html>

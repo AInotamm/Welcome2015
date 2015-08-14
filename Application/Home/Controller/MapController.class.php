@@ -13,4 +13,8 @@ class MapController extends BaseController {
     public function index(){
         $this->display('Map/index');
     }
+
+    public function _empty() {
+        $this->display('404/index');
+    }
 }
