@@ -284,7 +284,6 @@ li[id^=login] a{
     height: 33px;
     color: #fff
 }
-
 .page_mid_big{
     position: relative;
     height: 500px;
@@ -293,6 +292,7 @@ li[id^=login] a{
 }
 .info_list {
     height: 500px;
+    width: inherit;
     overflow: scroll;
     background: #FFFBBE;
     /* margin-top: 28px; */
@@ -307,7 +307,7 @@ li[id^=login] a{
 }
 .info_list .info_content {
     background: #FCEEA6;
-    height: 30px;
+    height: 34px;
     color: #FF6520;
 }
 .info_list div > span, .info_list li > span {
@@ -324,19 +324,19 @@ span.major {
     width: 100px;
 }
 span.name {
-    width: 173px;
+    width: 175.8px;
 }
 span.gender {
-    width: 173px;
+    width: 175.8px;
 }
 span.city {
-    width: 173px;
+    width: 175.8px;
 }
 span.tele_num {
-    width: 173px;
+    width: 175.8px;
 }
 span.qq_num {
-    width: 173px;
+    width: 175.8px;
 }
 .page_mid_big .share{
     margin: 0 auto;
@@ -407,6 +407,46 @@ span.qq_num {
     background-color: #fceea6; 
     position: absolute;
     bottom: 0;
+}
+.page_bottom{
+    width: 912px;
+    height: 44px;
+    background-color: #fceea6;
+    position: relative;
+}
+.page_bottom_ul{
+    text-align: center;
+    width: 912px;
+    line-height: 44px;
+}
+
+.page_bottom_li{
+    display: inline-block;
+    color: #fff;
+    margin: 0 4px;
+    line-height: 44px;
+}
+.page_bottom_li_special{
+    display: inline-block;
+    color: #fff;
+    margin: 0 8px;
+    line-height: 44px;
+}
+.page_bottom_ul a{
+    background:url("../image/page_choose.png");
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    line-height: 25px;
+    cursor: pointer;
+}
+a.page_bottom_spe{
+    background:url("../image/page_choose_blue.png");
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    line-height: 25px;
+    cursor: pointer;
 }
 
 #D3map{
@@ -648,4 +688,47 @@ span.qq_num {
     filter:alpha(opacity=20);
     z-index: 10000;
     display: none;
+}
+.show{
+    display: block !important;
+}
+.hidden{
+    display: none !important;
+}
+#focus{
+    background: url("../image/page_choose_blue.png") no-repeat;
+}
+.page_bottom_ul{
+    width: 200px;
+    margin: 0 auto;
+}
+.page_bottom_ul a{
+    margin-top: 20px;
+    width: 25px;
+    height: 25px;
+    float: left;
+    position: relative;
+    top: -10px;
+    float: left;
+    text-decoration: none;
+    color: #FFFFFF;
+    background:url("../image/page_choose.png");
+}
+.leftImage,.rightImage{
+    width: 440px;
+    height: 500px;
+    float: left;
+    margin-right: 10px;
+}
+[class$=Image] img{
+    display: block;
+    max-height: 250px;
+    margin: 30px auto;
+}
+[class$=Image] span{
+    color: #ff6520;
+    font-size: 18px;
+}
+[class$=Image] div{
+    text-align: center;
 }
