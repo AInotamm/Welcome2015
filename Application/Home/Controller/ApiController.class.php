@@ -14,8 +14,11 @@ class ApiController extends Controller {
     private $c = ACTION_NAME;   // 跳转到该控制器
     private $a;
     private $actionlist = array(
-        'login' => 'login', 'extra' => 'getExtraInfo', 'info' => '_showInfo',
-        'data' => '_getExtraData', 'pair' => ''
+        'login' => 'login',  // 登录
+        'extra' => 'getExtraInfo', // 补充额外信息
+        'info' => '_showInfo',  // 个人信息
+        'data' => '_onData', // 大数据的数据展示
+        'friend' => '_getExtraData' // 朋友配对
     );
 
     private function _invoke($clz = '', $act = '', $param, $namespace = 'Home\\Controller\\') {
@@ -53,8 +56,8 @@ class ApiController extends Controller {
                 'status' => '404',
                 'info' => '访问' . $clz . '控制器下的非法操作',
                 'data' => array(
-                    'trace' => $re->getTrace(),
-                    'msg' => $re->getMessage(),
+//                    'trace' => $re->getTrace(),
+//                    'msg' => $re->getMessage(),
                     'code' => $re->getCode()
                 )
             ));
@@ -66,6 +69,8 @@ class ApiController extends Controller {
         $param = I(trim('post.'), '', 'strip_tags,htmlspecialchars');
         if (array_key_exists($act, $this->actionlist)) {
             $this->a = $this->actionlist[$act];
+        } else {
+            $this->display('404/index');
         }
         $this->_invoke($this->c, $this->a, $param);
     }
@@ -81,25 +86,5 @@ class ApiController extends Controller {
             ));
         }
     }
-
-//    public function info() {
-//        $stu_id = I(trim('post.id'), '');
-//        if(IS_POST && $stu_id) {
-//            $stu = M('stuinfo');
-//            $result = $stu->where(array('stu_id' => $stu_id))->find();
-//            if ($result) {
-//                $this->ajaxReturn(array(
-//                    'status' => 100,
-//                    'info' => '学生信息',
-//                    'data' => $result
-//                ));
-//            }
-//        } else {
-//            $this->ajaxReturn(array(
-//                'status' => 403,
-//                'info' => '查询参数错误,请重试'
-//            ));
-//        }
-//    }
 
 }
