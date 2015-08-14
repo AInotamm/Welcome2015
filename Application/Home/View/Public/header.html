@@ -24,14 +24,18 @@
 			<div id="behavior_d">
 				<img style="float:left;" src="__PUBLIC__/image/login/behavior.png">
                 <div id="post_behavior">
-                    <a href="#">足球</a>
+                    <a href="#">动漫</a>
+                    <a href="#">极客</a>
+                    <a href="#">摄影</a>
+                    <a href="#">吃货</a>
+                    <a href="#">lol</a>
                     <a href="#">篮球</a>
-                    <a href="#">刀塔</a>
-                    <a href="#">LOL</a>
-                    <a href="#">网球</a>
-                    <a href="#">羽毛球</a>
-                    <a href="#">购物</a>
-                    <a href="#">美食</a>
+                    <a href="#">旅游</a>
+                    <a href="#">电影</a>
+					<a href="#">学霸</a>
+					<a href="#">健身</a>
+					<a href="#">音乐</a>
+					<a href="#">综艺</a>
 				</div>	
 			</div>
 		</form>
@@ -66,14 +70,14 @@
 				<li class="windcolor_t" style="margin: 0;width: 100px;height: 60px;background: transparent;">
 					<a href="{:U('Show/index')}">重邮风采</a>
 				</li>
-				<li>
-					<a href="">大声HI</a>
+				<li class="sayhi" style="margin: 0;background: transparent;">
+					<a href="{:U('Sayhi/index')}">大声HI</a>
 				</li>
 				<li class="last">
-					<a href="">关于我们</a>
+					<a href="http://hongyan.cqupt.edu.cn/aboutus/">关于我们</a>
 				</li>
-				<li id="login1">
-					<a>{$checklogin}</a>
+				<li id="{$login1}">
+					<a href="{$checkState}">{$checkLogin}</a>
 				</li>
 			</ul>
 		</div>
@@ -100,14 +104,14 @@
 				<li class="windcolor_t">
 					<a href="{:U('Show/index')}">重邮风采</a>
 				</li>
-				<li>
-					<a href="">大声HI</a>
+				<li class="sayhi" style="margin: 0;background: transparent;">
+					<a href="{:U('Sayhi/index')}">大声HI</a>
 				</li>
 				<li class="last">
-					<a href="">关于我们</a>
+					<a href="http://hongyan.cqupt.edu.cn/aboutus/">关于我们</a>
 				</li>
-				<li id="login2">
-					<a href="{$checkState}">{$checklogin}</a>
+				<li id="{$login2}">
+					<a href="{$checkState}">{$checkLogin}</a>
 				</li>
 			</ul>
 		</div>

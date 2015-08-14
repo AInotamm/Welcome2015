@@ -13,4 +13,9 @@ class PageController extends BaseController {
     public function index() {
         $this->display('Page/index');
     }
+
+    public function _empty() {
+        $this->display('404/index');
+    }
+
 }

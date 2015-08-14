@@ -14,4 +14,7 @@ class ShowController extends BaseController {
         $this->display('Show/index');
     }
 
+    public function _empty() {
+        $this->display('404/index');
+    }
 }

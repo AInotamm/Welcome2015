@@ -135,9 +135,7 @@ li[id^=login] a{
 }
 .count_down div p .number img{
 	margin-right:-4px;
-	/*background-color: #ffffff;*/
 	background-image: url('../image/index/countdown/numline.png');
-	background-position-x: -12px;
 	border-radius: 6px;
 	width: 26px;
 	height: 42px;
@@ -635,6 +633,7 @@ li[id^=login] a{
 	filter:alpha(opacity=0);
 }
 #phone_d{
+	visibility: hidden;
 	width: auto !important;
 	position: absolute;
 	top: 112px;
@@ -649,6 +648,7 @@ li[id^=login] a{
 	padding: 10px 10px !important;
 }
 #qq_d{
+	visibility: hidden;
 	width: auto !important;
 	position: absolute;
 	top: 172px;
