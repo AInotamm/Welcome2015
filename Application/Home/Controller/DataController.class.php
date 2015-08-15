@@ -240,6 +240,7 @@ class DataController extends BaseController {
             $this->_stu_dorm = $data['stu_dorm'];
             $this->_stu_prov = $data['stu_prov'] == '故乡' ? '新疆' : $data['stu_prov'];
             $this->_stu_date = $data['stu_date'];
+            $this->_stu_building = $data['stu_building'];
         } else {
             $this->_stu_class = session('stu_class');
             $this->_stu_dorm = session('stu_dorm');
