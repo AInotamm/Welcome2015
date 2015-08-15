@@ -255,15 +255,13 @@ class DataController extends BaseController {
             $this->_stu_building = session('stu_building');
         }
 
-        $favlist = $this->_searchWith('fav', function() {
-            $fav = $this->_searchWith('fav', array('stu_id' => $this->_stu_id), 'find');
-            for ($i = 1; $i < 13; $i++) {
-                if ($fav['fav_info' . $i] == 1) {
-                    $cond['fav_info' . $i] = 1;
-                }
+        $fav = $this->_searchWith('fav', array('stu_id' => $this->_stu_id), 'find');
+        for ($i = 1; $i < 13; $i++) {
+            if ($fav['fav_info' . $i] == 1) {
+                $cond['fav_info' . $i] = 1;
             }
-            return $cond;
-        }, 'select');
+        }
+        $favlist = $this->_searchWith('fav', $cond, 'select');
         for($i = 0; $i < count($favlist); $i++) {
             $this->sameFav[] = $this->_searchWith('stuinfo', array(
                 'stu_id' => $favlist[$i]['stu_id']

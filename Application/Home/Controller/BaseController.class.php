@@ -139,7 +139,7 @@ class BaseController extends Controller {
             }
             $this->ajaxReturn(array(
                 'status' => 400,
-                'info' => '登录失败,学号或身份证后六位错误',
+                'info' => '登录失败,姓名或身份证后六位错误',
             ));
         }
     }
@@ -232,7 +232,8 @@ class BaseController extends Controller {
         if($id) {
             cookie('IP_state', 0);
             $extra = $this->_cinfo->where(array('stu_id' => $id))->getField('stu_id, stu_tel, stu_qq, stu_fav');
-            $extra = array_values(each($extra)[1]);
+            $extra = each($extra);
+            $extra = array_values($extra[1]);
             list(, $tel, $qq, $fav) = $extra;
             $fav_arr = explode(',', $fav);
             if (!empty($tel) && !empty($qq) && count($fav_arr) == 3) {

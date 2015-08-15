@@ -167,3 +167,7 @@
             })
         })
     })();
+var banner = document.getElementById("banner1");
+eventHandler.addEvent(banner,"click",function(){
+    alert("本活动将在9月8号开放,敬请期待~~");
+})
