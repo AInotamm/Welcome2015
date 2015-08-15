@@ -793,7 +793,7 @@ function constant(target,json,speed,callback) {
 	eventHandler.addEvent(sub,"click",function() {
 		if(b_arr[0] && b_arr[1]) {
 			send = ajaxObject.encode({"name":user_name_c.value,"pwd":password_c.value});
-			ajaxObject.POST(xhr,send,"login", function(res) {
+			ajaxObject.POST(xhr,send, http, function(res) {
                 var data = JSON.parse(res);
                 if(data) {
                     notice.textContent = data.info + (!data.describe ? '' : data.describe);

@@ -301,7 +301,7 @@ li[id^=login] a{
 	background-color: black;
 	opacity: 0;
 	filter:alpha(opacity =0);
-	cursor:crosshair;
+	cursor:move;
 	position: absolute;
 	left: 0;
 	top: 0;

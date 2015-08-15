@@ -99,6 +99,7 @@ class DataController extends BaseController {
             $this->_stu_id = session('stu_id');
             $stu = M('stuinfo')->where(array('stu_id' => $this->_stu_id))->find();
             $this->_stu_name = $stu['stu_name'];
+
             $this->_showInfo(false);
             $this->_getExtraData(false);
             $this->_sameDate();
@@ -122,6 +123,8 @@ class DataController extends BaseController {
                     'other_horo' => $this->total - $this->sameHoro,
                 ));
             } else if ($pass && $name) {
+                $stu = M('stuinfo')->where(array('stu_name' => $name))->find();
+                $this->_stu_date = $stu['stu_date'];
                 $this->_sameDate($name, $pass);
                 $this->_stu_prov = trim($this->_stu_prov);
                 $this->_stu_dept = trim($this->_stu_dept);
