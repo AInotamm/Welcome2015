@@ -367,7 +367,7 @@ li[id^=login] a{
     margin-top:22px;
 }
 #video a{
-    background: url("../image/video.png") no-repeat 50% 50%;
+    background: url("../image/thumbnail/video/video1.png") no-repeat 50% 50%;
 }
 #video1 a{
     background: url("../image/video.png") no-repeat 50% 50%;

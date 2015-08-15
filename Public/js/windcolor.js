@@ -194,12 +194,16 @@
             ovideobtn[y].removeAttribute("class","page_bottom_spe");
             if(a == 0){
                 for(var i = 0;i < video.length;i++){
-                    video[i].style.background = "url('" + prefix + "Public/image/video.png') no-repeat 50% 50%";
+                    var n = i + 1;
+                    video[i].style.background = "url('" + prefix + "Public/image/thumbnail/video/video"+ n +".png') no-repeat 50% 50%";
+                    video[i].style.backgroundSize = "cover";
                 }
             }
             else if(a == 1){
                 for(var i = 0;i < video1.length;i++){
-                    video1[i].style.background = "url('" + prefix + "Public/image/video.png') no-repeat 50% 50%";
+                    var n = i + 9;
+                    video1[i].style.background = "url('" + prefix + "Public/image/thumbnail/video/video"+ n +".png') no-repeat 50% 50%";
+                    video1[i].style.backgroundSize = "cover";
                 }
             }
         }

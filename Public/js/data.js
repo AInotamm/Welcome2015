@@ -1128,7 +1128,6 @@ function charst_end(content){
                 title:{
                     show:true,
                     text:"全校本科生就业情况",
-                    subtext:"截止2014年12月10日，2014届毕业生总人数为4834人，其中签就业协议3826人，升学出国772人，灵活就业49人，待就业187人，就业率为96.13%",
                     textStyle:{
                         fontSize: 18,
                         fontWeight: 'bolder',

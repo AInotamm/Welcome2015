@@ -69,6 +69,7 @@ class DataController extends BaseController {
     private $_stu_dept;
     private $_stu_horo;
     private $_stu_prov;
+    private $_stu_date;
     private $total = 4711;
     private $teacher;
     private $sameFav = array();
@@ -133,7 +134,7 @@ class DataController extends BaseController {
                             'hometown' => $this->provScale[$this->_stu_prov],
                             'others' => $this->total,
                             'male' => $this->provMen[$this->_stu_prov],
-                            'famale' => $this->provScale[$this->_stu_prov] - $this->provMen[$this->_stu_prov],
+                            'female' => $this->provScale[$this->_stu_prov] - $this->provMen[$this->_stu_prov],
                         ),
                         'same' => array(
                             'samemon' => $this->sameYM,
@@ -235,13 +236,14 @@ class DataController extends BaseController {
             $this->_stu_class = $data['stu_class'];
             $this->_stu_dorm = $data['stu_dorm'];
             $this->_stu_prov = $data['stu_prov'] == '故乡' ? '新疆' : $data['stu_prov'];
-
+            $this->_stu_date = $data['stu_date'];
         } else {
             $this->_stu_class = session('stu_class');
             $this->_stu_dorm = session('stu_dorm');
             $this->_stu_dept = session('stu_dept');
             $this->_stu_prov = session('stu_prov') == '故乡' ? '新疆' : session('stu_prov');
             $this->_stu_building = session('stu_building');
+            $this->_stu_date = session('stu_date');
         }
 
         $fav = $this->_searchWith('fav', array('stu_id' => $this->_stu_id), 'find');
@@ -313,9 +315,9 @@ class DataController extends BaseController {
         }
 
 
-        $stuYM = substr(session('stu_date'),0,4);
-        $stuMD = substr(session('stu_date'),5,2);
-        $stuDA = substr(session('stu_date'),8,2);
+        $stuYM = substr($this->_stu_date,0,4);
+        $stuMD = substr($this->_stu_date,5,2);
+        $stuDA = substr($this->_stu_date,8,2);
         $condition['stu_date'] = array('like', $stuYM . '-' . $stuMD . '%');
         $this->sameYM = $birthday->where($condition)->count();
 
