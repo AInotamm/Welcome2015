@@ -166,17 +166,10 @@ class BaseController extends Controller {
             I(trim('post.beh_arr1'), ''),
             I(trim('post.beh_arr2'), '')
         );
-        if (!IS_POST || !$stu_tel || !$stu_qq || !$flag = call_user_func(function() use($beh_arr) {
-                foreach($beh_arr as $val) {
-                    if(empty($val)) {
-                        return false;
-                    }
-                }
-                return true;
-            })) {
+        if (!IS_POST) {
             $this->ajaxReturn(array(
-                'status' => 401,
-                'info' => '抱歉,信息未填写完整'
+                'status' => 403,
+                'info' => '请求发生转移,请重试'
             ));
         }
         $mob = '/^134[0-8]\d{7}$|^(?:13[5-9]|147|15[0-27-9]|178|18[2-478])\d{8}$/';

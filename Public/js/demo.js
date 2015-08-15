@@ -940,14 +940,12 @@ function constant(target,json,speed,callback) {
         stu_qq = document.getElementById("qq"),
         sub = document.getElementById("yes"),
         xhr = ajaxObject.createXhr(),
-        josn,
-        mob = /^134[0-8]\d{7}$|^(?:13[5-9]|147|15[0-27-9]|178|18[2-478])\d{8}$/,
-        union = /^(?:13[0-2]|145|15[56]|176|18[56])\d{8}$/,
-        tele = /^(?:133|153|177|18[019])\d{8}$/,
-        other = /^170([059])\d{7}$/,
+        json,
+        mob = /1[0-9]{10}/,
         qq = /[1-9][0-9]{4,10}/,
         value01,
         value02,
+        notice = document.getElementById("warming"),
         beh_arr = [];
     eventHandler.live(post_beh,post_beh.children,"click",function(e){
         if(this.check == undefined){
@@ -974,7 +972,7 @@ function constant(target,json,speed,callback) {
     eventHandler.addEvent(sub,"click",function(e){
         value01 = stu_tel.value;
         value02 = stu_qq.value;
-        if ( qq.test(value02) && (mob.test(value01) || union.test(value01) || tele.test(value01) || other.test(value01))) {
+        if ( (!value02 || qq.test(value02)) && (!value01 || mob.test(value01))) {
             json = {"stu_tel":value01,"stu_qq":value02};
             for(var i = 0;i < beh_arr.length;i++){
                 json["beh_arr" + i] = beh_arr[i];
@@ -984,11 +982,21 @@ function constant(target,json,speed,callback) {
                 var data = JSON.parse(res);
                 if(data.status == 203) {
                     completeInfo = true;
+                    window.location = window.location.href;
                 } if (data.status > 400) {
+                    notice.textContent = data.info;
+                    notice.style.display = "block";
+                    animation.move(notice,{"top":"110","opacity":"1.0"},1000,
+                        function() {
+                            animation.move(notice,{"top":"80","opacity":"0"},1000,function(){
+                                notice.style.top = "140px";
+                                notice.style.display = "none";
+                            })
+                        }
+                    );
                     return;
                 }
             });
-            return true;
         } else {
             return;
         }
