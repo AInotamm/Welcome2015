@@ -832,6 +832,11 @@ function constant(target,json,speed,callback) {
                                 post_beh.children[ins[0]].style.background = '#FF8636';
                                 post_beh.children[ins[1]].style.background = '#FF8636';
                                 post_beh.children[ins[2]].style.background = '#FF8636';
+                                beh_arr = [
+                                    post_beh.children[ins[0]].textContent,
+                                    post_beh.children[ins[1]].textContent,
+                                    post_beh.children[ins[2]].textContent,
+                                ];
                             }
                         }
                     }
@@ -936,6 +941,11 @@ function constant(target,json,speed,callback) {
         sub = document.getElementById("yes"),
         xhr = ajaxObject.createXhr(),
         josn,
+        mob = /^134[0-8]\d{7}$|^(?:13[5-9]|147|15[0-27-9]|178|18[2-478])\d{8}$/,
+        union = /^(?:13[0-2]|145|15[56]|176|18[56])\d{8}$/,
+        tele = /^(?:133|153|177|18[019])\d{8}$/,
+        other = /^170([059])\d{7}$/,
+        qq = /[1-9][0-9]{4,10}/,
         value01,
         value02,
         beh_arr = [];
@@ -964,17 +974,23 @@ function constant(target,json,speed,callback) {
     eventHandler.addEvent(sub,"click",function(e){
         value01 = stu_tel.value;
         value02 = stu_qq.value;
-        json = {"stu_tel":value01,"stu_qq":value02};
-        for(var i = 0;i < beh_arr.length;i++){
-            json["beh_arr" + i] = beh_arr[i];
+        if ( qq.test(value02) && (mob.test(value01) || union.test(value01) || tele.test(value01) || other.test(value01))) {
+            json = {"stu_tel":value01,"stu_qq":value02};
+            for(var i = 0;i < beh_arr.length;i++){
+                json["beh_arr" + i] = beh_arr[i];
+            }
+            json = ajaxObject.encode(json);
+            ajaxObject.POST(xhr,json,'getExtraInfo',function(res){
+                var data = JSON.parse(res);
+                if(data.status == 203) {
+                    completeInfo = true;
+                } if (data.status > 400) {
+                    return;
+                }
+            });
+            return true;
+        } else {
+            return;
         }
-        json = ajaxObject.encode(json);
-        ajaxObject.POST(xhr,json,'getExtraInfo',function(res){
-			var data = JSON.parse(res);
-			if(data.status == 203) {
-				completeInfo = true;
-			}
-        });
-        return true;
     });
 })();

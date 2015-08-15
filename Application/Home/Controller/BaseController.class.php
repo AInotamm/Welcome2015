@@ -22,6 +22,8 @@ class BaseController extends Controller {
     private $_cinfo;
     private $_cfav;
     private $_cip;
+    private $_cqq;
+    private $_ctel;
 
     private $_fav = array(
         '动漫' => 1, '极客' => 2, '摄影' => 3,
@@ -177,6 +179,26 @@ class BaseController extends Controller {
                 'info' => '抱歉,信息未填写完整'
             ));
         }
+        $mob = '/^134[0-8]\d{7}$|^(?:13[5-9]|147|15[0-27-9]|178|18[2-478])\d{8}$/';
+        $union  = '/^(?:13[0-2]|145|15[56]|176|18[56])\d{8}$/';
+        $telcom = '/^(?:133|153|177|18[019])\d{8}$/';
+        $other = '/^170([059])\d{7}$/';
+        if(empty($stu_tel) || preg_match($mob, $stu_tel) || preg_match($union, $stu_tel) || preg_match($telcom, $stu_tel) || preg_match($other, $stu_tel)) {
+            if(empty($stu_qq) || preg_match('/[1-9][0-9]{4,10}/', $stu_qq)) {
+                $this->_cqq = $stu_qq;
+                $this->_ctel = $stu_tel;
+            } else {
+                $this->ajaxReturn(array(
+                    'status' => 402,
+                    'info' => 'QQ 格式错误,请重试'
+                ));
+            }
+        } else {
+            $this->ajaxReturn(array(
+                'status' => 402,
+                'info' => '电话格式错误,请重试'
+            ));
+        }
         if ($name && $pass) {
             $stu = M('stuinfo');
             $this->_cname = function() use ($stu, $name, $pass) {
@@ -221,13 +243,13 @@ class BaseController extends Controller {
         }
         $str = implode(',', $beh_arr);
         $this->_cinfo = M('stuinfo');
-        $goal['stu_tel'] = $stu_tel;
-        $goal['stu_qq'] = $stu_qq;
+        $goal['stu_tel'] = $this->_ctel;
+        $goal['stu_qq'] = $this->_cqq;
         $goal['stu_fav'] = $str;
         // 保存爱好以及额外信息
         if (!$name && !$pass) {
-            session('stu_tel', $stu_tel);
-            session('stu_qq', $stu_qq);
+            session('stu_tel', $this->_ctel);
+            session('stu_qq', $this->_cqq);
             session('stu_fav', $str);
         }
         $this->_cinfo->where($extraInfo)->save($goal);
