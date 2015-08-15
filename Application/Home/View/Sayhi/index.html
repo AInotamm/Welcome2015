@@ -46,8 +46,8 @@
                 <div id="big">
                     <div class="pinglun" id="pinglun">
                         <span>{$remark.remark_content}</span>
-                        <span class="data">{$remark.remark_data}</span>
-                        <span class="name">{$remark.stu_id}</span>
+                        <span class="data">{$remark.remark_date}</span>
+                        <span class="name">{$remark.stu_name}</span>
                     </div>
                 </div>
                 <div id="foo">
@@ -64,7 +64,7 @@
                 <div class="hehe">
                     <form action="{:U('Sayhi/titleRemark')}" method="post">
                         <input type="hidden" value="" name="data-id" id="data"/>
-                        <textarea class="writeP" rows="3" cols="20" name = 'remark_content'></textarea>
+                        <textarea class="writeP" rows="3" cols="20" name='remark_content'></textarea>
                         <input id="tijiao" type="submit" value="提交">
                     </form>
                     <a id="cancelShow" href="#">取消</a>

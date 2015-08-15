@@ -17,42 +17,44 @@ class SayhiController extends BaseController {
             $this->error('请完整填写所有内容', 'index');
         } else {
             $content['hi_time']= date("Y-m-d h:i:s", time());
-            $content['hi_content'] = I(trim('post.title_content'));
+            $content['hi_content'] = I(trim('post.content'));
             $content['hi_title'] = I(trim('post.title_name'));
             $content['stu_name'] = session('stu_name');
             $content['hi_state'] = 1;
             $title = M('sayhi');
             $title->data($content)->add();
         }
-        $this->redirect('Sayhi/index');
+        $this->success('文章添加成功', 'index');
     }
 
     public function showTitle(){
         $title = M('sayhi');
         $condition['hi_state'] = 1;
         $titleAll = $title->where($condition)->select();
-        $article_num = M('remark');
-        $sayhinum = $title->count();
 
-        for($i = 0 ; $i < $sayhinum ; $i++){
-            $condition['content_id'] = $i+1;
-            $remarknum = $article_num->where($condition)->count();
-            $titleAll[$i]['remark_num'] = $remarknum;
-        }
+//        for($i = 0 ; $i < $sayhinum ; $i++){
+//            $condition['content_id'] = $i+1;
+//            $remarknum = $article_num->where($condition)->count();
+//            $titleAll[$i]['remark_num'] = $remarknum;
+//        }
 
         $this->assign('title',$titleAll);
     }
 
     public function titleRemark(){
         $remark = M('remark');
-        $titleid = I(trim('post.data-id')); //怎么获取待定
-        $content['remark_data'] = date("Y-m-d h:i:s", time());
+        $sayhi = M('sayhi');
+        $titleid = I(trim('post.data-id'));
+        $content['remark_date'] = date("Y-m-d h:i:s", time());
         $content['stu_name'] = session('stu_name');
         $content['content_id'] = $titleid;
         $content['remark_content'] = I(trim('post.remark_content'));
         $content['remark_state'] = 1;
         if(!$content['stu_name']) {
             $this->error('请登录后评论', 'index');
+        }else{
+            $condition['id'] = $titleid;
+            $sayhi->where($condition)->setInc('remark_num',1);
         }
         $remark->data($content)->add();
         $this->redirect('Sayhi/index');
@@ -62,13 +64,13 @@ class SayhiController extends BaseController {
         if(IS_POST) {
             $this->data_id = I(trim('post.data_id'), '');
         }
-        $remark= M('sayhi');
+        $art = M('sayhi');
         $condition['id'] = $this->data_id;
-        $remarkContent = $remark->where($condition)->find();
-        if($remarkContent) {
+        $artContent = $art->where($condition)->find();
+        if($artContent) {
             $this->ajaxReturn(array(
                 'status' => 100,
-                'content' => $remarkContent
+                'content' => $artContent
             ));
         }
     }

@@ -90,7 +90,7 @@ class DataController extends BaseController {
             $pass = md5(hash('sha256', ($pass >> ($pass % 3)) . substr($pass, 1, 3)));
         }
 
-        if(!session('?stu_id')) {
+        if(!session('?stu_id') && !IS_POST) {
             $this->error('请登录后查询数据', '');
         }
 
