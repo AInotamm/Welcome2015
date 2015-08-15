@@ -251,7 +251,7 @@
             ];
             var VALUE1 = [{"name":"男", "value":"<?php echo $prov_men ?>"},{"name":"女", "value":"<?php echo $prov_women ?>"}];
             var TITLE = "在重邮，你的老乡人数占全校人数的比例为";
-            var BILI = "{$city_wide / ($city_wide + $city_total)}"
+            var BILI = "<?php ceil($city_wide / ($city_wide + $city_total) * 100); ?>%"
             charst(NAME,VALUE,VALUE1,TITLE,BILI);
         }
         data_btu2.onclick = function(){

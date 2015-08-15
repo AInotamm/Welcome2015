@@ -142,7 +142,7 @@ class DataController extends BaseController {
                         ),
                         'sex' => array(
                             'male' => $this->man[$this->_stu_dept],
-                            'famale' => $this->deptName[$this->_stu_dept] - $this->man[$this->_stu_dept],
+                            'female' => $this->deptName[$this->_stu_dept] - $this->man[$this->_stu_dept],
                             'fff' => ceil($this->deptName[$this->_stu_dept] * $this->pair[$this->_stu_dept]),
                             'single' => ceil($this->deptName[$this->_stu_dept] * (1 - $this->pair[$this->_stu_dept])),
                         )
