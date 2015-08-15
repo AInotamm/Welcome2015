@@ -66,6 +66,7 @@
                         <textarea class="writeP" rows="3" cols="20" name = 'remark_content'></textarea>
                         <input id="tijiao" type="submit" value="提交">
                     </form>
+                    <a id="cancelShow" href="#">取消</a>
                 </div>
             </div>
 
@@ -78,7 +79,7 @@
                     <div class="li">
                         <a data_id="{$title.id}" class="t" href="">{$title.hi_title}</a>
                         <div class="list-right">
-                            <span href="">{$title.stu_id}</span>
+                            <span href="">{$title.stu_name}</span>
                             <span>{$title.hi_time}</span>
                             <span>{$title.remark_num}</span>
                         </div>
@@ -105,20 +106,20 @@
 
 </div>
 <include file="Public:footer" />
-<script src="__PUBLIC__/js/sayhi.js"></script>
 <script>
     (function(){
         var oDiv = document.getElementById("write"),
                 oBtn1 = document.getElementById("upload"),
                 oBtn2 = document.getElementById("cancel"),
                 f = document.getElementById("hi-artcle"),
+                cancelShow = document.getElementById("cancelShow"),
                 g = document.getElementById("show"),
                 xhr = ajaxObject.createXhr();
         eventHandler.addEvent(oBtn1,"click",function(){
-            ajaxObject.POST(xhr,'',"checklogin",function(res){
-                var data = JSON.parse(res);
-                if(!data.status){
+            ajaxObject.POST(xhr,'','checklogin',function(res){
+                if(!res) {
                     animation.move(oDiv,{"width":972,"height":720},400)
+
                 } else {
                     alert("请先登录");
                 }
@@ -128,6 +129,9 @@
         eventHandler.addEvent(oBtn2,"click",function(){
             animation.move(oDiv,{"width":0,"height":0},400);
         });
+        eventHandler.addEvent(cancelShow,"click",function(e){
+            animation.move(g,{"width":0,"height":0},400);
+        })
         for(var i = 0;i < f.children.length;i++){
             eventHandler.addEvent(f.children[i].children[0],"click",function(){
                 var data_id = this.getAttribute("data_id");
@@ -160,6 +164,13 @@
                                         });
                                         big.appendChild(obj_box);
                                     })
+                                    var oUl1 = document.getElementById("big"),
+                                            oFooter1= document.getElementById("foo");
+
+                                    var b = new Paging(oUl1,oFooter1,5 ,false);
+                                    b.dispaly();
+                                    b.mclick(oFooter1);
+                                    b.sclick(oFooter1);
                                 }
                             })
                         }
@@ -171,5 +182,6 @@
         }
     })();
 </script>
+<script src="__PUBLIC__/js/sayhi.js"></script>
 </body>
 </html>

@@ -247,6 +247,7 @@ class BaseController extends Controller {
 
     private function _saveSession($data) {
         $_SESSION['stu_id'] = $data['stu_id'];
+        $_SESSION['stu_name'] = $data['stu_name'];
         $_SESSION['stu_unicode'] = $data['stu_unicode'];
         $_SESSION['stu_sexy'] = $data['stu_sexy'];
         $_SESSION['stu_date'] = $data['stu_date'];
