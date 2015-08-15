@@ -621,6 +621,7 @@ a.page_bottom_spe{
     z-index: -100;
 }
 #phone{
+    visibility: hidden;
     width: 254px !important;
     float: left;
     padding: 10px 10px !important;
@@ -636,6 +637,7 @@ a.page_bottom_spe{
     z-index: -100;
 }
 #qq{
+    visibility: hidden;
     width: 254px !important;
     float: left;
     padding: 10px 10px !important;
