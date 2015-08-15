@@ -257,6 +257,7 @@ class BaseController extends Controller {
         $_SESSION['stu_tel'] = $data['stu_tel'];
         $_SESSION['stu_prov'] = $data['stu_prov'];
         $_SESSION['stu_class']= $data['stu_class'];
+        $_SESSION['stu_building'] = $data['stu_building'];
     }
 
     /**

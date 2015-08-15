@@ -83,8 +83,10 @@ class DataController extends BaseController {
     private $sameFav = array();
     private $sameClass;
     private $sameDorm;
+    private $sameBuilding;
     private $sameYM;
     private $sameHoro;
+    private $_stu_building;
 
     public function index(){  //所有的查询你测试看看，最初有没有设置session
         $this->_onData();
@@ -250,6 +252,7 @@ class DataController extends BaseController {
             $this->_stu_dorm = session('stu_dorm');
             $this->_stu_dept = session('stu_dept');
             $this->_stu_prov = session('stu_prov');
+            $this->_stu_building = session('stu_building');
         }
 
         $favlist = $this->_searchWith('fav', function() {
@@ -274,7 +277,8 @@ class DataController extends BaseController {
         $this->assign('page_total', ceil(count($this->sameClass) / 14));
 
         $this->sameDorm = $this->_searchWith('stuinfo', array(
-            'stu_dorm' => $this->_stu_dorm
+            'stu_dorm' => $this->_stu_dorm,
+            'stu_building'=> $this->_stu_building
         ), 'select', true);
 
         $this->teacher = $this->_searchWith('teacher', array(
