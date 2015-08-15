@@ -147,9 +147,12 @@
                                 ddata = JSON.parse(rres);
                                 if(ddata.status == 100) {
                                     var big = document.getElementById('big');
+                                    var big_child = big.children;
+                                    for(var i = 0; i < big_child.length; i++) {
+                                        big.removeChild(big_child[i]);
+                                    }
                                     var hehe = document.getElementById('data');
                                     hehe.value = ddata.post_id;
-                                    var ddata_length = ddata.data.length;
                                     ddata.data.forEach(function(a) {
                                         var obj_box = document.createElement('div');
                                         var obj_content = document.createElement('span');

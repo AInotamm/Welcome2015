@@ -16,6 +16,7 @@ class SayhiController extends BaseController {
         } else if(trim('post.title_content') == '' || !I(trim('post.title_name'))) {
             $this->error('请完整填写所有内容', 'index');
         } else {
+            date_default_timezone_set("Asia/Shanghai");
             $content['hi_time']= date("Y-m-d h:i:s", time());
             $content['hi_content'] = I(trim('post.content'));
             $content['hi_title'] = I(trim('post.title_name'));
@@ -45,6 +46,7 @@ class SayhiController extends BaseController {
         $remark = M('remark');
         $sayhi = M('sayhi');
         $titleid = I(trim('post.data-id'));
+        date_default_timezone_set("Asia/Shanghai");
         $content['remark_date'] = date("Y-m-d h:i:s", time());
         $content['stu_name'] = session('stu_name');
         $content['content_id'] = $titleid;
