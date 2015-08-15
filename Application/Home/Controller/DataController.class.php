@@ -177,12 +177,6 @@ class DataController extends BaseController {
             $condition['stu_passwd'] = md5(hash('sha256', ($pass >> ($pass % 3)) . substr($pass, 1, 3)));
         }
         $user_student = $student->where($condition)->find();
-        $opposite = array_flip($this->proDistance);
-        $defeatScale = 0;
-        for($i = 0;$i < $opposite[$_SESSION['stu_prov']];$i++){
-            $defeatScale += $this->provScale[$i];
-        }
-        $defeatScale = 1 - $defeatScale;
         if ($transfer) {
             $this->ajaxReturn(array(
                 'status' => 100,
@@ -191,8 +185,7 @@ class DataController extends BaseController {
             ));
         } else {
             $this->assign(array(
-                'user_student' => $user_student,
-                'defeatScale' => $defeatScale
+                'user_student' => $user_student
             ));
         }
 
@@ -251,7 +244,7 @@ class DataController extends BaseController {
             $this->_stu_class = session('stu_class');
             $this->_stu_dorm = session('stu_dorm');
             $this->_stu_dept = session('stu_dept');
-            $this->_stu_prov = session('stu_prov');
+            $this->_stu_prov = session('stu_prov') == '故乡' ? '新疆' : session('stu_prov');
             $this->_stu_building = session('stu_building');
         }
 
