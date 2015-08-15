@@ -828,9 +828,11 @@ function constant(target,json,speed,callback) {
                                    }
                                }
                             });
-                            post_beh.children[ins[0]].style.background = '#FF8636';
-                            post_beh.children[ins[1]].style.background = '#FF8636';
-                            post_beh.children[ins[2]].style.background = '#FF8636';
+                            if(ins.length == 3) {
+                                post_beh.children[ins[0]].style.background = '#FF8636';
+                                post_beh.children[ins[1]].style.background = '#FF8636';
+                                post_beh.children[ins[2]].style.background = '#FF8636';
+                            }
                         }
                     }
                     logo.src = anlyDomain() + "Public/image/finish.png";
