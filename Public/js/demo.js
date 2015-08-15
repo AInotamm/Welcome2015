@@ -926,6 +926,7 @@ function constant(target,json,speed,callback) {
             wap.style.display = "none";
             return true;
 		})
+        return true;
 	})
     var post_beh = document.getElementById("post_behavior"),
         stu_tel = document.getElementById("phone"),
