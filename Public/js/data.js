@@ -1298,7 +1298,7 @@ require([
                             }
                         }
                     },
-                    data:[{"name":"签就业协议","value":160},
+                    data:[{"name":"签就业协议","value":360},
                     {"name":"升学出国","value":106},
                     {"name":"待就业","value":23},
                     {"name":"灵活就业","value":4}

@@ -408,6 +408,9 @@ span.qq_num {
     position: absolute;
     bottom: 0;
 }
+#page_bottom a{
+    margin-left: 10px;
+}
 .page_bottom{
     width: 912px;
     height: 44px;
