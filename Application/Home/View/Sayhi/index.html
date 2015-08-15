@@ -62,7 +62,8 @@
                     <input type="button" value=">>">
                 </div>
                 <div class="hehe">
-                    <form action="__URL__/titleRemark" method="post">
+                    <form> action="{:U('Sayhi/titleRemark')}" method="post">
+                        <input type="hidden" value="" name="data-id" id="data"/>
                         <textarea class="writeP" rows="3" cols="20" name = 'remark_content'></textarea>
                         <input id="tijiao" type="submit" value="提交">
                     </form>
@@ -146,6 +147,8 @@
                                 ddata = JSON.parse(rres);
                                 if(ddata.status == 100) {
                                     var big = document.getElementById('big');
+                                    var hehe = document.getElementById('data');
+                                    hehe.value = ddata.post_id;
                                     var ddata_length = ddata.data.length;
                                     ddata.data.forEach(function(a) {
                                         var obj_box = document.createElement('div');

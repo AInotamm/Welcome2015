@@ -7,6 +7,7 @@
  */
 return array(
     'URL_HTML_SUFFIX' => '',
+    'DEFAULT_TIMEZONE'=> 'PRC',
     'URL_CASE_INSENSITIVE' =>true,
     'DEFAULT_FILTER' => 'strip_tags,htmlspecialchars',//过滤
     'APP_DEBUG' => true, // 开启调试模式

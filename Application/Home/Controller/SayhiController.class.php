@@ -16,7 +16,7 @@ class SayhiController extends BaseController {
         } else if(trim('post.title_content') == '' || !I(trim('post.title_name'))) {
             $this->error('请完整填写所有内容', 'index');
         } else {
-            $content['hi_time']= date("Y-m-d h:i:sa");
+            $content['hi_time']= date("Y-m-d h:i:s", time());
             $content['hi_content'] = I(trim('post.title_content'));
             $content['hi_title'] = I(trim('post.title_name'));
             $content['stu_name'] = session('stu_name');
@@ -45,8 +45,8 @@ class SayhiController extends BaseController {
 
     public function titleRemark(){
         $remark = M('remark');
-        $titleid = session('content_id'); //怎么获取待定
-        $content['remark_data'] = date("Y-m-d h:i:sa");
+        $titleid = I(trim('post.data-id')); //怎么获取待定
+        $content['remark_data'] = date("Y-m-d h:i:s", time());
         $content['stu_name'] = session('stu_name');
         $content['content_id'] = $titleid;
         $content['remark_content'] = I(trim('post.remark_content'));
@@ -84,6 +84,7 @@ class SayhiController extends BaseController {
             $this->ajaxReturn(array(
                 'status' => 100,
                 'info' => '评论查询成功',
+                'post_id' => $this->data_id,
                 'data' => $remarkAll
             ));
         } else {
