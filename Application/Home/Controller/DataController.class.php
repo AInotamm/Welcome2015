@@ -118,6 +118,8 @@ class DataController extends BaseController {
                 ));
             } else if ($pass && $name) {
                 $this->_sameDate($name, $pass);
+                $this->_stu_prov = trim($this->_stu_prov);
+                $this->_stu_dept = trim($this->_stu_dept);
                 $this->ajaxReturn(array(
                     'status' => 100,
                     'info' => '查询成功',
