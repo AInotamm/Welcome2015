@@ -97,7 +97,8 @@ class DataController extends BaseController {
             $this->_showInfo(false);
             $this->_getExtraData(false);
             $this->_sameDate();
-
+            $this->_stu_prov = trim($this->_stu_prov);
+            $this->_stu_dept = trim($this->_stu_dept);
             if(!IS_POST && empty($name) && empty($pass)) {
                 $this->assign(array(
                     'city' => $this->_stu_prov,
