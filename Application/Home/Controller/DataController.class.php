@@ -92,7 +92,7 @@ class DataController extends BaseController {
         }
 
         if(!session('?stu_id') && !IS_POST) {
-            $this->error('请登录后查询数据', '');
+            $this->error('请登录后查询数据', U('Index/index'));
         }
 
         if(session('?stu_id') || ($name && $pass)) {

@@ -12,9 +12,9 @@ class SayhiController extends BaseController {
 
     public function postTitle() {
         if (!session('?stu_id')) {
-            $this->error('请登录后使用', 'index');
+            $this->error('请登录后使用', U('Sayhi/index'));
         } else if(trim('post.title_content') == '' || !I(trim('post.title_name'))) {
-            $this->error('请完整填写所有内容', 'index');
+            $this->error('请完整填写所有内容', '');
         } else {
             date_default_timezone_set("Asia/Shanghai");
             $content['hi_time']= date("Y-m-d H:i:s", time());
@@ -32,13 +32,6 @@ class SayhiController extends BaseController {
         $title = M('sayhi');
         $condition['hi_state'] = 1;
         $titleAll = $title->where($condition)->select();
-
-//        for($i = 0 ; $i < $sayhinum ; $i++){
-//            $condition['content_id'] = $i+1;
-//            $remarknum = $article_num->where($condition)->count();
-//            $titleAll[$i]['remark_num'] = $remarknum;
-//        }
-
         $this->assign('title',$titleAll);
     }
 
@@ -53,7 +46,7 @@ class SayhiController extends BaseController {
         $content['remark_content'] = I(trim('post.remark_content'));
         $content['remark_state'] = 1;
         if(!$content['stu_name']) {
-            $this->error('请登录后评论', 'index');
+            $this->error('请登录后评论', U('Sayhi/index'));
         }else{
             $condition['id'] = $titleid;
             $sayhi->where($condition)->setInc('remark_num',1);
