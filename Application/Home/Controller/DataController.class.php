@@ -63,6 +63,12 @@ class DataController extends BaseController {
         '先进制造' => '158', '生物' => '111', '国际' => '71',
         '光电' => '390', '体育' => '48', '法学院' => '42'
     );
+    private $dept = array(
+        '通信' => 'tx', '传媒' => 'cm', '计算机' => 'jsj', '软件' => 'rj',
+        '经管' => 'jg', '理学院' => 'lxy', '自动化' => 'zdh',
+        '先进制造' => 'xjzz', '生物' => 'sw', '国际' => 'gj',
+        '光电' => 'gd', '体育' => 'ty', '法学院' => 'fxy'
+    );
 
 
     private $_stu_id;
@@ -123,24 +129,24 @@ class DataController extends BaseController {
                     'status' => 100,
                     'info' => '查询成功',
                     'data' => array(
+                        'college' => $this->dept[$this->_stu_dept],
                         'from' => array(
                             'hometown' => $this->provScale[$this->_stu_prov],
-                            'all' => $this->total,
+                            'others' => $this->total,
                             'male' => $this->provMen[$this->_stu_prov],
                             'famale' => $this->provScale[$this->_stu_prov] - $this->provMen[$this->_stu_prov],
                         ),
                         'same' => array(
                             'samemon' => $this->sameYM,
                             'samehor' => $this->sameHoro,
-                            'all' => $this->total
+                            'others' => $this->total
                         ),
                         'sex' => array(
                             'male' => $this->man[$this->_stu_dept],
                             'famale' => $this->deptName[$this->_stu_dept] - $this->man[$this->_stu_dept],
                             'fff' => ceil($this->deptName[$this->_stu_dept] * $this->pair[$this->_stu_dept]),
                             'single' => ceil($this->deptName[$this->_stu_dept] * (1 - $this->pair[$this->_stu_dept])),
-                        ),
-                        'college' => $this->_stu_dept
+                        )
                     )
                 ));
             } else {

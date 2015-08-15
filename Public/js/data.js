@@ -525,8 +525,8 @@ WH2.style.display = "block";
 
 function charst_subject(){
     require([
-        "echarts",
-        "echarts/chart/pie"
+            "echarts",
+            "echarts/chart/pie"
         ],
 
         function(ec){
@@ -536,515 +536,578 @@ function charst_subject(){
 
                 timeline:{
                     show:true,
-                    data:["通信","计科","光电","自动化","理学院","生物","经管","体育","外国语","先进制造","传媒","软件","半导体","法学",""],
+                    data:["通信","计科","光电","自动化","理学院","生物","经管","体育","外国语","先进制造","传媒","软件","法学","半导体",""],
                     label:{
                         rotate:-25,
                         textStyle:{
                             fontSize:10,
-                        }    
+                        }
                     },
                     type:"number",
                 },
                 options :[
-                {
-                    tooltip : {
-                        trigger: 'item',
-                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    {
+                        tooltip : {
+                            trigger: 'item',
+                            formatter: "{a} <br/>{b} : {c} ({d}%)"
+                        },
+                        title :{
+                            show:true,
+                            text:"各个学院学生心中最难的科目",
+                            x:"center",
+                            textStyle:{
+                                fontSize: 18,
+                                fontWeight: 'bolder',
+                                color: '#8e6946'
+                            }
+                        },
+                        legend: {
+                            orient : 'vertical',
+                            x : 650,
+                            y:250,
+                            data:["电子电路","大学物理","高等数学"]
+                        },
+                        toolbox: {
+                            show : true,
+                            feature : {
+                                restore : {show: true},
+                                saveAsImage : {show: true}
+                            }
+                        },
+                        calculable : true,
+                        series : [
+                            {
+                                name:'科目',
+                                type:'pie',
+                                radius : '50%',
+                                itemStyle : {
+                                    normal : {
+                                        label : {
+                                            show : false
+                                        },
+                                        labelLine : {
+                                            show : false
+                                        }
+                                    },
+                                    emphasis : {
+                                        label : {
+                                            show : true,
+                                            textStyle : {
+                                                fontSize : '20',
+                                                fontWeight : 'bold'
+                                            }
+                                        }
+                                    }
+                                },
+                                data:[{"name":"电子电路","value":62},
+                                    {"name":"大学物理","value":20},
+                                    {"name":"高等数学","value":18}
+                                ]
+                            }
+                        ]
                     },
-                    title :{
-                        show:true,
-                        text:"各个学院学生心中最难的科目",
-                        x:"center",
-                        textStyle:{
-                            fontSize: 18,
-                            fontWeight: 'bolder',
-                            color: '#8e6946'
-                        }
+                    {
+                        legend: {
+                            orient : 'vertical',
+                            x : 650,
+                            y:250,
+                            data:["大学物理","高等数学","线性代数"]
+                        },
+                        series : [
+                            {
+                                name:'科目',
+                                type:'pie',
+                                radius : '50%',
+                                itemStyle : {
+                                    normal : {
+                                        label : {
+                                            show : false
+                                        },
+                                        labelLine : {
+                                            show : false
+                                        }
+                                    },
+                                    emphasis : {
+                                        label : {
+                                            show : true,
+                                            textStyle : {
+                                                fontSize : '20',
+                                                fontWeight : 'bold'
+                                            }
+                                        }
+                                    }
+                                },
+                                data:[{"name":"大学物理","value":40},
+                                    {"name":"高等数学","value":35},
+                                    {"name":"线性代数","value":25}
+                                ]
+                            }
+                        ]
                     },
-                    legend: {
+                    {
+                        legend: {
+                            orient : 'vertical',
+                            x : 650,
+                            y:250,
+                            data:["大学物理","概率论","工程图学"]
+                        },
+                        series : [
+                            {
+                                name:'科目',
+                                type:'pie',
+                                radius : '50%',
+                                itemStyle : {
+                                    normal : {
+                                        label : {
+                                            show : false
+                                        },
+                                        labelLine : {
+                                            show : false
+                                        }
+                                    },
+                                    emphasis : {
+                                        label : {
+                                            show : true,
+                                            textStyle : {
+                                                fontSize : '20',
+                                                fontWeight : 'bold'
+                                            }
+                                        }
+                                    }
+                                },
+                                data:[{"name":"大学物理","value":54},
+                                    {"name":"概率论","value":26},
+                                    {"name":"工程图学","value":20}
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        legend: {
+                            orient : 'vertical',
+                            x : 650,
+                            y:250,
+                            data:["大学物理","高等数学","C语言"]
+                        },
+                        series : [
+                            {
+                                name:'科目',
+                                type:'pie',
+                                radius : '50%',
+                                itemStyle : {
+                                    normal : {
+                                        label : {
+                                            show : false
+                                        },
+                                        labelLine : {
+                                            show : false
+                                        }
+                                    },
+                                    emphasis : {
+                                        label : {
+                                            show : true,
+                                            textStyle : {
+                                                fontSize : '20',
+                                                fontWeight : 'bold'
+                                            }
+                                        }
+                                    }
+                                },
+                                data:[{"name":"大学物理","value":45},
+                                    {"name":"高等数学","value":30},
+                                    {"name":"C语言","value":25}
+                                ]
+                            }
+                        ]
+                    },
+                    {legend: {
                         orient : 'vertical',
                         x : 650,
                         y:250,
-                        data:["语文","数学","英语","理综"]
+                        data:["数学分析","高等数学","大学物理"]
                     },
-                    toolbox: {
-                        show : true,
-                        feature : {
-                            restore : {show: true},
-                            saveAsImage : {show: true}
-                        }
+                        series : [
+                            {
+                                name:'科目',
+                                type:'pie',
+                                radius : '50%',
+                                itemStyle : {
+                                    normal : {
+                                        label : {
+                                            show : false
+                                        },
+                                        labelLine : {
+                                            show : false
+                                        }
+                                    },
+                                    emphasis : {
+                                        label : {
+                                            show : true,
+                                            textStyle : {
+                                                fontSize : '20',
+                                                fontWeight : 'bold'
+                                            }
+                                        }
+                                    }
+                                },
+                                data:[{"name":"数学分析","value":49},
+                                    {"name":"高等数学","value":28},
+                                    {"name":"大学物理","value":23}
+                                ]
+                            }
+                        ]
                     },
-                    calculable : true,
-                    series : [
-                    {
-                        name:'科目',
-                        type:'pie',
-                        radius : '50%',
-                        itemStyle : {
-                            normal : {
-                                label : {
-                                    show : false
-                                },
-                                labelLine : {
-                                    show : false
-                                }
-                            },
-                            emphasis : {
-                                label : {
-                                    show : true,
-                                    textStyle : {
-                                        fontSize : '20',
-                                        fontWeight : 'bold'
+                    {  legend: {
+                        orient : 'vertical',
+                        x : 650,
+                        y:250,
+                        data:["高等数学","视听说","化学"]
+                    },
+                        series : [
+                            {
+
+                                name:'科目',
+                                type:'pie',
+                                radius : '50%',
+                                itemStyle : {
+                                    normal : {
+                                        label : {
+                                            show : false
+                                        },
+                                        labelLine : {
+                                            show : false
+                                        }
+                                    },
+                                    emphasis : {
+                                        label : {
+                                            show : true,
+                                            textStyle : {
+                                                fontSize : '20',
+                                                fontWeight : 'bold'
+                                            }
+                                        }
                                     }
-                                }
+                                },
+                                data:[{"name":"高等数学","value":45},
+                                    {"name":"视听说","value":31},
+                                    {"name":"化学","value":24}
+                                ]
                             }
+                        ]
+                    },
+                    {
+                        legend: {
+                            orient : 'vertical',
+                            x : 650,
+                            y:250,
+                            data:["概率论","高等数学","C语言"]
                         },
-                        data:[{"name":"语文","value":688},
-                        {"name":"数学","value":203},
-                        {"name":"英语","value":19},
-                        {"name":"理综","value":3}
+                        series : [
+                            {
+                                name:'科目',
+                                type:'pie',
+                                radius : '50%',
+                                itemStyle : {
+                                    normal : {
+                                        label : {
+                                            show : false
+                                        },
+                                        labelLine : {
+                                            show : false
+                                        }
+                                    },
+                                    emphasis : {
+                                        label : {
+                                            show : true,
+                                            textStyle : {
+                                                fontSize : '20',
+                                                fontWeight : 'bold'
+                                            }
+                                        }
+                                    }
+                                },
+                                data:[{"name":"概率论","value":42},
+                                    {"name":"高等数学","value":38},
+                                    {"name":"C语言","value":20}
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        legend: {
+                            orient : 'vertical',
+                            x : 650,
+                            y:250,
+                            data:["运动解剖学","体育概论","健美操"]
+                        },
+                        series : [
+                            {
+                                name:'科目',
+                                type:'pie',
+                                radius : '50%',
+                                itemStyle : {
+                                    normal : {
+                                        label : {
+                                            show : false
+                                        },
+                                        labelLine : {
+                                            show : false
+                                        }
+                                    },
+                                    emphasis : {
+                                        label : {
+                                            show : true,
+                                            textStyle : {
+                                                fontSize : '20',
+                                                fontWeight : 'bold'
+                                            }
+                                        }
+                                    }
+                                },
+                                data:[{"name":"运动解剖学","value":56},
+                                    {"name":"体育概论","value":22},
+                                    {"name":"健美操","value":22}
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        legend: {
+                            orient : 'vertical',
+                            x : 650,
+                            y:250,
+                            data:["基础英语","英语语音","英语阅读"]
+                        },
+                        series : [
+                            {
+                                name:'科目',
+                                type:'pie',
+                                radius : '50%',
+                                itemStyle : {
+                                    normal : {
+                                        label : {
+                                            show : false
+                                        },
+                                        labelLine : {
+                                            show : false
+                                        }
+                                    },
+                                    emphasis : {
+                                        label : {
+                                            show : true,
+                                            textStyle : {
+                                                fontSize : '20',
+                                                fontWeight : 'bold'
+                                            }
+                                        }
+                                    }
+                                },
+                                data:[{"name":"基础英语","value":49},
+                                    {"name":"英语语音","value":31},
+                                    {"name":"英语阅读","value":30}
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        legend: {
+                            orient : 'vertical',
+                            x : 650,
+                            y:250,
+                            data:["工程图学","大学物理","高等数学"]
+                        },
+                        series : [
+                            {
+                                name:'科目',
+                                type:'pie',
+                                radius : '50%',
+                                itemStyle : {
+                                    normal : {
+                                        label : {
+                                            show : false
+                                        },
+                                        labelLine : {
+                                            show : false
+                                        }
+                                    },
+                                    emphasis : {
+                                        label : {
+                                            show : true,
+                                            textStyle : {
+                                                fontSize : '20',
+                                                fontWeight : 'bold'
+                                            }
+                                        }
+                                    }
+                                },
+                                data:[{"name":"工程图学","value":55},
+                                    {"name":"大学物理","value":24},
+                                    {"name":"高等数学","value":21}
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        legend: {
+                            orient : 'vertical',
+                            x : 650,
+                            y:250,
+                            data:["视听说","读写译","美术史"]
+                        },
+                        series : [
+                            {
+                                name:'科目',
+                                type:'pie',
+                                radius : '50%',
+                                itemStyle : {
+                                    normal : {
+                                        label : {
+                                            show : false
+                                        },
+                                        labelLine : {
+                                            show : false
+                                        }
+                                    },
+                                    emphasis : {
+                                        label : {
+                                            show : true,
+                                            textStyle : {
+                                                fontSize : '20',
+                                                fontWeight : 'bold'
+                                            }
+                                        }
+                                    }
+                                },
+                                data:[{"name":"视听说","value":43},
+                                    {"name":"读写译","value":32},
+                                    {"name":"美术史","value":25}
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        legend: {
+                            orient : 'vertical',
+                            x : 650,
+                            y:250,
+                            data:["高等数学","离散数学","C++"]
+                        },
+                        series : [
+                            {
+                                name:'科目',
+                                type:'pie',
+                                radius : '50%',
+                                itemStyle : {
+                                    normal : {
+                                        label : {
+                                            show : false
+                                        },
+                                        labelLine : {
+                                            show : false
+                                        }
+                                    },
+                                    emphasis : {
+                                        label : {
+                                            show : true,
+                                            textStyle : {
+                                                fontSize : '20',
+                                                fontWeight : 'bold'
+                                            }
+                                        }
+                                    }
+                                },
+                                data:[{"name":"高等数学","value":56},
+                                    {"name":"离散数学","value":23},
+                                    {"name":"C++","value":21}
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        legend: {
+                            orient : 'vertical',
+                            x : 650,
+                            y:250,
+                            data:["刑法","民法","法理"]
+                        },
+                        series : [
+                            {
+                                name:'科目',
+                                type:'pie',
+                                radius : '50%',
+                                itemStyle : {
+                                    normal : {
+                                        label : {
+                                            show : false
+                                        },
+                                        labelLine : {
+                                            show : false
+                                        }
+                                    },
+                                    emphasis : {
+                                        label : {
+                                            show : true,
+                                            textStyle : {
+                                                fontSize : '20',
+                                                fontWeight : 'bold'
+                                            }
+                                        }
+                                    }
+                                },
+                                data:[{"name":"刑法","value":56},
+                                    {"name":"民法","value":25},
+                                    {"name":"法理","value":21}
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        legend: {
+                            orient : 'vertical',
+                            x : 650,
+                            y:250,
+                            data:["软件设计基础","线性代数","大学物理"]
+                        },
+                        series : [
+                            {
+                                name:'科目',
+                                type:'pie',
+                                radius : '50%',
+                                itemStyle : {
+                                    normal : {
+                                        label : {
+                                            show : false
+                                        },
+                                        labelLine : {
+                                            show : false
+                                        }
+                                    },
+                                    emphasis : {
+                                        label : {
+                                            show : true,
+                                            textStyle : {
+                                                fontSize : '20',
+                                                fontWeight : 'bold'
+                                            }
+                                        }
+                                    }
+                                },
+                                data:[{"name":"软件设计基础","value":52},
+                                    {"name":"线性代数","value":32},
+                                    {"name":"大学物理","value":16}
+                                ]
+                            }
                         ]
                     }
-                    ]
-                },
-                {
-                    series : [
-                    {
-                        name:'科目',
-                        type:'pie',
-                        radius : '50%',
-                        itemStyle : {
-                            normal : {
-                                label : {
-                                    show : false
-                                },
-                                labelLine : {
-                                    show : false
-                                }
-                            },
-                            emphasis : {
-                                label : {
-                                    show : true,
-                                    textStyle : {
-                                        fontSize : '20',
-                                        fontWeight : 'bold'
-                                    }
-                                }
-                            }
-                        },
-                        data:[{"name":"语文","value":160},
-                        {"name":"数学","value":106},
-                        {"name":"英语","value":23},
-                        {"name":"理综","value":4}
-                        ]
-                    }
-                    ]
-                },
-                {
-                    series : [
-                    {
-                        name:'科目',
-                        type:'pie',
-                        radius : '50%',
-                        itemStyle : {
-                            normal : {
-                                label : {
-                                    show : false
-                                },
-                                labelLine : {
-                                    show : false
-                                }
-                            },
-                            emphasis : {
-                                label : {
-                                    show : true,
-                                    textStyle : {
-                                        fontSize : '20',
-                                        fontWeight : 'bold'
-                                    }
-                                }
-                            }
-                        },
-                        data:[{"name":"语文","value":167 },
-                        {"name":"数学","value":55},
-                        {"name":"英语","value":13},
-                        {"name":"理综","value":0}
-                        ]
-                    }
-                    ]
-                },
-                {
-                    series : [
-                    {
-                        name:'科目',
-                        type:'pie',
-                        radius : '50%',
-                        itemStyle : {
-                            normal : {
-                                label : {
-                                    show : false
-                                },
-                                labelLine : {
-                                    show : false
-                                }
-                            },
-                            emphasis : {
-                                label : {
-                                    show : true,
-                                    textStyle : {
-                                        fontSize : '20',
-                                        fontWeight : 'bold'
-                                    }
-                                }
-                            }
-                        },
-                        data:[{"name":"语文","value":349},
-                        {"name":"数学","value":74},
-                        {"name":"英语","value":6},
-                        {"name":"理综","value":0}
-                        ]
-                    }
-                    ]
-                },
-                {
-                    series : [
-                    {
-                        name:'科目',
-                        type:'pie',
-                        radius : '50%',
-                        itemStyle : {
-                            normal : {
-                                label : {
-                                    show : false
-                                },
-                                labelLine : {
-                                    show : false
-                                }
-                            },
-                            emphasis : {
-                                label : {
-                                    show : true,
-                                    textStyle : {
-                                        fontSize : '20',
-                                        fontWeight : 'bold'
-                                    }
-                                }
-                            }
-                        },
-                        data:[{"name":"语文","value":123},
-                        {"name":"数学","value":23},
-                        {"name":"英语","value":8},
-                        {"name":"理综","value":4}
-                        ]
-                    }
-                    ]
-                },
-                {
-                    series : [
-                    {
-                        name:'科目',
-                        type:'pie',
-                        radius : '50%',
-                        itemStyle : {
-                            normal : {
-                                label : {
-                                    show : false
-                                },
-                                labelLine : {
-                                    show : false
-                                }
-                            },
-                            emphasis : {
-                                label : {
-                                    show : true,
-                                    textStyle : {
-                                        fontSize : '20',
-                                        fontWeight : 'bold'
-                                    }
-                                }
-                            }
-                        },
-                        data:[{"name":"语文","value":192},
-                        {"name":"数学","value":63},
-                        {"name":"英语","value":12},
-                        {"name":"理综","value":1}
-                        ]
-                    }
-                    ]
-                },
-                {
-                    series : [
-                    {
-                        name:'科目',
-                        type:'pie',
-                        radius : '50%',
-                        itemStyle : {
-                            normal : {
-                                label : {
-                                    show : false
-                                },
-                                labelLine : {
-                                    show : false
-                                }
-                            },
-                            emphasis : {
-                                label : {
-                                    show : true,
-                                    textStyle : {
-                                        fontSize : '20',
-                                        fontWeight : 'bold'
-                                    }
-                                }
-                            }
-                        },
-                        data:[{"name":"语文","value":488},
-                        {"name":"数学","value":53},
-                        {"name":"英语","value":29},
-                        {"name":"理综","value":0}
-                        ]
-                    }
-                    ]
-                },
-                {
-                    series : [
-                    {
-                        name:'科目',
-                        type:'pie',
-                        radius : '50%',
-                        itemStyle : {
-                            normal : {
-                                label : {
-                                    show : false
-                                },
-                                labelLine : {
-                                    show : false
-                                }
-                            },
-                            emphasis : {
-                                label : {
-                                    show : true,
-                                    textStyle : {
-                                        fontSize : '20',
-                                        fontWeight : 'bold'
-                                    }
-                                }
-                            }
-                        },
-                        data:[{"name":"语文","value":52},
-                        {"name":"数学","value":7},
-                        {"name":"英语","value":1},
-                        {"name":"理综","value":0}
-                        ]
-                    }
-                    ]
-                },
-                {
-                    series : [
-                    {
-                        name:'科目',
-                        type:'pie',
-                        radius : '50%',
-                        itemStyle : {
-                            normal : {
-                                label : {
-                                    show : false
-                                },
-                                labelLine : {
-                                    show : false
-                                }
-                            },
-                            emphasis : {
-                                label : {
-                                    show : true,
-                                    textStyle : {
-                                        fontSize : '20',
-                                        fontWeight : 'bold'
-                                    }
-                                }
-                            }
-                        },
-                        data:[{"name":"语文","value":54},
-                        {"name":"数学","value":10},
-                        {"name":"英语","value":0},
-                        {"name":"理综","value":0}
-                        ]
-                    }
-                    ]
-                },
-                {
-                    series : [
-                    {
-                        name:'科目',
-                        type:'pie',
-                        radius : '50%',
-                        itemStyle : {
-                            normal : {
-                                label : {
-                                    show : false
-                                },
-                                labelLine : {
-                                    show : false
-                                }
-                            },
-                            emphasis : {
-                                label : {
-                                    show : true,
-                                    textStyle : {
-                                        fontSize : '20',
-                                        fontWeight : 'bold'
-                                    }
-                                }
-                            }
-                        },
-                        data:[{"name":"语文","value":102},
-                        {"name":"数学","value":12},
-                        {"name":"英语","value":5},
-                        {"name":"理综","value":0}
-                        ]
-                    }
-                    ]
-                },
-                {
-                    series : [
-                    {
-                        name:'科目',
-                        type:'pie',
-                        radius : '50%',
-                        itemStyle : {
-                            normal : {
-                                label : {
-                                    show : false
-                                },
-                                labelLine : {
-                                    show : false
-                                }
-                            },
-                            emphasis : {
-                                label : {
-                                    show : true,
-                                    textStyle : {
-                                        fontSize : '20',
-                                        fontWeight : 'bold'
-                                    }
-                                }
-                            }
-                        },
-                        data:[{"name":"语文","value":538},
-                        {"name":"数学","value":69},
-                        {"name":"英语","value":17},
-                        {"name":"理综","value":27}
-                        ]
-                    }
-                    ]
-                },
-                {
-                    series : [
-                    {
-                        name:'科目',
-                        type:'pie',
-                        radius : '50%',
-                        itemStyle : {
-                            normal : {
-                                label : {
-                                    show : false
-                                },
-                                labelLine : {
-                                    show : false
-                                }
-                            },
-                            emphasis : {
-                                label : {
-                                    show : true,
-                                    textStyle : {
-                                        fontSize : '20',
-                                        fontWeight : 'bold'
-                                    }
-                                }
-                            }
-                        },
-                        data:[{"name":"语文","value":494},
-                        {"name":"数学","value":40},
-                        {"name":"英语","value":26},
-                        {"name":"理综","value":8}
-                        ]
-                    }
-                    ]
-                },
-                {
-                    series : [
-                    {
-                        name:'科目',
-                        type:'pie',
-                        radius : '50%',
-                        itemStyle : {
-                            normal : {
-                                label : {
-                                    show : false
-                                },
-                                labelLine : {
-                                    show : false
-                                }
-                            },
-                            emphasis : {
-                                label : {
-                                    show : true,
-                                    textStyle : {
-                                        fontSize : '20',
-                                        fontWeight : 'bold'
-                                    }
-                                }
-                            }
-                        },
-                        data:[{"name":"语文","value":111},
-                        {"name":"数学","value":27},
-                        {"name":"英语","value":8},
-                        {"name":"理综","value":0}
-                        ]
-                    }
-                    ]
-                },
-                {
-                    series : [
-                    {
-                        name:'科目',
-                        type:'pie',
-                        radius : '50%',
-                        itemStyle : {
-                            normal : {
-                                label : {
-                                    show : false
-                                },
-                                labelLine : {
-                                    show : false
-                                }
-                            },
-                            emphasis : {
-                                label : {
-                                    show : true,
-                                    textStyle : {
-                                        fontSize : '20',
-                                        fontWeight : 'bold'
-                                    }
-                                }
-                            }
-                        },
-                        data:[{"name":"语文","value":51},
-                        {"name":"数学","value":25},
-                        {"name":"英语","value":4},
-                        {"name":"理综","value":0}
-                        ]
-                    }
-                    ]
-                }
                 ]
             };
 
             myChart.setOption(option);
-        });       
-changebg(data_btu4);
-page_mid_next.style.display = "block";
-row.style.display = "none";
-clomu.style.display = "none";
+        });
+    changebg(data_btu4);
+    page_mid_next.style.display = "block";
+    row.style.display = "none";
+    clomu.style.display = "none";
 }
 
 function charst_end(content){
