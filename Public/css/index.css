@@ -373,11 +373,13 @@ li[id^=login] a{
 	float: left;
 	position: relative;
 	overflow: hidden;
-}.warp ul li{
-     cursor: pointer;
+}
+.warp ul li{
+    cursor: pointer;
 	width: 740px;
 	height: 113px;
-	background:red;
+	background:url('../image/index/banner1.jpg');
+    background-size: cover;
 	position: absolute;
 	left: 0px;
 }

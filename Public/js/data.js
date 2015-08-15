@@ -84,10 +84,10 @@ function charst(name, value, value1, title, bili) {
                     itemStyle : {
                         normal : {
                             label : {
-                                show : false
+                                show : true
                             },
                             labelLine : {
-                                show : false
+                                show : true
                             }
                         },
                         emphasis : {
@@ -112,10 +112,10 @@ function charst(name, value, value1, title, bili) {
                     itemStyle : {
                         normal : {
                             label : {
-                                show : false
+                                show : true
                             },
                             labelLine : {
-                                show : false
+                                show : true
                             }
                         },
                         emphasis : {
@@ -222,10 +222,10 @@ function charst_sex(singleDog,notalone){
                     itemStyle : {
                         normal : {
                             label : {
-                                show : false
+                                show : true
                             },
                             labelLine : {
-                                show : false
+                                show : true
                             }
                         },
                         emphasis : {
@@ -249,10 +249,10 @@ function charst_sex(singleDog,notalone){
                     itemStyle : {
                         normal : {
                             label : {
-                                show : false
+                                show : true
                             },
                             labelLine : {
-                                show : false
+                                show : true
                             }
                         },
                         emphasis : {
@@ -312,10 +312,10 @@ require([
                 itemStyle : {
                     normal : {
                         label : {
-                            show : false
+                            show : true
                         },
                         labelLine : {
-                            show : false
+                            show : true
                         }
                     },
                     emphasis : {
@@ -343,10 +343,10 @@ require([
                 itemStyle : {
                     normal : {
                         label : {
-                            show : false
+                            show : true
                         },
                         labelLine : {
-                            show : false
+                            show : true
                         }
                     },
                     emphasis : {
@@ -424,10 +424,10 @@ function chart_age(age,agevalue,star,starvalue){
                     itemStyle : {
                         normal : {
                             label : {
-                                show : false
+                                show : true
                             },
                             labelLine : {
-                                show : false
+                                show : true
                             }
                         },
                         emphasis : {
@@ -490,10 +490,10 @@ require([
                 itemStyle : {
                     normal : {
                         label : {
-                            show : false
+                            show : true
                         },
                         labelLine : {
-                            show : false
+                            show : true
                         }
                     },
                     emphasis : {
@@ -583,10 +583,10 @@ function charst_subject(){
                                 itemStyle : {
                                     normal : {
                                         label : {
-                                            show : false
+                                            show : true
                                         },
                                         labelLine : {
-                                            show : false
+                                            show : true
                                         }
                                     },
                                     emphasis : {
@@ -621,10 +621,10 @@ function charst_subject(){
                                 itemStyle : {
                                     normal : {
                                         label : {
-                                            show : false
+                                            show : true
                                         },
                                         labelLine : {
-                                            show : false
+                                            show : true
                                         }
                                     },
                                     emphasis : {
@@ -659,10 +659,10 @@ function charst_subject(){
                                 itemStyle : {
                                     normal : {
                                         label : {
-                                            show : false
+                                            show : true
                                         },
                                         labelLine : {
-                                            show : false
+                                            show : true
                                         }
                                     },
                                     emphasis : {
@@ -697,10 +697,10 @@ function charst_subject(){
                                 itemStyle : {
                                     normal : {
                                         label : {
-                                            show : false
+                                            show : true
                                         },
                                         labelLine : {
-                                            show : false
+                                            show : true
                                         }
                                     },
                                     emphasis : {
@@ -734,10 +734,10 @@ function charst_subject(){
                                 itemStyle : {
                                     normal : {
                                         label : {
-                                            show : false
+                                            show : true
                                         },
                                         labelLine : {
-                                            show : false
+                                            show : true
                                         }
                                     },
                                     emphasis : {
@@ -772,10 +772,10 @@ function charst_subject(){
                                 itemStyle : {
                                     normal : {
                                         label : {
-                                            show : false
+                                            show : true
                                         },
                                         labelLine : {
-                                            show : false
+                                            show : true
                                         }
                                     },
                                     emphasis : {
@@ -810,10 +810,10 @@ function charst_subject(){
                                 itemStyle : {
                                     normal : {
                                         label : {
-                                            show : false
+                                            show : true
                                         },
                                         labelLine : {
-                                            show : false
+                                            show : true
                                         }
                                     },
                                     emphasis : {
@@ -848,10 +848,10 @@ function charst_subject(){
                                 itemStyle : {
                                     normal : {
                                         label : {
-                                            show : false
+                                            show : true
                                         },
                                         labelLine : {
-                                            show : false
+                                            show : true
                                         }
                                     },
                                     emphasis : {
@@ -886,10 +886,10 @@ function charst_subject(){
                                 itemStyle : {
                                     normal : {
                                         label : {
-                                            show : false
+                                            show : true
                                         },
                                         labelLine : {
-                                            show : false
+                                            show : true
                                         }
                                     },
                                     emphasis : {
@@ -924,10 +924,10 @@ function charst_subject(){
                                 itemStyle : {
                                     normal : {
                                         label : {
-                                            show : false
+                                            show : true
                                         },
                                         labelLine : {
-                                            show : false
+                                            show : true
                                         }
                                     },
                                     emphasis : {
@@ -962,10 +962,10 @@ function charst_subject(){
                                 itemStyle : {
                                     normal : {
                                         label : {
-                                            show : false
+                                            show : true
                                         },
                                         labelLine : {
-                                            show : false
+                                            show : true
                                         }
                                     },
                                     emphasis : {
@@ -1000,10 +1000,10 @@ function charst_subject(){
                                 itemStyle : {
                                     normal : {
                                         label : {
-                                            show : false
+                                            show : true
                                         },
                                         labelLine : {
-                                            show : false
+                                            show : true
                                         }
                                     },
                                     emphasis : {
@@ -1038,10 +1038,10 @@ function charst_subject(){
                                 itemStyle : {
                                     normal : {
                                         label : {
-                                            show : false
+                                            show : true
                                         },
                                         labelLine : {
-                                            show : false
+                                            show : true
                                         }
                                     },
                                     emphasis : {
@@ -1076,10 +1076,10 @@ function charst_subject(){
                                 itemStyle : {
                                     normal : {
                                         label : {
-                                            show : false
+                                            show : true
                                         },
                                         labelLine : {
-                                            show : false
+                                            show : true
                                         }
                                     },
                                     emphasis : {
@@ -1160,10 +1160,10 @@ function charst_end(content){
                     itemStyle : {
                         normal : {
                             label : {
-                                show : false
+                                show : true
                             },
                             labelLine : {
-                                show : false
+                                show : true
                             }
                         },
                         emphasis : {
@@ -1249,10 +1249,10 @@ require([
                     itemStyle : {
                         normal : {
                             label : {
-                                show : false
+                                show : true
                             },
                             labelLine : {
-                                show : false
+                                show : true
                             }
                         },
                         emphasis : {
@@ -1282,10 +1282,10 @@ require([
                     itemStyle : {
                         normal : {
                             label : {
-                                show : false
+                                show : true
                             },
                             labelLine : {
-                                show : false
+                                show : true
                             }
                         },
                         emphasis : {
@@ -1315,7 +1315,7 @@ require([
                     itemStyle : {
                         normal : {
                             label : {
-                                show : false
+                                show : true
                             },
                             labelLine : {
                                 show : false
@@ -1348,10 +1348,10 @@ require([
                     itemStyle : {
                         normal : {
                             label : {
-                                show : false
+                                show : true
                             },
                             labelLine : {
-                                show : false
+                                show : true
                             }
                         },
                         emphasis : {
@@ -1414,10 +1414,10 @@ require([
                     itemStyle : {
                         normal : {
                             label : {
-                                show : false
+                                show : true
                             },
                             labelLine : {
-                                show : false
+                                show : true
                             }
                         },
                         emphasis : {
@@ -1447,10 +1447,10 @@ require([
                     itemStyle : {
                         normal : {
                             label : {
-                                show : false
+                                show : true
                             },
                             labelLine : {
-                                show : false
+                                show : true
                             }
                         },
                         emphasis : {
@@ -1480,10 +1480,10 @@ require([
                     itemStyle : {
                         normal : {
                             label : {
-                                show : false
+                                show : true
                             },
                             labelLine : {
-                                show : false
+                                show : true
                             }
                         },
                         emphasis : {
@@ -1513,10 +1513,10 @@ require([
                     itemStyle : {
                         normal : {
                             label : {
-                                show : false
+                                show : true
                             },
                             labelLine : {
-                                show : false
+                                show : true
                             }
                         },
                         emphasis : {
@@ -1546,10 +1546,10 @@ require([
                     itemStyle : {
                         normal : {
                             label : {
-                                show : false
+                                show : true
                             },
                             labelLine : {
-                                show : false
+                                show : true
                             }
                         },
                         emphasis : {
@@ -1579,10 +1579,10 @@ require([
                     itemStyle : {
                         normal : {
                             label : {
-                                show : false
+                                show : true
                             },
                             labelLine : {
-                                show : false
+                                show : true
                             }
                         },
                         emphasis : {
@@ -1612,10 +1612,10 @@ require([
                     itemStyle : {
                         normal : {
                             label : {
-                                show : false
+                                show : true
                             },
                             labelLine : {
-                                show : false
+                                show : true
                             }
                         },
                         emphasis : {
@@ -1645,10 +1645,10 @@ require([
                     itemStyle : {
                         normal : {
                             label : {
-                                show : false
+                                show : true
                             },
                             labelLine : {
-                                show : false
+                                show : true
                             }
                         },
                         emphasis : {
@@ -1678,10 +1678,10 @@ require([
                     itemStyle : {
                         normal : {
                             label : {
-                                show : false
+                                show : true
                             },
                             labelLine : {
-                                show : false
+                                show : true
                             }
                         },
                         emphasis : {

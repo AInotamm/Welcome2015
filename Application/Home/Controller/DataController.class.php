@@ -90,6 +90,10 @@ class DataController extends BaseController {
             $pass = md5(hash('sha256', ($pass >> ($pass % 3)) . substr($pass, 1, 3)));
         }
 
+        if(!session('?stu_id')) {
+            $this->error('请登录后查询数据', '');
+        }
+
         if(session('?stu_id') || ($name && $pass)) {
             $this->_stu_id = session('stu_id');
             $stu = M('stuinfo')->where(array('stu_id' => $this->_stu_id))->find();
@@ -133,7 +137,6 @@ class DataController extends BaseController {
                         ),
                         'same' => array(
                             'samemon' => $this->sameYM,
-                            'samehor' => $this->sameHoro,
                             'others' => $this->total
                         ),
                         'sex' => array(
