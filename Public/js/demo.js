@@ -756,6 +756,13 @@ function constant(target,json,speed,callback) {
 		passwordTest = /[0-9]{5}([0-9]|[Xx])/,
 		b_c = true,
 		completeInfo = false,
+        fav = [
+            '动漫', '极客', '摄影',
+            '吃货', 'lol', '篮球',
+            '旅游', '电影', '学霸',
+            '健身', '音乐', '综艺',
+        ],
+        ins = [],
 		timer;
 	eventHandler.addEvent(window,"resize",function() {
 		if(big.style.display == "none") return;
@@ -799,6 +806,33 @@ function constant(target,json,speed,callback) {
                     notice.textContent = data.info + (!data.describe ? '' : data.describe);
                 }
                 if(data.status == 202 && !completeInfo) {
+                    if (data.data) {
+                        var qq = data.data.qq,
+                            tel = data.data.tel;
+                        var input_qq = document.getElementById('qq'),
+                            input_phone = document.getElementById('phone');
+                        if(qq) {
+                            input_qq.setAttribute('disabled', 'true');
+                            input_qq.value = qq;
+                        } else if (tel) {
+                            input_phone.setAttribute('disabled', 'true');
+                            input_phone.value = tel;
+                        }
+                        var bav = data.data.behavior;
+                        if(bav) {
+                            bav.forEach(function(v){
+                               for(var i = 0; i < 12; i++) {
+                                   if (v == fav[i]) {
+                                       ins.push(i);
+                                       break;
+                                   }
+                               }
+                            });
+                            post_beh.children[ins[0]].style.background = '#FF8636';
+                            post_beh.children[ins[1]].style.background = '#FF8636';
+                            post_beh.children[ins[2]].style.background = '#FF8636';
+                        }
+                    }
                     logo.src = anlyDomain() + "Public/image/finish.png";
                     animation.move(big, {
                         "height": "460",

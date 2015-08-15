@@ -30,6 +30,7 @@ class BaseController extends Controller {
         '健身' => 10, '音乐' => 11, '综艺' => 12,
     );
     private $_favid = array();
+    private $_favinsid = array();
 
     /**
      * 前置操作,判断用户登录情况
@@ -129,7 +130,12 @@ class BaseController extends Controller {
             $this->_checkExtraInfo();
             $this->ajaxReturn(array(
                 'status' => $this->status_code,
-                'info' => $this->status_msg
+                'info' => $this->status_msg,
+                'data' => array(
+                    'qq' => $stu['stu_qq'],
+                    'tel' => $stu['stu_tel'],
+                    'behavior' => explode(',', $stu['stu_fav'])
+                )
             ));
         } else {
             if (empty($_SESSION['IP'])) {
@@ -199,7 +205,15 @@ class BaseController extends Controller {
             }
         }
         if (isset($extra_exist)) {
+            for($i = 1; $i < 13; $i++) {
+                if($extra_exist['fav_info' . $i] == 1) {
+                    $this->_favinsid[] = $i;
+                }
+            }
             $this->_cfav->where($extraInfo)->filter('strip_tags')->data(array(
+                'fav_info' . $this->_favinsid[0] => 0,
+                'fav_info' . $this->_favinsid[1] => 0,
+                'fav_info' . $this->_favinsid[2] => 0,
                 'fav_info' . $this->_favid[0] => 1,
                 'fav_info' . $this->_favid[1] => 1,
                 'fav_info' . $this->_favid[2] => 1
