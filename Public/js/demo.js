@@ -887,9 +887,9 @@ function constant(target,json,speed,callback) {
         });
 	})
 	eventHandler.addEvent(close,"click",function(){
-		wap.style.display = "none";
 		animation.move(big,{"top":"-280","opacity":"0"},1000,function(){
 			big.style.display = "none";
+            wap.style.display = "none";
             return true;
 		})
 	})

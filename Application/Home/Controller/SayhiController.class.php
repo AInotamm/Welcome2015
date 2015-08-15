@@ -19,7 +19,7 @@ class SayhiController extends BaseController {
             $content['hi_time']= date("Y-m-d h:i:sa");
             $content['hi_content'] = I(trim('post.title_content'));
             $content['hi_title'] = I(trim('post.title_name'));
-            $content['stu_id'] = session('stu_id');
+            $content['stu_name'] = session('stu_name');
             $content['hi_state'] = 1;
             $title = M('sayhi');
             $title->data($content)->add();
@@ -45,13 +45,13 @@ class SayhiController extends BaseController {
 
     public function titleRemark(){
         $remark = M('remark');
-        $titleid = session('content_id');//怎么获取待定
+        $titleid = session('content_id'); //怎么获取待定
         $content['remark_data'] = date("Y-m-d h:i:sa");
-        $content['stu_id'] = session('stu_id');
+        $content['stu_name'] = session('stu_name');
         $content['content_id'] = $titleid;
         $content['remark_content'] = I(trim('post.remark_content'));
         $content['remark_state'] = 1;
-        if(!$content['stu_id']) {
+        if(!$content['stu_name']) {
             $this->error('请登录后评论', 'index');
         }
         $remark->data($content)->add();
