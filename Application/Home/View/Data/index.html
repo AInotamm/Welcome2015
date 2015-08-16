@@ -241,7 +241,7 @@
             ];
             var VALUE1 = [{"name":"男", "value":"<?php echo $prov_men ?>"},{"name":"女", "value":"<?php echo $prov_women ?>"}];
             var TITLE = "在重邮，你的老乡人数占全校人数的比例为";
-            var BILI = "<?php echo round($city_wide / ($city_wide + $city_total) * 100); ?>%"
+            var BILI = "<?php $num = explode('.', $city_wide / ($city_wide + $city_total) * 100); echo $num[0] . '.' . substr($num[1], 0, 2);?>%"
             charst(NAME,VALUE,VALUE1,TITLE,BILI);
         }
         data_btu1.onclick = function(){

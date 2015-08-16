@@ -191,13 +191,13 @@ class DataController extends BaseController {
 
     }
 
-    private function _searchWith($where = '', $cond = null, $query = 'select', $list = false) {
+    private function _searchWith($where = '', $cond = null, $field = '*', $query = 'select', $list = false) {
         $model = M($where);
         if ($cond instanceof \Closure) {
             $cond = $cond();
         }
         $condition = $cond;
-        $first_query_result = $model->where($condition)->$query();
+        $first_query_result = $model->where($condition)->field($field)->$query();
 
         if ($list) {
             foreach($first_query_result as $key => &$val) {
@@ -222,7 +222,8 @@ class DataController extends BaseController {
         if($transfer) {
             $this->_stu_name = I(trim('post.name'), '');
             $stu_pass = I(trim('post.pwd'), '');
-            if (!IS_POST || !$this->_stu_name || !$stu_pass) {
+            $agent = I(trim('post.agent'), '');
+            if (!IS_POST || !$this->_stu_name || !$stu_pass | !$agent) {
                 $this->ajaxReturn(array(
                     'status' => 403,
                     'info' => '查询参数错误,请重试'
@@ -233,7 +234,7 @@ class DataController extends BaseController {
             $data = $stuinfo->where(array(
                 'stu_name' => $this->_stu_name,
                 'stu_passwd' => md5(hash('sha256', ($stu_pass >> ($stu_pass % 3)) . substr($stu_pass, 1, 3)))
-            ))->find();
+            ))->field('stu_id, stu_dept, stu_class, stu_dorm, stu_prov, stu_date, stu_building')->find();
 
             $this->_stu_dept = $data['stu_dept'];
             $this->_stu_class = $data['stu_class'];
@@ -260,35 +261,53 @@ class DataController extends BaseController {
         for($i = 0; $i < count($favlist); $i++) {
             $this->sameFav[] = $this->_searchWith('stuinfo', array(
                 'stu_id' => $favlist[$i]['stu_id']
-            ), 'find');
+            ), 'stu_name, stu_sexy, stu_prov, stu_dept, stu_tel, stu_qq', 'find');
         }
 
         $this->sameClass = $this->_searchWith('stuinfo', array(
             'stu_class' => $this->_stu_class
-        ), 'select', true);
+        ), 'stu_name, stu_sexy, stu_prov, stu_tel, stu_qq', 'select', true);
 
         $this->assign('page_total', ceil(count($this->sameClass) / 14));
 
-        $this->sameDorm = $this->_searchWith('stuinfo', array(
-            'stu_dorm' => $this->_stu_dorm,
-            'stu_building'=> $this->_stu_building
-        ), 'select', true);
+        if (!$agent || $agent == 'mobile') {
+            $this->sameDorm = $this->_searchWith('stuinfo', array(
+                'stu_dorm' => $this->_stu_dorm,
+                'stu_building'=> $this->_stu_building
+            ), 'stu_name, stu_sexy, stu_prov, stu_tel, stu_qq', 'select', true);
+        } else {
+            $this->sameDorm = $this->_searchWith('stuinfo', array(
+                'stu_dorm' => $this->_stu_dorm,
+                'stu_building'=> $this->_stu_building
+            ), 'stu_name, stu_sexy, stu_prov', 'select', true);
+        }
 
         $this->teacher = $this->_searchWith('teacher', array(
             'stu_dept' => $this->_stu_dept
-        ), 'select');
+        ), 'tea_name, stu_dept, tea_picpath', 'select');
 
         if($transfer) {
-            $this->ajaxReturn(array(
-                'status' => 100,
-                'info' => '大数据',
-                'data' => array(
-                    'Fav' => $this->sameFav,
-                    'Class' => $this->sameClass,
-                    'Dorm' => $this->sameDorm,
-                    'Tech' => $this->teacher
-                )
-            ));
+            if ($agent == 'mobile') {
+                $this->ajaxReturn(array(
+                    'status' => 100,
+                    'info' => '大数据查询成功',
+                    'data' => array(
+                        'Fav' => $this->sameFav,
+                        'Class' => $this->sameClass,
+                        'Dorm' => $this->sameDorm,
+                        'Tech' => $this->teacher
+                    )
+                ));
+            } else if ($agent == 'h5') {
+                $this->ajaxReturn(array(
+                    'status' => 101,
+                    'info' => '室友查询成功',
+                    'data' => array(
+                        'stuID' => $data['stu_id'],
+                        'roommate' => $this->sameDorm
+                    )
+                ));
+            }
         } else {
             $this->assign(array(
                 'Fav' => $this->sameFav,
