@@ -322,6 +322,7 @@ class DataController extends BaseController {
                     'info' => '室友查询成功',
                     'data' => array(
                         'stuID' => $data['stu_id'],
+                        'college' => $this->dept[$this->_stu_dept],
                         'roommate' => $this->sameDorm
                     )
                 ));
