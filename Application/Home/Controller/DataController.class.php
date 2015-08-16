@@ -88,6 +88,7 @@ class DataController extends BaseController {
         if(IS_POST) {
             $name = I(trim('post.name'), '');
             $pass = I(trim('post.pwd'), '');
+            $agent = I(trim('post.agent'), '');
             $pass = md5(hash('sha256', ($pass >> ($pass % 3)) . substr($pass, 1, 3)));
         }
 
@@ -128,29 +129,46 @@ class DataController extends BaseController {
                 $this->_sameDate($name, $pass);
                 $this->_stu_prov = trim($this->_stu_prov);
                 $this->_stu_dept = trim($this->_stu_dept);
-                $this->ajaxReturn(array(
-                    'status' => 100,
-                    'info' => '查询成功',
-                    'data' => array(
-                        'college' => $this->dept[$this->_stu_dept],
-                        'from' => array(
-                            'hometown' => $this->provScale[$this->_stu_prov],
-                            'others' => $this->total,
-                            'male' => $this->provMen[$this->_stu_prov],
-                            'female' => $this->provScale[$this->_stu_prov] - $this->provMen[$this->_stu_prov],
-                        ),
-                        'same' => array(
-                            'samemon' => $this->sameYM,
-                            'others' => $this->total
-                        ),
-                        'sex' => array(
-                            'male' => $this->man[$this->_stu_dept],
-                            'female' => $this->deptName[$this->_stu_dept] - $this->man[$this->_stu_dept],
-                            'fff' => ceil($this->deptName[$this->_stu_dept] * $this->pair[$this->_stu_dept]),
-                            'single' => ceil($this->deptName[$this->_stu_dept] * (1 - $this->pair[$this->_stu_dept])),
+                if ($agent == 'h5') {
+                    $this->ajaxReturn(array(
+                        'status' => 100,
+                        'info' => '大数据查询成功',
+                        'data' => array(
+                            'college' => $this->dept[$this->_stu_dept],
+                            'from' => array(
+                                'hometown' => $this->provScale[$this->_stu_prov],
+                                'others' => $this->total,
+                                'male' => $this->provMen[$this->_stu_prov],
+                                'female' => $this->provScale[$this->_stu_prov] - $this->provMen[$this->_stu_prov],
+                            ),
+                            'same' => array(
+                                'samemon' => $this->sameYM,
+                                'others' => $this->total
+                            ),
+                            'sex' => array(
+                                'male' => $this->man[$this->_stu_dept],
+                                'female' => $this->deptName[$this->_stu_dept] - $this->man[$this->_stu_dept],
+                                'fff' => ceil($this->deptName[$this->_stu_dept] * $this->pair[$this->_stu_dept]),
+                                'single' => ceil($this->deptName[$this->_stu_dept] * (1 - $this->pair[$this->_stu_dept])),
+                            )
                         )
-                    )
-                ));
+                    ));
+                } else if($agent == 'mobile') {
+                    $this->ajaxReturn(array(
+                        'status' => 100,
+                        'info' => '大数据查询成功',
+                        'data' => array(
+                            'from' => array(
+                                'hometown' => $this->provScale[$this->_stu_prov],
+                                'others' => $this->total,
+                            ),
+                            'sex' => array(
+                                'male' => $this->man[$this->_stu_dept],
+                                'female' => $this->deptName[$this->_stu_dept] - $this->man[$this->_stu_dept],
+                            )
+                        )
+                    ));
+                }
             } else {
                 $this->ajaxReturn(array(
                     'status' => 404,
@@ -274,12 +292,12 @@ class DataController extends BaseController {
             $this->sameDorm = $this->_searchWith('stuinfo', array(
                 'stu_dorm' => $this->_stu_dorm,
                 'stu_building'=> $this->_stu_building
-            ), 'stu_name, stu_sexy, stu_prov, stu_tel, stu_qq', 'select', true);
+            ), 'stu_name, stu_class, stu_prov, stu_tel, stu_qq', 'select', true);
         } else {
             $this->sameDorm = $this->_searchWith('stuinfo', array(
                 'stu_dorm' => $this->_stu_dorm,
                 'stu_building'=> $this->_stu_building
-            ), 'stu_name, stu_sexy, stu_prov', 'select', true);
+            ), 'stu_name, stu_class, stu_prov', 'select', true);
         }
 
         $this->teacher = $this->_searchWith('teacher', array(
@@ -290,7 +308,7 @@ class DataController extends BaseController {
             if ($agent == 'mobile') {
                 $this->ajaxReturn(array(
                     'status' => 100,
-                    'info' => '大数据查询成功',
+                    'info' => '个人相关数据查询成功',
                     'data' => array(
                         'Fav' => $this->sameFav,
                         'Class' => $this->sameClass,
