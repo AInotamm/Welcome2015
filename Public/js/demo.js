@@ -384,8 +384,7 @@ function anlyDomain() {
     var domain = window.location.hostname.toString().split('.');
     var length = domain.length;
     result = window.location.href.toString().match(new RegExp("(?=["+ domain[length - 1] + "])\\w+(\\/((\\w*)\\/*)*)(index?)?"));
-    if (result == null) result = ['', '/'];
-    if (result[1] == '/index') result = ['', '/'];
+    if (result == null) result = ['', '/welcome/2015/'];
     return result[1];
 }
 var animation = {
