@@ -104,9 +104,11 @@ class DataController extends BaseController {
             $stu = M('stuinfo')->where(array('stu_id' => $this->_stu_id))->find();
             $this->_stu_name = $stu['stu_name'];
 
-            $this->_showInfo(false);
-            $this->_getExtraData(false);
-            $this->_sameDate();
+            if (!$agent) {
+                $this->_showInfo(false);
+                $this->_getExtraData(false);
+                $this->_sameDate();
+            }
             $this->_stu_prov = trim($this->_stu_prov);
             $this->_stu_dept = trim($this->_stu_dept);
             if(!IS_POST && empty($name) && empty($pass)) {
@@ -370,12 +372,21 @@ class DataController extends BaseController {
         $stuDA = substr($this->_stu_date,8,2);
         $condition['stu_date'] = array('like', $stuYM . '-' . $stuMD . '%');
         $this->sameYM = intval($birthday->where($condition)->count(), 10);
-        $sameday = $birthday->where(array('stu_date' => $stuYM . '-' . $stuMD . '-' . $stuDA))->field('stu_sexy','stu_date')->select();
+        $samecond['stu_date'] = array('like', $stuYM . '-' . $stuMD . '-' . $stuDA . '%');
+        $sameday = $birthday->field('stu_sexy, stu_date')->where($samecond)->select();
+        $this->sameYMD = count($sameday) - 1;
         foreach($sameday as $key => $val) {
             if(trim($val['stu_sexy']) == '男') {
                 $this->sameYMDMen += 1;
             } else {
                 $this->sameYMDWomen += 1;
+            }
+        }
+        if($stu_data) {
+            if($stu_data['stu_sexy'] == '男') {
+                $this->sameYMDMen -= 1;
+            } else {
+                $this->sameYMDWomen -= 1;
             }
         }
         // 本人星座判断
