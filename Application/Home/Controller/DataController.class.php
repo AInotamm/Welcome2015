@@ -251,13 +251,13 @@ class DataController extends BaseController {
             $this->_stu_date = session('stu_date');
         }
 
-        $fav = $this->_searchWith('fav', array('stu_id' => $this->_stu_id), 'find');
+        $fav = $this->_searchWith('fav', array('stu_id' => $this->_stu_id), '*', 'find');
         for ($i = 1; $i < 13; $i++) {
             if ($fav['fav_info' . $i] == 1) {
                 $cond['fav_info' . $i] = 1;
             }
         }
-        $favlist = $this->_searchWith('fav', $cond, 'select');
+        $favlist = $this->_searchWith('fav', $cond, '*','select');
         for($i = 0; $i < count($favlist); $i++) {
             $this->sameFav[] = $this->_searchWith('stuinfo', array(
                 'stu_id' => $favlist[$i]['stu_id']
