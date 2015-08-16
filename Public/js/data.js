@@ -92,7 +92,7 @@ function charst(name, value, value1, title, bili) {
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 position : 'center',
                                 textStyle : {
                                     fontSize : '20',
@@ -120,7 +120,7 @@ function charst(name, value, value1, title, bili) {
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -230,7 +230,7 @@ function charst_sex(singleDog,notalone){
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -257,7 +257,7 @@ function charst_sex(singleDog,notalone){
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -320,7 +320,7 @@ require([
                     },
                     emphasis : {
                         label : {
-                            show : true,
+                            show : false,
                             position:"center",
                             textStyle : {
                                 fontSize : '20',
@@ -351,7 +351,7 @@ require([
                     },
                     emphasis : {
                         label : {
-                            show : true,
+                            show : false,
                             textStyle : {
                                 fontSize : '20',
                                 fontWeight : 'bold'
@@ -432,7 +432,7 @@ function chart_age(age,agevalue,star,starvalue){
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 position:"center",
                                 textStyle : {
                                     fontSize : '20',
@@ -498,7 +498,7 @@ require([
                     },
                     emphasis : {
                         label : {
-                            show : true,
+                            show : false,
                             position:"center",
                             textStyle : {
                                 fontSize : '20',
@@ -591,7 +591,7 @@ function charst_subject(){
                                     },
                                     emphasis : {
                                         label : {
-                                            show : true,
+                                            show : false,
                                             textStyle : {
                                                 fontSize : '20',
                                                 fontWeight : 'bold'
@@ -629,7 +629,7 @@ function charst_subject(){
                                     },
                                     emphasis : {
                                         label : {
-                                            show : true,
+                                            show : false,
                                             textStyle : {
                                                 fontSize : '20',
                                                 fontWeight : 'bold'
@@ -667,7 +667,7 @@ function charst_subject(){
                                     },
                                     emphasis : {
                                         label : {
-                                            show : true,
+                                            show : false,
                                             textStyle : {
                                                 fontSize : '20',
                                                 fontWeight : 'bold'
@@ -705,7 +705,7 @@ function charst_subject(){
                                     },
                                     emphasis : {
                                         label : {
-                                            show : true,
+                                            show : false,
                                             textStyle : {
                                                 fontSize : '20',
                                                 fontWeight : 'bold'
@@ -742,7 +742,7 @@ function charst_subject(){
                                     },
                                     emphasis : {
                                         label : {
-                                            show : true,
+                                            show : false,
                                             textStyle : {
                                                 fontSize : '20',
                                                 fontWeight : 'bold'
@@ -780,7 +780,7 @@ function charst_subject(){
                                     },
                                     emphasis : {
                                         label : {
-                                            show : true,
+                                            show : false,
                                             textStyle : {
                                                 fontSize : '20',
                                                 fontWeight : 'bold'
@@ -818,7 +818,7 @@ function charst_subject(){
                                     },
                                     emphasis : {
                                         label : {
-                                            show : true,
+                                            show : false,
                                             textStyle : {
                                                 fontSize : '20',
                                                 fontWeight : 'bold'
@@ -856,7 +856,7 @@ function charst_subject(){
                                     },
                                     emphasis : {
                                         label : {
-                                            show : true,
+                                            show : false,
                                             textStyle : {
                                                 fontSize : '20',
                                                 fontWeight : 'bold'
@@ -894,7 +894,7 @@ function charst_subject(){
                                     },
                                     emphasis : {
                                         label : {
-                                            show : true,
+                                            show : false,
                                             textStyle : {
                                                 fontSize : '20',
                                                 fontWeight : 'bold'
@@ -932,7 +932,7 @@ function charst_subject(){
                                     },
                                     emphasis : {
                                         label : {
-                                            show : true,
+                                            show : false,
                                             textStyle : {
                                                 fontSize : '20',
                                                 fontWeight : 'bold'
@@ -970,7 +970,7 @@ function charst_subject(){
                                     },
                                     emphasis : {
                                         label : {
-                                            show : true,
+                                            show : false,
                                             textStyle : {
                                                 fontSize : '20',
                                                 fontWeight : 'bold'
@@ -1008,7 +1008,7 @@ function charst_subject(){
                                     },
                                     emphasis : {
                                         label : {
-                                            show : true,
+                                            show : false,
                                             textStyle : {
                                                 fontSize : '20',
                                                 fontWeight : 'bold'
@@ -1046,7 +1046,7 @@ function charst_subject(){
                                     },
                                     emphasis : {
                                         label : {
-                                            show : true,
+                                            show : false,
                                             textStyle : {
                                                 fontSize : '20',
                                                 fontWeight : 'bold'
@@ -1084,7 +1084,7 @@ function charst_subject(){
                                     },
                                     emphasis : {
                                         label : {
-                                            show : true,
+                                            show : false,
                                             textStyle : {
                                                 fontSize : '20',
                                                 fontWeight : 'bold'
@@ -1167,7 +1167,7 @@ function charst_end(content){
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -1256,7 +1256,7 @@ require([
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -1289,7 +1289,7 @@ require([
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -1322,7 +1322,7 @@ require([
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -1355,7 +1355,7 @@ require([
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -1388,7 +1388,7 @@ require([
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -1421,7 +1421,7 @@ require([
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -1454,7 +1454,7 @@ require([
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -1487,7 +1487,7 @@ require([
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -1520,7 +1520,7 @@ require([
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -1553,7 +1553,7 @@ require([
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -1586,7 +1586,7 @@ require([
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -1619,7 +1619,7 @@ require([
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -1652,7 +1652,7 @@ require([
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -1685,7 +1685,7 @@ require([
                         },
                         emphasis : {
                             label : {
-                                show : true,
+                                show : false,
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'

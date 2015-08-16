@@ -37,6 +37,10 @@
             turn_people = opeople.querySelectorAll(".page_num"),
             opeople_btn = document.getElementById("people_btn"),
             obtn_peo = opeople_btn.getElementsByTagName("a"),
+            obus = document.getElementById("bus"),
+            turn_bus = obus.querySelectorAll(".page_mid_mid_ul"),
+            obus_btn = document.getElementById("bus_btn"),
+            obtn_bus = obus_btn.getElementsByTagName("a"),
             oroom = document.getElementById("room"),
             turn_room = oroom.querySelectorAll(".page_mid_mid_ul"),
             oroom_btn = document.getElementById("room_btn"),
@@ -86,6 +90,18 @@
         }
         obtn_peo[3].onclick = function (){
             turn(turn_people[1],turn_people[0],obtn_peo[2],obtn_peo[1]);
+        }
+        obtn_bus[0].onclick = function (){
+            turn(turn_bus[0],turn_bus[1],obtn_bus[1],obtn_bus[2]);
+        }
+        obtn_bus[1].onclick = function (){
+            turn(turn_bus[0],turn_bus[1],obtn_bus[1],obtn_bus[2]);
+        }
+        obtn_bus[2].onclick = function (){
+            turn(turn_bus[1],turn_bus[0],obtn_bus[2],obtn_bus[1]);
+        }
+        obtn_bus[3].onclick = function (){
+            turn(turn_bus[1],turn_bus[0],obtn_bus[2],obtn_bus[1]);
         }
         obtn_room[0].onclick = function (){
             turn(turn_room[0],turn_room[1],obtn_room[1],obtn_room[2]);
