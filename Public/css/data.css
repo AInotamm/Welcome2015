@@ -199,7 +199,7 @@ li[id^=login] a{
 
 .mapwrapper .maptitle {
     position: absolute;
-    left: 400px;
+    left: 430px;
     top: -60px;
 }
 
@@ -329,6 +329,9 @@ span.name {
 span.gender {
     width: 175.8px;
 }
+span.class {
+    width: 175.8px;
+}
 span.city {
     width: 175.8px;
 }
@@ -407,6 +410,9 @@ span.qq_num {
     background-color: #fceea6; 
     position: absolute;
     bottom: 0;
+}
+#page_bottom a{
+    margin-left: 10px;
 }
 .page_bottom{
     width: 912px;
@@ -602,7 +608,6 @@ a.page_bottom_spe{
     filter:alpha(opacity=0);
 }
 #phone_d{
-    visibility: hidden;
     width: auto !important;
     position: absolute;
     top: 112px;
@@ -612,13 +617,11 @@ a.page_bottom_spe{
     z-index: -100;
 }
 #phone{
-    visibility: hidden;
     width: 254px !important;
     float: left;
     padding: 10px 10px !important;
 }
 #qq_d{
-    visibility: hidden;
     width: auto !important;
     position: absolute;
     top: 172px;
@@ -628,7 +631,6 @@ a.page_bottom_spe{
     z-index: -100;
 }
 #qq{
-    visibility: hidden;
     width: 254px !important;
     float: left;
     padding: 10px 10px !important;

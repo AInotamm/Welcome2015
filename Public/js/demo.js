@@ -756,6 +756,13 @@ function constant(target,json,speed,callback) {
 		passwordTest = /[0-9]{5}([0-9]|[Xx])/,
 		b_c = true,
 		completeInfo = false,
+        fav = [
+            '动漫', '极客', '摄影',
+            '吃货', 'lol', '篮球',
+            '旅游', '电影', '学霸',
+            '健身', '音乐', '综艺',
+        ],
+        ins = [],
 		timer;
 	eventHandler.addEvent(window,"resize",function() {
 		if(big.style.display == "none") return;
@@ -793,12 +800,46 @@ function constant(target,json,speed,callback) {
 	eventHandler.addEvent(sub,"click",function() {
 		if(b_arr[0] && b_arr[1]) {
 			send = ajaxObject.encode({"name":user_name_c.value,"pwd":password_c.value});
-			ajaxObject.POST(xhr,send,"login", function(res) {
+			ajaxObject.POST(xhr,send, http, function(res) {
                 var data = JSON.parse(res);
                 if(data) {
                     notice.textContent = data.info + (!data.describe ? '' : data.describe);
                 }
                 if(data.status == 202 && !completeInfo) {
+                    if (data.data) {
+                        var qq = data.data.qq,
+                            tel = data.data.tel;
+                        var input_qq = document.getElementById('qq'),
+                            input_phone = document.getElementById('phone');
+                        if(qq) {
+                            input_qq.setAttribute('disabled', 'true');
+                            input_qq.value = qq;
+                        } else if (tel) {
+                            input_phone.setAttribute('disabled', 'true');
+                            input_phone.value = tel;
+                        }
+                        var bav = data.data.behavior;
+                        if(bav) {
+                            bav.forEach(function(v){
+                               for(var i = 0; i < 12; i++) {
+                                   if (v == fav[i]) {
+                                       ins.push(i);
+                                       break;
+                                   }
+                               }
+                            });
+                            if(ins.length == 3) {
+                                post_beh.children[ins[0]].style.background = '#FF8636';
+                                post_beh.children[ins[1]].style.background = '#FF8636';
+                                post_beh.children[ins[2]].style.background = '#FF8636';
+                                beh_arr = [
+                                    post_beh.children[ins[0]].textContent,
+                                    post_beh.children[ins[1]].textContent,
+                                    post_beh.children[ins[2]].textContent,
+                                ];
+                            }
+                        }
+                    }
                     logo.src = anlyDomain() + "Public/image/finish.png";
                     animation.move(big, {
                         "height": "460",
@@ -892,15 +933,19 @@ function constant(target,json,speed,callback) {
             wap.style.display = "none";
             return true;
 		})
+        return true;
 	})
     var post_beh = document.getElementById("post_behavior"),
         stu_tel = document.getElementById("phone"),
         stu_qq = document.getElementById("qq"),
         sub = document.getElementById("yes"),
         xhr = ajaxObject.createXhr(),
-        josn,
+        json,
+        mob = /1[0-9]{10}/,
+        qq = /[1-9][0-9]{4,10}/,
         value01,
         value02,
+        notice = document.getElementById("warming"),
         beh_arr = [];
     eventHandler.live(post_beh,post_beh.children,"click",function(e){
         if(this.check == undefined){
@@ -927,17 +972,33 @@ function constant(target,json,speed,callback) {
     eventHandler.addEvent(sub,"click",function(e){
         value01 = stu_tel.value;
         value02 = stu_qq.value;
-        json = {"stu_tel":value01,"stu_qq":value02};
-        for(var i = 0;i < beh_arr.length;i++){
-            json["beh_arr" + i] = beh_arr[i];
+        if ( (!value02 || qq.test(value02)) && (!value01 || mob.test(value01))) {
+            json = {"stu_tel":value01,"stu_qq":value02};
+            for(var i = 0;i < beh_arr.length;i++){
+                json["beh_arr" + i] = beh_arr[i];
+            }
+            json = ajaxObject.encode(json);
+            ajaxObject.POST(xhr,json,'getExtraInfo',function(res){
+                var data = JSON.parse(res);
+                if(data.status == 203) {
+                    completeInfo = true;
+                    window.location = window.location.href;
+                } if (data.status > 400) {
+                    notice.textContent = data.info;
+                    notice.style.display = "block";
+                    animation.move(notice,{"top":"110","opacity":"1.0"},1000,
+                        function() {
+                            animation.move(notice,{"top":"80","opacity":"0"},1000,function(){
+                                notice.style.top = "140px";
+                                notice.style.display = "none";
+                            })
+                        }
+                    );
+                    return;
+                }
+            });
+        } else {
+            return;
         }
-        json = ajaxObject.encode(json);
-        ajaxObject.POST(xhr,json,'getExtraInfo',function(res){
-			var data = JSON.parse(res);
-			if(data.status == 203) {
-				completeInfo = true;
-			}
-        });
-        return true;
     });
 })();

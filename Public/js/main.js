@@ -115,7 +115,7 @@
             });
         }
         eventHandler.addEvent(d1,"click",function() {
-            window.location.href = "http://" + window.location.host + anlyDomain() + "index.php/home/map/index.html";
+            window.location.href = d1.href;
         })
         eventHandler.addEvent(d1,"mouseover",function(e) {
              move(this);
@@ -167,3 +167,7 @@
             })
         })
     })();
+var banner = document.getElementById("banner");
+eventHandler.addEvent(banner,"click",function(){
+    alert("本活动将在9月8号开放,敬请期待~~");
+})

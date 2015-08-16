@@ -76,7 +76,8 @@ class ApiController extends Controller {
     }
 
     public function banner() {
-        $imageAddr = 'Public/image/logo.png';
+        $name = I(trim('post.banner'), '');
+        $imageAddr = 'Public/image/index/' . $name . '.jpg';
         $imageInfo = getimagesize($imageAddr);
         if ($imageInfo) {
             $this->ajaxReturn(array(

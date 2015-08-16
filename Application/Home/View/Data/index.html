@@ -48,7 +48,7 @@
                                     <div class="info_title">
                                         <span class="name">姓名</span>
                                         <span class="gender">性别</span>
-                                        <span class="city">籍贯</span>
+                                        <span class="city">省份</span>
                                         <span class="tele_num">手机号码</span>
                                         <span class="qq_num">QQ</span>
                                     </div>
@@ -68,7 +68,7 @@
                                     <div class="info_title">
                                         <span class="name">姓名</span>
                                         <span class="gender">性别</span>
-                                        <span class="city">击败比例</span>
+                                        <span class="city">宿舍号</span>
                                         <span class="tele_num">手机号码</span>
                                         <span class="qq_num">QQ</span>
                                     </div>
@@ -76,7 +76,7 @@
                                         <li class="info_content">
                                             <span class="name">{$user_student.stu_name}</span>
                                             <span class="gender">{$user_student.stu_sexy}</span>
-                                            <span class="city">{$defeatScale}</span>
+                                            <span class="city">{$user_student.stu_building}栋{$user_student.stu_dorm}</span>
                                             <span class="tele_num">{$user_student.stu_tel}</span>
                                             <span class="qq_num">{$user_student.stu_qq}</span>
                                         </li>
@@ -89,7 +89,7 @@
                                         <div class="info_title">
                                             <span class="name">姓名</span>
                                             <span class="gender">性别</span>
-                                            <span class="city">籍贯</span>
+                                            <span class="city">省份</span>
                                             <span class="tele_num">手机号码</span>
                                             <span class="qq_num">QQ</span>
                                         </div>
@@ -111,7 +111,7 @@
                                                 <div class="info_title">
                                                     <span class="name">姓名</span>
                                                     <span class="gender">性别</span>
-                                                    <span class="city">籍贯</span>
+                                                    <span class="city">省份</span>
                                                     <span class="tele_num">手机号码</span>
                                                     <span class="qq_num">QQ</span>
                                                 </div>
@@ -148,15 +148,15 @@
                                 <ul class="info_list" style="overflow: hidden; outline: none;">
                                     <div class="info_title">
                                         <span class="name">姓名</span>
-                                        <span class="gender">性别</span>
-                                        <span class="city">籍贯</span>
+                                        <span class="class">班级号</span>
+                                        <span class="city">省份</span>
                                         <span class="tele_num">手机号码</span>
                                         <span class="qq_num">QQ</span>
                                     </div>
                                     <volist name="Dorm" id="Dorm">
                                         <li class="info_content">
                                             <span class="name">{$Dorm.stu_name}</span>
-                                            <span class="gender">{$Dorm.stu_sexy}</span>
+                                            <span class="class">{$Dorm.stu_class}</span>
                                             <span class="city">{$Dorm.stu_prov}</span>
                                             <span class="tele_num">{$Dorm.stu_tel}</span>
                                             <span class="qq_num">{$Dorm.stu_qq}</span>
@@ -203,8 +203,8 @@
                         <div class="page_mid_big">
                         	<div id="page_mid_next"></div>
                             <div class="page_mid_next" id = "row">
-                                <h1 id = "WH1">你所在学院及学校的男女比</h1>
-                                <h1 id = "WH2">学校里与你同年同月及同星座的比例为</h1>
+                                <h1 id = "WH1">你所在学院的当前年级及新生总人群的男女比</h1>
+                                <h1 id = "WH2">新生中与你同年同月及同星座的比例为</h1>
                                 <div id="row1"></div>
                                 <div id="row2"></div>
                             </div>
@@ -240,8 +240,8 @@
                 {"name":"其余人数","value":"<?php echo $city_total?>"},
             ];
             var VALUE1 = [{"name":"男", "value":"<?php echo $prov_men ?>"},{"name":"女", "value":"<?php echo $prov_women ?>"}];
-            var TITLE = "在重邮，你的老乡人数占全校人数的比例为";
-            var BILI = "{$city_wide / ($city_wide + $city_total)}"
+            var TITLE = "在重邮，你的老乡人数占新生总人数的比例为";
+            var BILI = "<?php $num = explode('.', $city_wide / ($city_wide + $city_total) * 100); echo $num[0] . '.' . substr($num[1], 0, 2);?>%"
             charst(NAME,VALUE,VALUE1,TITLE,BILI);
         }
         data_btu1.onclick = function(){
@@ -250,8 +250,8 @@
                 {"name":"其余人数","value":"<?php echo $city_total?>"},
             ];
             var VALUE1 = [{"name":"男", "value":"<?php echo $prov_men ?>"},{"name":"女", "value":"<?php echo $prov_women ?>"}];
-            var TITLE = "在重邮，你的老乡人数占全校人数的比例为";
-            var BILI = "{$city_wide / ($city_wide + $city_total)}"
+            var TITLE = "在重邮，你的老乡人数占新生总人数的比例为";
+            var BILI = "<?php $num = explode('.', $city_wide / ($city_wide + $city_total) * 100); echo $num[0] . '.' . substr($num[1], 0, 2);?>%"
             charst(NAME,VALUE,VALUE1,TITLE,BILI);
         }
         data_btu2.onclick = function(){

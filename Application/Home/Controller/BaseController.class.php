@@ -22,6 +22,8 @@ class BaseController extends Controller {
     private $_cinfo;
     private $_cfav;
     private $_cip;
+    private $_cqq;
+    private $_ctel;
 
     private $_fav = array(
         '动漫' => 1, '极客' => 2, '摄影' => 3,
@@ -30,6 +32,7 @@ class BaseController extends Controller {
         '健身' => 10, '音乐' => 11, '综艺' => 12,
     );
     private $_favid = array();
+    private $_favinsid = array();
 
     /**
      * 前置操作,判断用户登录情况
@@ -129,7 +132,12 @@ class BaseController extends Controller {
             $this->_checkExtraInfo();
             $this->ajaxReturn(array(
                 'status' => $this->status_code,
-                'info' => $this->status_msg
+                'info' => $this->status_msg,
+                'data' => array(
+                    'qq' => $stu['stu_qq'],
+                    'tel' => $stu['stu_tel'],
+                    'behavior' => explode(',', $stu['stu_fav'])
+                )
             ));
         } else {
             if (empty($_SESSION['IP'])) {
@@ -139,7 +147,7 @@ class BaseController extends Controller {
             }
             $this->ajaxReturn(array(
                 'status' => 400,
-                'info' => '登录失败,学号或身份证后六位错误',
+                'info' => '登录失败,姓名或身份证后六位错误',
             ));
         }
     }
@@ -158,17 +166,30 @@ class BaseController extends Controller {
             I(trim('post.beh_arr1'), ''),
             I(trim('post.beh_arr2'), '')
         );
-        if (!IS_POST || !$stu_tel || !$stu_qq || !$flag = call_user_func(function() use($beh_arr) {
-                foreach($beh_arr as $val) {
-                    if(empty($val)) {
-                        return false;
-                    }
-                }
-                return true;
-            })) {
+        if (!IS_POST) {
             $this->ajaxReturn(array(
-                'status' => 401,
-                'info' => '抱歉,信息未填写完整'
+                'status' => 403,
+                'info' => '请求发生转移,请重试'
+            ));
+        }
+        $mob = '/^134[0-8]\d{7}$|^(?:13[5-9]|147|15[0-27-9]|178|18[2-478])\d{8}$/';
+        $union  = '/^(?:13[0-2]|145|15[56]|176|18[56])\d{8}$/';
+        $telcom = '/^(?:133|153|177|18[019])\d{8}$/';
+        $other = '/^170([059])\d{7}$/';
+        if(empty($stu_tel) || preg_match($mob, $stu_tel) || preg_match($union, $stu_tel) || preg_match($telcom, $stu_tel) || preg_match($other, $stu_tel)) {
+            if(empty($stu_qq) || preg_match('/[1-9][0-9]{4,10}/', $stu_qq)) {
+                $this->_cqq = $stu_qq;
+                $this->_ctel = $stu_tel;
+            } else {
+                $this->ajaxReturn(array(
+                    'status' => 402,
+                    'info' => 'QQ 格式错误,请重试'
+                ));
+            }
+        } else {
+            $this->ajaxReturn(array(
+                'status' => 402,
+                'info' => '电话格式错误,请重试'
             ));
         }
         if ($name && $pass) {
@@ -199,7 +220,15 @@ class BaseController extends Controller {
             }
         }
         if (isset($extra_exist)) {
+            for($i = 1; $i < 13; $i++) {
+                if($extra_exist['fav_info' . $i] == 1) {
+                    $this->_favinsid[] = $i;
+                }
+            }
             $this->_cfav->where($extraInfo)->filter('strip_tags')->data(array(
+                'fav_info' . $this->_favinsid[0] => 0,
+                'fav_info' . $this->_favinsid[1] => 0,
+                'fav_info' . $this->_favinsid[2] => 0,
                 'fav_info' . $this->_favid[0] => 1,
                 'fav_info' . $this->_favid[1] => 1,
                 'fav_info' . $this->_favid[2] => 1
@@ -207,13 +236,13 @@ class BaseController extends Controller {
         }
         $str = implode(',', $beh_arr);
         $this->_cinfo = M('stuinfo');
-        $goal['stu_tel'] = $stu_tel;
-        $goal['stu_qq'] = $stu_qq;
+        $goal['stu_tel'] = $this->_ctel;
+        $goal['stu_qq'] = $this->_cqq;
         $goal['stu_fav'] = $str;
         // 保存爱好以及额外信息
         if (!$name && !$pass) {
-            session('stu_tel', $stu_tel);
-            session('stu_qq', $stu_qq);
+            session('stu_tel', $this->_ctel);
+            session('stu_qq', $this->_cqq);
             session('stu_fav', $str);
         }
         $this->_cinfo->where($extraInfo)->save($goal);
@@ -232,7 +261,8 @@ class BaseController extends Controller {
         if($id) {
             cookie('IP_state', 0);
             $extra = $this->_cinfo->where(array('stu_id' => $id))->getField('stu_id, stu_tel, stu_qq, stu_fav');
-            $extra = array_values(each($extra)[1]);
+            $extra = each($extra);
+            $extra = array_values($extra[1]);
             list(, $tel, $qq, $fav) = $extra;
             $fav_arr = explode(',', $fav);
             if (!empty($tel) && !empty($qq) && count($fav_arr) == 3) {
@@ -257,6 +287,7 @@ class BaseController extends Controller {
         $_SESSION['stu_tel'] = $data['stu_tel'];
         $_SESSION['stu_prov'] = $data['stu_prov'];
         $_SESSION['stu_class']= $data['stu_class'];
+        $_SESSION['stu_building'] = $data['stu_building'];
     }
 
     /**
