@@ -383,8 +383,9 @@ function anlyDomain() {
     var result = [];
     var domain = window.location.hostname.toString().split('.');
     var length = domain.length;
-    result = window.location.href.toString().match(new RegExp("(?="+ domain[length - 1] + ")\\w+(\\/((\\w*)\\/*)*)(index?)?"));
+    result = window.location.href.toString().match(new RegExp("(?=["+ domain[length - 1] + "])\\w+(\\/((\\w*)\\/*)*)(index?)?"));
     if (result == null) result = ['', '/'];
+    if (result[1] == '/index') result = ['', '/'];
     return result[1];
 }
 var animation = {
@@ -749,7 +750,6 @@ function constant(target,json,speed,callback) {
 		wap = document.getElementById("wap"),
 		login1 = document.getElementById("login1"),
 		login2 = document.getElementById("login2"),
-        qq = document.getElementById("qq"),
         phone = document.getElementById("phone"),
 		xhr = ajaxObject.createXhr(),
 		send,
@@ -940,11 +940,6 @@ function constant(target,json,speed,callback) {
     eventHandler.addEvent(phone,"blur",function(){
         if(this.value.length != 11){
             alert("你输入的手机号格式有误");
-        }
-    })
-    eventHandler.addEvent(qq,"blur",function(){
-        if(this.value.length < 6 || this.value > 12){
-            alert("你输入的QQ号格式有误");
         }
     })
     var post_beh = document.getElementById("post_behavior"),

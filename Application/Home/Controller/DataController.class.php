@@ -76,6 +76,9 @@ class DataController extends BaseController {
     private $sameClass;
     private $sameDorm;
     private $sameYM;
+    private $sameYMD;
+    private $sameYMDMen = 0;
+    private $sameYMDWomen = 0;
     private $sameHoro;
     private $_stu_building;
 
@@ -137,13 +140,18 @@ class DataController extends BaseController {
                             'college' => $this->dept[$this->_stu_dept],
                             'from' => array(
                                 'hometown' => $this->provScale[$this->_stu_prov],
-                                'others' => $this->total,
+                                'others' => $this->total - $this->provScale[$this->_stu_prov],
                                 'male' => $this->provMen[$this->_stu_prov],
                                 'female' => $this->provScale[$this->_stu_prov] - $this->provMen[$this->_stu_prov],
                             ),
                             'same' => array(
                                 'samemon' => $this->sameYM,
-                                'others' => $this->total
+                                'others' => $this->total - $this->sameYM,
+                                'samehor' => $this->sameHoro,
+                                'othershor' => $this->total - $this->sameHoro,
+                                'sameday' => $this->sameYMD,
+                                'male' => $this->sameYMDMen,
+                                'female' => $this->sameYMDWomen
                             ),
                             'sex' => array(
                                 'male' => $this->man[$this->_stu_dept],
@@ -362,7 +370,14 @@ class DataController extends BaseController {
         $stuDA = substr($this->_stu_date,8,2);
         $condition['stu_date'] = array('like', $stuYM . '-' . $stuMD . '%');
         $this->sameYM = intval($birthday->where($condition)->count(), 10);
-
+        $sameday = $birthday->where(array('stu_date' => $stuYM . '-' . $stuMD . '-' . $stuDA))->field('stu_sexy','stu_date')->select();
+        foreach($sameday as $key => $val) {
+            if(trim($val['stu_sexy']) == '男') {
+                $this->sameYMDMen += 1;
+            } else {
+                $this->sameYMDWomen += 1;
+            }
+        }
         // 本人星座判断
         foreach($arr = array_keys($this->horoscope) as $key => $val) {
             if($stuMD . $stuDA > $val) {} else {
