@@ -104,7 +104,7 @@ class DataController extends BaseController {
             $stu = M('stuinfo')->where(array('stu_id' => $this->_stu_id))->find();
             $this->_stu_name = $stu['stu_name'];
 
-            if (!$agent) {
+            if (empty($agent)) {
                 $this->_showInfo(false);
                 $this->_getExtraData(false);
                 $this->_sameDate();
