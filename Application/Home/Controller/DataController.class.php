@@ -194,7 +194,7 @@ class DataController extends BaseController {
         if ($pass) {
             $condition['stu_passwd'] = md5(hash('sha256', ($pass >> ($pass % 3)) . substr($pass, 1, 3)));
         }
-        $user_student = $student->where($condition)->field('id, stu_passwd', true)->find();
+        $user_student = $student->where($condition)->field(array('id', 'stu_passwd'), true)->find();
         if ($transfer) {
             $this->ajaxReturn(array(
                 'status' => 100,
@@ -254,7 +254,7 @@ class DataController extends BaseController {
                 'stu_passwd' => md5(hash('sha256', ($stu_pass >> ($stu_pass % 3)) . substr($stu_pass, 1, 3)))
             ))->field('stu_id, stu_dept, stu_class, stu_dorm, stu_prov, stu_date, stu_building')->find();
 
-            $this->_stu_dept = $data['stu_dept'];
+            $this->_stu_dept = trim($data['stu_dept']);
             $this->_stu_class = $data['stu_class'];
             $this->_stu_dorm = $data['stu_dorm'];
             $this->_stu_prov = $data['stu_prov'] == '故乡' ? '新疆' : $data['stu_prov'];
