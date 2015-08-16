@@ -194,7 +194,7 @@ class DataController extends BaseController {
         if ($pass) {
             $condition['stu_passwd'] = md5(hash('sha256', ($pass >> ($pass % 3)) . substr($pass, 1, 3)));
         }
-        $user_student = $student->where($condition)->find();
+        $user_student = $student->where($condition)->field('id, stu_passwd', true)->find();
         if ($transfer) {
             $this->ajaxReturn(array(
                 'status' => 100,
