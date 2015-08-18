@@ -124,6 +124,7 @@ function charst(name, value, value1, title, bili) {
                                 show : true,
                                 position : "inner",
                                 textStyle : {
+                                    color : '#607d8b',
                                     fontSize : '20',
                                     fontWeight : 'bold'
                                 }
@@ -220,15 +221,15 @@ function charst_sex(singleDog,notalone){
                     itemStyle : {
                         normal : {
                             label : {
-                                show : true
+                                show : false
                             },
                             labelLine : {
-                                show : true
+                                show : false
                             }
                         },
                         emphasis : {
                             label : {
-                                show : false,
+                                show : true,
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -258,6 +259,7 @@ function charst_sex(singleDog,notalone){
                                 show : true,
                                 position : "inner",
                                 textStyle : {
+                                    color : '#607d8b',
                                     fontSize : '20',
                                     fontWeight : 'bold'
                                 }
@@ -350,7 +352,7 @@ require([
                     },
                     emphasis : {
                         label : {
-                            show : true,
+                            show : false,
                             position : "inner",
                             textStyle : {
                                 fontSize : '20',
