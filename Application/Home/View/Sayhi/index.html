@@ -33,7 +33,7 @@
             <div class="write" id="write">
                 <form action="{:U('Sayhi/postTitle')}" method="post">
                     <input style="text-align: center;" placeholder="文章标题" type="text" name="title_name">
-                    <textarea rows="20" cols="20" name="content"></textarea>
+                    <textarea maxlength="100" rows="20" cols="20" name="content"></textarea>
                     <input type="submit" value="提交">
                 </form>
                 <a style="margin-left:600px;" class="w-btn" href="" id="cancel">取消</a>
@@ -64,7 +64,7 @@
                 <div class="hehe">
                     <form action="{:U('Sayhi/titleRemark')}" method="post">
                         <input type="hidden" value="" name="data-id" id="data"/>
-                        <textarea class="writeP" rows="3" cols="20" name='remark_content'></textarea>
+                        <textarea class="writeP" rows="3" cols="20" maxlength="60" name='remark_content'></textarea>
                         <input id="tijiao" type="submit" value="提交">
                     </form>
                     <a id="cancelShow" href="#">取消</a>
@@ -147,12 +147,14 @@
                                 ddata = JSON.parse(rres);
                                 if(ddata.status == 100) {
                                     var big = document.getElementById('big');
-                                    var big_child = big.children;
-                                    for(var i = 0; i < big_child.length; i++) {
-                                        big.removeChild(big_child[i]);
+                                    var big_child = big.childNodes.length;
+                                    for(var i = 0; i < big_child; i++) {
+                                        var node = big.childNodes[0];
+                                        big.removeChild(node);
                                     }
                                     var hehe = document.getElementById('data');
                                     hehe.value = ddata.post_id;
+                                    console.log(ddata.data);
                                     ddata.data.forEach(function(a) {
                                         var obj_box = document.createElement('div');
                                         var obj_content = document.createElement('span');
@@ -160,6 +162,7 @@
                                         var obj_id = document.createElement('span');
                                         var obj = [obj_content, obj_data, obj_id];
                                         obj_box.setAttribute('class','pinglun');
+                                        console.log(a.remark_content);
                                         obj_content.textContent = a.remark_content;
                                         obj_data.setAttribute('class', 'data');
                                         obj_data.textContent = a.remark_data;
@@ -171,7 +174,7 @@
                                         big.appendChild(obj_box);
                                     })
                                     var oUl1 = document.getElementById("big"),
-                                            oFooter1= document.getElementById("foo");
+                                        oFooter1 = document.getElementById("foo");
 
                                     var b = new Paging(oUl1,oFooter1,5 ,false);
                                     b.dispaly();

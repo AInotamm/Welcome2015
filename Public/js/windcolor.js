@@ -41,8 +41,8 @@
             main_page = opic.querySelectorAll(".page_fix"),
             opicbtn = opic_btn.querySelectorAll(".page_bottom_li"),
             opicbtnstyle = opic_btn.getElementsByTagName("a");
-            opicpre = opic_btn.querySelectorAll(".page_bottom_li_special")[0],
-            opicnex = opic_btn.querySelectorAll(".page_bottom_li_special")[1],
+            opicpre = opic_btn.querySelectorAll(".page_bottom_li_special")[0].children[0],
+            opicnex = opic_btn.querySelectorAll(".page_bottom_li_special")[1].children[0],
             opicindex = 0,
             oimg0 = document.getElementById("win_img_1"),
             oimg1 = document.getElementById("win_img_2"),
@@ -61,31 +61,39 @@
                     opicindex = 2;
                 }
                 else if(page == 0){
-                    for(var i = 0;i < img0.length;i++){
-                        img0[i].style.background = "url('" + prefix + "Public/image/thumbnail/color/color_"+ i +".png') no-repeat";
+                    for(var i = 0;i < img0.length;i++) {
+                        img0[i].style.background = "url('" + prefix + "Public/image/thumbnail/color/color_" + i + ".png') no-repeat";
                         img0[i].style.backgroundSize = "cover";
                     }
+                    opicpre.style.display = "none";
+                    opicnex.style.display = "block";
                 }
                 else if(page == 1){
-                    for(var i = 0;i < img1.length;i++){
-                        var num = i+8;
-                        img1[i].style.background = "url('" + prefix + "Public/image/thumbnail/color/color_"+ num +".png') no-repeat";
+                    for(var i = 0;i < img1.length;i++) {
+                        var num = i + 8;
+                        img1[i].style.background = "url('" + prefix + "Public/image/thumbnail/color/color_" + num + ".png') no-repeat";
                         img1[i].style.backgroundSize = "cover";
                     }
+                    opicpre.style.display = "block";
+                    opicnex.style.display = "block";
                 }
                 else if(page == 2){
-                    for(var i = 0;i < img2.length;i++){
-                        var num = i+16;
-                        img2[i].style.background = "url('" + prefix + "Public/image/thumbnail/color/color_"+ num +".png') no-repeat";
+                    for(var i = 0;i < img2.length;i++) {
+                        var num = i + 16;
+                        img2[i].style.background = "url('" + prefix + "Public/image/thumbnail/color/color_" + num + ".png') no-repeat";
                         img2[i].style.backgroundSize = "cover";
                     }
+                    opicpre.style.display = "block";
+                    opicnex.style.display = "block";
                 }
                 else if(page == 3){
-                    for(var i = 0;i < img3.length;i++){
-                        var num = i+24;
-                        img3[i].style.background = "url('" + prefix + "Public/image/thumbnail/color/color_"+ num +".png') no-repeat";
+                    for(var i = 0;i < img3.length;i++) {
+                        var num = i + 24;
+                        img3[i].style.background = "url('" + prefix + "Public/image/thumbnail/color/color_" + num + ".png') no-repeat";
                         img3[i].style.backgroundSize = "cover";
                     }
+                    opicpre.style.display = "block";
+                    opicnex.style.display = "none";
                 }
                 main_page[opicindex].style.display = "none";
                 main_page[page].style.display = "block";
@@ -118,8 +126,8 @@
             teacher_page = oteacher.querySelectorAll(".page_fix"),
             oteabtn = teacher_btn.querySelectorAll(".page_bottom_li"),
             oteabtnstyle = teacher_btn.getElementsByTagName("a");
-            oteapre = teacher_btn.querySelectorAll(".page_bottom_li_special")[0],
-            oteanex = teacher_btn.querySelectorAll(".page_bottom_li_special")[1],
+            oteapre = teacher_btn.querySelectorAll(".page_bottom_li_special")[0].children[0],
+            oteanex = teacher_btn.querySelectorAll(".page_bottom_li_special")[1].children[0],
             oteaindex = 0,
             oteacher1 =  document.getElementById("teacher_1"),
             oteacher2 =  document.getElementById("teacher_2"),
@@ -142,6 +150,8 @@
                     teacher1[i].style.background = "url('" + prefix + "Public/image/teacher/teacher_"+ num +".jpg') no-repeat 50% 50%";
                     teacher1[i].style.backgroundSize = "cover";
                 }
+                oteapre.style.display = "none";
+                oteanex.style.display = "block";
             }
             else if(page == 1){
                 for(var i = 0;i < teacher2.length;i++){
@@ -149,6 +159,8 @@
                     teacher2[i].style.background = "url('" + prefix + "Public/image/teacher/teacher_"+ num +".jpg') no-repeat 50% 50%";
                     teacher2[i].style.backgroundSize = "cover";
                 }
+                oteapre.style.display = "block";
+                oteanex.style.display = "block";
             }
             else if(page == 2){
                 for(var i = 0;i < teacher3.length;i++){
@@ -156,6 +168,8 @@
                     teacher3[i].style.background = "url('" + prefix + "Public/image/teacher/teacher_"+ num +".jpg') no-repeat 50% 50%";
                     teacher3[i].style.backgroundSize = "cover";
                 }
+                oteapre.style.display = "block";
+                oteanex.style.display = "none";
             }
             teacher_page[oteaindex].style.display = "none";
             teacher_page[page].style.display = "block";
@@ -198,6 +212,8 @@
                     video[i].style.background = "url('" + prefix + "Public/image/thumbnail/video/video"+ n +".png') no-repeat 50% 50%";
                     video[i].style.backgroundSize = "cover";
                 }
+                ovideobtn[0].style.display = "none";
+                ovideobtn[3].style.display = "block";
             }
             else if(a == 1){
                 for(var i = 0;i < video1.length;i++){
@@ -205,6 +221,8 @@
                     video1[i].style.background = "url('" + prefix + "Public/image/thumbnail/video/video"+ n +".png') no-repeat 50% 50%";
                     video1[i].style.backgroundSize = "cover";
                 }
+                ovideobtn[0].style.display = "block";
+                ovideobtn[3].style.display = "none";
             }
         }
         ovideobtn[0].onclick = function (){

@@ -58,8 +58,8 @@
             opart_btn_2 = document.getElementById("part_btn_2"),
             opart_spe_btn_2 = opart_btn_2.querySelectorAll(".page_bottom_li"),
             obtn_2 = opart_btn_2.getElementsByTagName("a"),
-            pre = opart_btn_2.querySelectorAll(".page_bottom_li_special")[0],
-            nex = opart_btn_2.querySelectorAll(".page_bottom_li_special")[1],
+            pre = opart_btn_2.querySelectorAll(".page_bottom_li_special")[0].children[0],
+            nex = opart_btn_2.querySelectorAll(".page_bottom_li_special")[1].children[0],
             index = 0,
             opart_3 = document.getElementById("part_3"),
             oturn_3 = opart_3.querySelectorAll(".page_mid_mid_ul"),
@@ -79,109 +79,153 @@
             x.setAttribute("class","page_bottom_spe");
             y.removeAttribute("class","page_bottom_spe");
         }
+        function hehe(a, b) {
+            a.style.display = "block";
+            b.style.display = "none";
+        }
         obtn_peo[0].onclick = function (){
             turn(turn_people[0],turn_people[1],obtn_peo[1],obtn_peo[2]);
+            hehe(obtn_peo[3], obtn_peo[0]);
         }
         obtn_peo[1].onclick = function (){
             turn(turn_people[0],turn_people[1],obtn_peo[1],obtn_peo[2]);
+            hehe(obtn_peo[3], obtn_peo[0]);
         }
         obtn_peo[2].onclick = function (){
             turn(turn_people[1],turn_people[0],obtn_peo[2],obtn_peo[1]);
+            hehe(obtn_peo[0], obtn_peo[3]);
         }
         obtn_peo[3].onclick = function (){
             turn(turn_people[1],turn_people[0],obtn_peo[2],obtn_peo[1]);
+            hehe(obtn_peo[0], obtn_peo[3]);
         }
         obtn_bus[0].onclick = function (){
             turn(turn_bus[0],turn_bus[1],obtn_bus[1],obtn_bus[2]);
+            hehe(obtn_bus[3], obtn_bus[0]);
         }
         obtn_bus[1].onclick = function (){
             turn(turn_bus[0],turn_bus[1],obtn_bus[1],obtn_bus[2]);
+            hehe(obtn_bus[3], obtn_bus[0]);
         }
         obtn_bus[2].onclick = function (){
             turn(turn_bus[1],turn_bus[0],obtn_bus[2],obtn_bus[1]);
+            hehe(obtn_bus[0], obtn_bus[3]);
         }
         obtn_bus[3].onclick = function (){
             turn(turn_bus[1],turn_bus[0],obtn_bus[2],obtn_bus[1]);
+            hehe(obtn_bus[0], obtn_bus[3]);
         }
         obtn_room[0].onclick = function (){
             turn(turn_room[0],turn_room[1],obtn_room[1],obtn_room[2]);
+            hehe(obtn_room[3], obtn_room[0]);
         }
         obtn_room[1].onclick = function (){
             turn(turn_room[0],turn_room[1],obtn_room[1],obtn_room[2]);
+            hehe(obtn_room[3], obtn_room[0]);
         }
         obtn_room[2].onclick = function (){
             turn(turn_room[1],turn_room[0],obtn_room[2],obtn_room[1]);
+            hehe(obtn_room[0], obtn_room[3]);
         }
         obtn_room[3].onclick = function (){
             turn(turn_room[1],turn_room[0],obtn_room[2],obtn_room[1]);
+            hehe(obtn_room[0], obtn_room[3]);
         }
         obtn_eat[0].onclick = function (){
             turn(turn_eat[0],turn_eat[1],obtn_eat[1],obtn_eat[2]);
+            hehe(obtn_eat[3], obtn_eat[0]);
         }
         obtn_eat[1].onclick = function (){
             turn(turn_eat[0],turn_eat[1],obtn_eat[1],obtn_eat[2]);
+            hehe(obtn_eat[3], obtn_eat[0]);
         }
         obtn_eat[2].onclick = function (){
             turn(turn_eat[1],turn_eat[0],obtn_eat[2],obtn_eat[1]);
+            hehe(obtn_eat[0], obtn_eat[3]);
         }
         obtn_eat[3].onclick = function (){
             turn(turn_eat[1],turn_eat[0],obtn_eat[2],obtn_eat[1]);
+            hehe(obtn_eat[0], obtn_eat[3]);
         }
         obtn_1[0].onclick = function (){
             turn(oturn_1[0],oturn_1[1],obtn_1[1],obtn_1[2]);
+            hehe(obtn_1[3], obtn_1[0]);
         }
         obtn_1[1].onclick = function (){
             turn(oturn_1[0],oturn_1[1],obtn_1[1],obtn_1[2]);
+            hehe(obtn_1[3], obtn_1[0]);
         }
         obtn_1[2].onclick = function (){
             turn(oturn_1[1],oturn_1[0],obtn_1[2],obtn_1[1]);
+            hehe(obtn_1[0], obtn_1[3]);
         }
         obtn_1[3].onclick = function (){
             turn(oturn_1[1],oturn_1[0],obtn_1[2],obtn_1[1]);
+            hehe(obtn_1[0], obtn_1[3]);
         }
         obtn_3[0].onclick = function (){
             turn(oturn_3[0],oturn_3[1],obtn_3[1],obtn_3[2]);
+            hehe(obtn_3[3], obtn_3[0]);
         }
         obtn_3[1].onclick = function (){
             turn(oturn_3[0],oturn_3[1],obtn_3[1],obtn_3[2]);
+            hehe(obtn_3[3], obtn_3[0]);
         }
         obtn_3[2].onclick = function (){
             turn(oturn_3[1],oturn_3[0],obtn_3[2],obtn_3[1]);
+            hehe(obtn_3[0], obtn_3[3]);
         }
         obtn_3[3].onclick = function (){
             turn(oturn_3[1],oturn_3[0],obtn_3[2],obtn_3[1]);
+            hehe(obtn_3[0], obtn_3[3]);
         }
         obtn_4[0].onclick = function (){
             turn(oturn_4[0],oturn_4[1],obtn_4[1],obtn_4[2]);
+            hehe(obtn_4[3], obtn_4[0]);
         }
         obtn_4[1].onclick = function (){
             turn(oturn_4[0],oturn_4[1],obtn_4[1],obtn_4[2]);
+            hehe(obtn_4[3], obtn_4[0]);
         }
         obtn_4[2].onclick = function (){
             turn(oturn_4[1],oturn_4[0],obtn_4[2],obtn_3[1]);
+            hehe(obtn_4[0], obtn_4[3]);
         }
         obtn_4[3].onclick = function (){
             turn(oturn_4[1],oturn_4[0],obtn_4[2],obtn_4[1]);
+            hehe(obtn_4[0], obtn_4[3]);
         }
         obtn_5[0].onclick = function (){
             turn(oturn_5[0],oturn_5[1],obtn_5[1],obtn_5[2]);
+            hehe(obtn_5[3], obtn_5[0]);
         }
         obtn_5[1].onclick = function (){
             turn(oturn_5[0],oturn_5[1],obtn_5[1],obtn_5[2]);
+            hehe(obtn_5[3], obtn_5[0]);
         }
         obtn_5[2].onclick = function (){
             turn(oturn_5[1],oturn_5[0],obtn_5[2],obtn_5[1]);
+            hehe(obtn_5[0], obtn_5[3]);
         }
         obtn_5[3].onclick = function (){
             turn(oturn_5[1],oturn_5[0],obtn_5[2],obtn_5[1]);
+            hehe(obtn_5[0], obtn_5[3]);
         }
         function oturn(page){
             if( page < 0 ) {
                 page = 0;
-            }
-            if(page > 3){
+            } else if(page > 3) {
                 page = 3;
                 index = 2;
+            } else if(page == 0) {
+                pre.style.display = "none";
+                nex.style.display = "block";
+            } else if(page == 3) {
+                nex.style.display = "none";
+                pre.style.display = "block";
+            } else {
+                pre.style.display = "block";
+                nex.style.display = "block";
             }
             oturn_2[index].style.display = "none";
             oturn_2[page].style.display = "block";

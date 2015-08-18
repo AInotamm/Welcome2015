@@ -14,7 +14,6 @@ li{
 .header{
 	z-index: 100;
 	background: #ffffff;
-	border-bottom: 1px solid #9de6f1;
 }
 #H{
 	position: absolute;
@@ -23,7 +22,6 @@ li{
 }
 .big_header{
 	height: 60px;
-	border-bottom: 1px solid #9de6f1;
 }
 .fixed{
 	position: fixed;
@@ -587,14 +585,16 @@ li[id^=login] a{
 .wapper{
 	border-radius: 12px;
 	width: 900px;
-	min-height: 200px;
+    max-height: 230px;
 	background: #fceea6;
 	margin: 60px auto;
+    overflow: hidden;
 }
 .wapper p{
 	color: #906049;
 	font-size: 20px;
 	padding: 20px 20px;
+	max-height: 200px;
 }
 .wapper span{
 	display: block;
@@ -626,6 +626,7 @@ li[id^=login] a{
 }
 #foo{
 	margin-left: 20px;
+    margin-top: -30px;
 }
 #foo input{
 	margin-top: -4px;

@@ -42,7 +42,7 @@ function charst(name, value, value1, title, bili) {
         function(ec){
             myChart = ec.init(document.getElementById("page_mid_next"));
             option = {
-                color:["#00CCCC","#FF9999","#33FF66","#CCFF33"],
+                color:["#ff9e40","#ffe241","#72dcc4","#dde655"],
                 tooltip : {
                     trigger: 'item',
                     formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -52,10 +52,11 @@ function charst(name, value, value1, title, bili) {
                     text:title,
                     subtext:bili,
                     x:"center",
+                    y:"20",
                     textStyle:{
                         fontSize: 18,
                         fontWeight: 'bolder',
-                        color: '#8e6946'
+                        color: '#4f0808'
                     },
                     subtextStyle:{
                         fontSize: 16,
@@ -112,15 +113,16 @@ function charst(name, value, value1, title, bili) {
                     itemStyle : {
                         normal : {
                             label : {
-                                show : true
+                                show : false
                             },
                             labelLine : {
-                                show : true
+                                show : false
                             }
                         },
                         emphasis : {
                             label : {
-                                show : false,
+                                show : true,
+                                position : "inner",
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -129,10 +131,6 @@ function charst(name, value, value1, title, bili) {
                         }
                     },
                     data: value
-                    //    [
-                    //{"name":"男","value":"30"},
-                    //{"name":"女","value":"70"},
-                    //]
                 },
                 ]
             };
@@ -185,7 +183,7 @@ function charst_sex(singleDog,notalone){
         function(ec){
             myChart = ec.init(document.getElementById("row1"));
             option = {
-                color:["#00CCCC","#FF9999","#33FF66","#CCFF33"],
+                color:["#ff9e40","#ffe241","#72dcc4","#dde655"],
                 tooltip : {
                     trigger: 'item',
                     formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -249,15 +247,16 @@ function charst_sex(singleDog,notalone){
                     itemStyle : {
                         normal : {
                             label : {
-                                show : true
+                                show : false
                             },
                             labelLine : {
-                                show : true
+                                show : false
                             }
                         },
                         emphasis : {
                             label : {
-                                show : false,
+                                show : true,
+                                position : "inner",
                                 textStyle : {
                                     fontSize : '20',
                                     fontWeight : 'bold'
@@ -279,7 +278,7 @@ require([
     function(ec){
         myChart = ec.init(document.getElementById("row2"));
         option = {
-            color:["#00CCCC","#FF9999","#33FF66","#CCFF33"],
+            color:["#ff9e40","#ffe241","#72dcc4","#dde655"],
 
             tooltip : {
                 trigger: 'item',
@@ -343,15 +342,16 @@ require([
                 itemStyle : {
                     normal : {
                         label : {
-                            show : true
+                            show : false
                         },
                         labelLine : {
-                            show : true
+                            show : false
                         }
                     },
                     emphasis : {
                         label : {
-                            show : false,
+                            show : true,
+                            position : "inner",
                             textStyle : {
                                 fontSize : '20',
                                 fontWeight : 'bold'
@@ -387,7 +387,7 @@ function chart_age(age,agevalue,star,starvalue){
         function(ec){
             myChart = ec.init(document.getElementById("row1"));
             option = {
-                color:["#00CCCC","#FF9999","#33FF66","#CCFF33"],
+                color:["#ff9e40","#ffe241","#72dcc4","#dde655"],
                 tooltip : {
                     trigger: 'item',
                     formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -457,7 +457,7 @@ require([
     function(ec){
         myChart = ec.init(document.getElementById("row2"));
         option = {
-            color:["#00CCCC","#FF9999","#33FF66","#CCFF33"],
+            color:["#ff9e40","#ffe241","#72dcc4","#dde655"],
 
             tooltip : {
                 trigger: 'item',
@@ -532,7 +532,7 @@ function charst_subject(){
         function(ec){
             myChart = ec.init(document.getElementById("page_mid_next"));
             option = {
-                color:["#00CCCC","#FF9999","#33FF66","#CCFF33"],
+                color:["#ff9e40","#ffe241","#72dcc4","#dde655"],
 
                 timeline:{
                     show:true,
@@ -555,10 +555,11 @@ function charst_subject(){
                             show:true,
                             text:"各个学院学生心中最难的科目",
                             x:"center",
+                            y:"20",
                             textStyle:{
                                 fontSize: 18,
                                 fontWeight: 'bolder',
-                                color: '#8e6946'
+                                color: '#4f0808'
                             }
                         },
                         legend: {
@@ -1119,7 +1120,7 @@ function charst_end(content){
         function(ec){
             myChart = ec.init(document.getElementById("clomu1"));
             option = {
-                color:["#00CCCC","#FF9999","#33FF66","#CCFF33"],
+                color:["#ff9e40","#ffe241","#72dcc4","#dde655"],
 
                 tooltip : {
                     trigger: 'item',
@@ -1194,7 +1195,7 @@ require([
     function(ec){
         myChart = ec.init(document.getElementById("clomu2"));
         option = {
-            color:["#00CCCC","#FF9999","#33FF66","#CCFF33"],
+            color:["#ff9e40","#ffe241","#72dcc4","#dde655"],
             timeline:{
                 show:true,
                 data:["通信","计科","光电","自动化","理学院","生物","经管","体育","外国语","先进制造","传媒","软件","半导体","法学",""],

@@ -17,11 +17,9 @@ li{
 .header{
 	z-index: 100;
 	background: #ffffff;
-	border-bottom: 1px solid #9de6f1;
 }
 .big_header{
 	height: 60px;
-	border-bottom: 1px solid #9de6f1;
 }
 .fixed{
 	position: fixed;
@@ -132,6 +130,7 @@ li[id^=login] a{
 	font-weight: bold;
 	color: #2c98ca;
 	position: relative;
+	top: -5px;
 }
 .count_down div p .number img{
 	margin-right:-4px;
@@ -139,7 +138,7 @@ li[id^=login] a{
 	border-radius: 6px;
 	width: 26px;
 	height: 42px;
-    top: 7px;
+    top: 10px;
 	position: relative;
 }
 .count_down div p .timer{
@@ -199,7 +198,7 @@ li[id^=login] a{
 .container{
 	position: relative;
 }
-.container > img{
+.container .ground{
 	z-index: -1;
 	position: absolute;
 	top: 0;
@@ -286,6 +285,18 @@ li[id^=login] a{
 #oldLia{
 	top: 310px;
 	left: 460px;
+}
+#days{
+	margin-left:160px;
+}
+#hour{
+	margin-left:26px;
+}
+#branch{
+	margin-left:26px;
+}
+#seconds{
+	margin-left:26px;
 }
 #showInf{
 	position: absolute;
@@ -501,7 +512,7 @@ li[id^=login] a{
 	background: url("../image/index/about_us.png") no-repeat;
 }
 .de{
-	margin: 88px 0 70px 114px;
+	margin: 88px 0 70px 130px;
 }
 .gg{
 	position: absolute;
@@ -722,4 +733,14 @@ li[id^=login] a{
 	filter:alpha(opacity=20);
 	z-index: 10000;
 	display: none;
+}
+.www{
+	position: absolute;
+	top: 90px;
+	left: 110px;
+}
+.build_bottom{
+	position: absolute;
+	width: 100%;
+	bottom: -98px;	
 }

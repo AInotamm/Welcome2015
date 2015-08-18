@@ -18,7 +18,6 @@ strong{
 .header{
     z-index: 100;
     background: #ffffff;
-    border-bottom: 1px solid #9de6f1;
     overflow: hidden;
 }
 #H{
@@ -29,7 +28,6 @@ strong{
 }
 .big_header{
     height: 60px;
-    border-bottom: 1px solid #9de6f1;
 }
 .fixed{
     position: fixed;

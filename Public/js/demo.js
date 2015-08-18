@@ -652,7 +652,7 @@ function constant(target,json,speed,callback) {
 		IeFileter,
 		number;
 	eventHandler.addEvent(window,"scroll",function(e) {
-		if(window.scrollY > 300 ||!window.scrollY && document.documentElement.scrollTop > 300){
+		if(window.scrollY > 60 ||!window.scrollY && document.documentElement.scrollTop > 60){
 			if(!bCount) return false;
 			bCount = false;
 			clearInterval(timer);
@@ -707,7 +707,7 @@ function constant(target,json,speed,callback) {
 			},timeScale);
 		}
 	})
-})(500,1);
+})(100,1);
 (function() {//云动画
 	var c1 = document.getElementById("cloud01"),
 		c5 = document.getElementById("cloud04");
