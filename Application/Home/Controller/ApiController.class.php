@@ -98,7 +98,11 @@ class ApiController extends Controller {
                 'status' => 204,
                 'info' => $name . '已获取',
 //                'data' => "data:{$imageInfo['mime']};base64," . chunk_split(base64_encode(file_get_contents($imageAddr)))
-                'data' => 'http://hongyan.cqupt.edu.cn/welcome/2015/' . $imageAddr
+                'data' => array(
+                    0 => 'http://hongyan.cqupt.edu.cn/welcome/2015/' . $imageAddr,
+                    1 => null,
+                    2 => null
+                )
             ));
         } else {
             $this->ajaxReturn(array(

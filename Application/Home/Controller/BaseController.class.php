@@ -194,15 +194,13 @@ class BaseController extends Controller {
         }
         if ($name && $pass) {
             $stu = M('stuinfo');
-            $this->_cname = function() use ($stu, $name, $pass) {
-                $data = $stu->where(array(
-                    'stu_name' => $name,
-                    'stu_passwd' => md5(hash('sha256', ($pass >> ($pass % 3)) . substr($pass, 1, 3)))
-                ))->find();
-                if($data) {
-                    return $data['stu_id'];
-                }
-            };
+            $data = $stu->where(array(
+                'stu_name' => $name,
+                'stu_passwd' => md5(hash('sha256', ($pass >> ($pass % 3)) . substr($pass, 1, 3)))
+            ))->find();
+            if($data) {
+                $this->_cname = $data['stu_id'];
+            }
             if(!$this->_cname) {
                 $this->ajaxReturn(array(
                     'status' => 404,
