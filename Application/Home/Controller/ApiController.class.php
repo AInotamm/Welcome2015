@@ -92,13 +92,18 @@ class ApiController extends Controller {
          * */
         $fix = $path == 'person' ? '.png' : '.jpg';
         $imageAddr = 'Public/image/' . $path . '/' .  $name . $fix;
-        $imageInfo = getimagesize($imageAddr);
+        $imageInfo = is_file($imageAddr);
         if ($imageInfo) {
             $this->ajaxReturn(array(
                 'status' => 204,
                 'info' => $name . '已获取',
 //                'data' => "data:{$imageInfo['mime']};base64," . chunk_split(base64_encode(file_get_contents($imageAddr)))
                 'data' => 'http://hongyan.cqupt.edu.cn/welcome/2015/' . $imageAddr
+            ));
+        } else {
+            $this->ajaxReturn(array(
+                'status' => 404,
+                'info' => $name . '未找到'
             ));
         }
     }

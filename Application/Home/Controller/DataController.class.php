@@ -317,9 +317,9 @@ class DataController extends BaseController {
             if ($agent == 'mobile') {
                 foreach($this->sameFav as $key => &$val) {
                     if($val == null) array_shift($this->sameFav);
-                    if($val['stu_sexy'] == '1') {
+                    if($val['stu_sexy'] == '男') {
                         $val['stu_sexy'] = 'man';
-                    } else if ($val['stu_sexy'] == '0') {
+                    } else if ($val['stu_sexy'] == '女') {
                         $val['stu_sexy'] = 'woman';
                     }
                 }
