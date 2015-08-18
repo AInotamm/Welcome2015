@@ -76,14 +76,29 @@ class ApiController extends Controller {
     }
 
     public function banner() {
-        $name = I(trim('post.banner'), '');
-        $imageAddr = 'Public/image/index/' . $name . '.jpg';
+        $name = I(trim('post.name'), '');
+        /*
+         * 1. banner1
+         * 2. color_i (0 - 25)
+         * 3. person_i (1 - 20)
+         * 4. teacher_i (1 - 8)
+         * */
+        $path = I(trim('post.path'), '');
+        /*
+         * 1. index
+         * 2. color
+         * 3. person
+         * 4. teacher
+         * */
+        $fix = $path == 'person' ? '.png' : '.jpg';
+        $imageAddr = 'Public/image/' . $path . '/' .  $name . $fix;
         $imageInfo = getimagesize($imageAddr);
         if ($imageInfo) {
             $this->ajaxReturn(array(
                 'status' => 204,
-                'info' => 'banner 已获取',
-                'data' => "data:{$imageInfo['mime']};base64," . chunk_split(base64_encode(file_get_contents($imageAddr)))
+                'info' => $name . '已获取',
+//                'data' => "data:{$imageInfo['mime']};base64," . chunk_split(base64_encode(file_get_contents($imageAddr)))
+                'data' => 'http://hongyan.cqupt.edu.cn/welcome/2015/' . $imageAddr
             ));
         }
     }

@@ -315,6 +315,14 @@ class DataController extends BaseController {
 
         if($transfer) {
             if ($agent == 'mobile') {
+                foreach($this->sameFav as $key => &$val) {
+                    if($val == null) array_shift($this->sameFav);
+                    if($val['stu_sexy'] == '1') {
+                        $val['stu_sexy'] = 'man';
+                    } else if ($val['stu_sexy'] == '0') {
+                        $val['stu_sexy'] = 'woman';
+                    }
+                }
                 $this->ajaxReturn(array(
                     'status' => 100,
                     'info' => '个人相关数据查询成功',
