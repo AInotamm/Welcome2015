@@ -169,7 +169,7 @@
                                     <div class="leftImage" style="border-right:2px solid #FDD747">
                                         <img src="__PUBLIC__/{$Tech[0].tea_picpath}" alt="{$Tech[0].tea_name}">
                                         <div>
-                                            <span style="color:#000">学院：</span><span>{$Tech[0].stu_dept}学院</span>
+                                            <span style="color:#000">学院：</span><span>{$Tech[0].stu_dept}</span>
                                         </div>
                                         <div>
                                             <span style="color:#000">姓名：</span><span>{$Tech[0].tea_name}</span>
@@ -271,9 +271,9 @@
                 {"name":"同年同月","value":"<?php echo $same_birth?>"},
                 {"name":"其他","value":"<?php echo $other_birth?>"},
             ]
-            var star = ["<?php echo $horo ?>座","其他"];
+            var star = ["<?php if(empty($horo)) { echo $horo . '座'; } else { echo '未知'; } ?>","其他"];
             var starvalue = [
-                {"name":"<?php echo $horo ?>座","value":"<?php echo $same_horo?>"},
+                {"name":"<?php if(empty($horo)) { echo $horo . '座'; } else { echo '未知'; } ?>","value":"<?php echo $same_horo?>"},
                 {"name":"其他","value":"<?php echo $other_horo?>"},
             ]
             chart_age(age,agevalue,star,starvalue);

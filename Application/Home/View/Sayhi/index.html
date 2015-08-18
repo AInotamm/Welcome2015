@@ -154,7 +154,6 @@
                                     }
                                     var hehe = document.getElementById('data');
                                     hehe.value = ddata.post_id;
-                                    console.log(ddata.data);
                                     ddata.data.forEach(function(a) {
                                         var obj_box = document.createElement('div');
                                         var obj_content = document.createElement('span');
@@ -162,7 +161,6 @@
                                         var obj_id = document.createElement('span');
                                         var obj = [obj_content, obj_data, obj_id];
                                         obj_box.setAttribute('class','pinglun');
-                                        console.log(a.remark_content);
                                         obj_content.textContent = a.remark_content;
                                         obj_data.setAttribute('class', 'data');
                                         obj_data.textContent = a.remark_data;
