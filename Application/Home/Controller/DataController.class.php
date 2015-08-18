@@ -226,7 +226,6 @@ class DataController extends BaseController {
         }
         $condition = $cond;
         $first_query_result = $model->where($condition)->field($field)->$query();
-
         if ($list) {
             foreach($first_query_result as $key => &$val) {
                 if($val['stu_prov'] == '新疆') {

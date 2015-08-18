@@ -477,6 +477,12 @@ a.page_bottom_spe{
     height: 33px;
     color: #fff
 }
+.warn {
+    top: 230px;
+    text-align: center;
+    position: relative;
+    color: #D1582B;
+}
 .footer{
     margin-top: -156px;
     min-width: 960px;

@@ -299,7 +299,7 @@ li[id^=login] a{
 	background-color: black;
 	opacity: 0;
 	filter:alpha(opacity =0);
-	cursor:move;
+	cursor:pointer;
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -326,7 +326,7 @@ li[id^=login] a{
 }
 
 #smallmap-border{
-	cursor: crosshair;
+	cursor: pointer;
 	position: absolute;
 	z-index: 2;
 	right: 85px;

@@ -179,12 +179,16 @@
                                         <if condition="$Tech[1]">
                                             <img src="__PUBLIC__/{$Tech[1].tea_picpath}" alt="{$Tech[0].tea_name}">
                                             <div>
-                                                <span style="color:#000">学院：</span><span>{$Tech[1].stu_dept}学院</span>
+                                                <span style="color:#000">学院：</span><span>{$Tech[1].stu_dept}</span>
                                             </div>
                                             <div>
                                                 <span style="color:#000">姓名：</span><span>{$Tech[1].tea_name}</span>
                                             </div>
                                         </if>
+                                    </div>
+                                    <else />
+                                    <div class="warn">
+                                        <span><strong>抱歉,暂无你所在学院的辅导员信息</strong></span>
                                     </div>
                                 </if>
                             </div>
