@@ -855,8 +855,8 @@ function constant(target,json,speed,callback) {
                         div01.style.display = "none";
                         div02.style.display = "none";
                     });
-                    phone_d.style.visibility = "visible";
-                    qq_d.style.visibility = "visible";
+                    phone_d.style.display = "block";
+                    qq_d.style.display = "block";
                     animation.move(phone_d, {"top": "72", "opacity": "1.0"}, 1000);
                     animation.move(qq_d, {"top": "132", "opacity": "1.0"}, 1000);
                     animation.move(skip, {"top": "380", "opacity": "1.0"}, 1000);

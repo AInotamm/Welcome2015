@@ -346,6 +346,7 @@ li[id^=login] a{
 	opacity: 0;
 	filter:alpha(opacity=0);
 	z-index: -100;
+	display: none;
 }
 #phone{
 	width: 254px !important;
@@ -360,6 +361,7 @@ li[id^=login] a{
 	opacity: 0;
 	filter:alpha(opacity=0);
 	z-index: -100;
+	display: none;
 }
 #qq{
 	width: 254px !important;

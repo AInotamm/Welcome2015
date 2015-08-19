@@ -78,10 +78,11 @@ class ApiController extends Controller {
     public function banner() {
         $name = I(trim('post.name'), '');
         /*
-         * 1. banner1
+         * 1. banner2
          * 2. color_i (0 - 25)
          * 3. person_i (1 - 20)
          * 4. teacher_i (1 - 8)
+         * 5. overmap
          * */
         $path = I(trim('post.path'), '');
         /*
@@ -89,8 +90,13 @@ class ApiController extends Controller {
          * 2. color
          * 3. person
          * 4. teacher
+         * 5. map
          * */
-        $fix = $path == 'person' ? '.png' : '.jpg';
+        if ($path == 'person' || $path == 'map') {
+            $fix = '.png';
+        } else {
+            $fix = '.jpg';
+        }
         $imageAddr = 'Public/image/' . $path . '/' .  $name . $fix;
         $imageInfo = is_file($imageAddr);
         if ($imageInfo) {
@@ -100,8 +106,7 @@ class ApiController extends Controller {
 //                'data' => "data:{$imageInfo['mime']};base64," . chunk_split(base64_encode(file_get_contents($imageAddr)))
                 'data' => array(
                     0 => 'http://hongyan.cqupt.edu.cn/welcome/2015/' . $imageAddr,
-                    1 => null,
-                    2 => null
+                    1 => 'http://hongyan.cqupt.edu.cn/welcome/2015/' . 'Public/image/index/banner3.jpg',
                 )
             ));
         } else {
