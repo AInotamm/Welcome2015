@@ -261,9 +261,17 @@ class DataController extends BaseController {
             $data = $stuinfo->where(array(
                 'stu_name' => $this->_stu_name,
                 'stu_passwd' => md5(hash('sha256', ($stu_pass >> ($stu_pass % 3)) . substr($stu_pass, 1, 3)))
-            ))->field('stu_id, stu_dept, stu_class, stu_dorm, stu_prov, stu_date, stu_building')->find();
+            ))->field('stu_id, stu_sexy, stu_dept, stu_class, stu_dorm, stu_prov, stu_date, stu_building')->find();
+
+            if(empty($data)) {
+                $this->ajaxReturn(array(
+                    'status' => 404,
+                    'info' => '抱歉,姓名或身份证后六位错误'
+                ));
+            }
 
             $this->_stu_dept = trim($data['stu_dept']);
+            $sexy = $data['stu_sexy'];
             $this->_stu_class = $data['stu_class'];
             $this->_stu_dorm = $data['stu_dorm'];
             $this->_stu_prov = $data['stu_prov'] == '故乡' ? '新疆' : $data['stu_prov'];
@@ -326,6 +334,7 @@ class DataController extends BaseController {
                 $this->ajaxReturn(array(
                     'status' => 100,
                     'info' => '个人相关数据查询成功',
+                    'gender' => $sexy,
                     'data' => array(
                         'Fav' => $this->sameFav,
                         'Class' => $this->sameClass,
