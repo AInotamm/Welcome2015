@@ -129,7 +129,7 @@ class DataController extends BaseController {
                     'other_horo' => $this->total - $this->sameHoro,
                 ));
             } else if ($pass && $name) {
-                $stu = M('stuinfo')->where(array('stu_name' => $name))->find();
+                $stu = M('stuinfo')->where(array('stu_name' => $name, 'stu_passwd' => $pass))->find();
                 $this->_stu_date = $stu['stu_date'];
                 $this->_sameDate($name, $pass);
                 $this->_stu_prov = trim($this->_stu_prov);
@@ -201,6 +201,7 @@ class DataController extends BaseController {
         }
         $student = M('stuinfo');
         $condition['stu_name'] = $this->_stu_name;
+
         if ($pass) {
             $condition['stu_passwd'] = md5(hash('sha256', ($pass >> ($pass % 3)) . substr($pass, 1, 3)));
         }
