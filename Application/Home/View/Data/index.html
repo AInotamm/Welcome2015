@@ -275,9 +275,9 @@
                 {"name":"同年同月","value":"<?php echo $same_birth?>"},
                 {"name":"其他","value":"<?php echo $other_birth?>"},
             ]
-            var star = ["<?php if(empty($horo)) { echo $horo . '座'; } else { echo '未知'; } ?>","其他"];
+            var star = ["<?php if(!empty($horo)) { echo $horo . '座'; } else { echo '未知'; } ?>","其他"];
             var starvalue = [
-                {"name":"<?php if(empty($horo)) { echo $horo . '座'; } else { echo '未知'; } ?>","value":"<?php echo $same_horo?>"},
+                {"name":"<?php if(!empty($horo)) { echo $horo . '座'; } else { echo '未知'; } ?>","value":"<?php echo $same_horo?>"},
                 {"name":"其他","value":"<?php echo $other_horo?>"},
             ]
             chart_age(age,agevalue,star,starvalue);

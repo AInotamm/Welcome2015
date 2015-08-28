@@ -200,10 +200,12 @@ class DataController extends BaseController {
             }
         }
         $student = M('stuinfo');
-        $condition['stu_name'] = $this->_stu_name;
 
         if ($pass) {
+            $condition['stu_name'] = $this->_stu_name;
             $condition['stu_passwd'] = md5(hash('sha256', ($pass >> ($pass % 3)) . substr($pass, 1, 3)));
+        } else {
+            $condition['stu_id'] = $this->_stu_id;
         }
         $user_student = $student->where($condition)->field(array('id', 'stu_passwd'), true)->find();
         if ($transfer) {
