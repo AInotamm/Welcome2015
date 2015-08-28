@@ -61,10 +61,6 @@
             pre = opart_btn_2.querySelectorAll(".page_bottom_li_special")[0].children[0],
             nex = opart_btn_2.querySelectorAll(".page_bottom_li_special")[1].children[0],
             index = 0,
-            opart_3 = document.getElementById("part_3"),
-            oturn_3 = opart_3.querySelectorAll(".page_mid_mid_ul"),
-            opart_btn_3 = document.getElementById("part_btn_3"),
-            obtn_3 = opart_btn_3.getElementsByTagName("a"),
             opart_4 = document.getElementById("part_4"),
             oturn_4 = opart_4.querySelectorAll(".page_mid_mid_ul"),
             opart_btn_4 = document.getElementById("part_btn_4"),
@@ -163,22 +159,6 @@
             turn(oturn_1[1],oturn_1[0],obtn_1[2],obtn_1[1]);
             hehe(obtn_1[0], obtn_1[3]);
         }
-        obtn_3[0].onclick = function (){
-            turn(oturn_3[0],oturn_3[1],obtn_3[1],obtn_3[2]);
-            hehe(obtn_3[3], obtn_3[0]);
-        }
-        obtn_3[1].onclick = function (){
-            turn(oturn_3[0],oturn_3[1],obtn_3[1],obtn_3[2]);
-            hehe(obtn_3[3], obtn_3[0]);
-        }
-        obtn_3[2].onclick = function (){
-            turn(oturn_3[1],oturn_3[0],obtn_3[2],obtn_3[1]);
-            hehe(obtn_3[0], obtn_3[3]);
-        }
-        obtn_3[3].onclick = function (){
-            turn(oturn_3[1],oturn_3[0],obtn_3[2],obtn_3[1]);
-            hehe(obtn_3[0], obtn_3[3]);
-        }
         obtn_4[0].onclick = function (){
             turn(oturn_4[0],oturn_4[1],obtn_4[1],obtn_4[2]);
             hehe(obtn_4[3], obtn_4[0]);
@@ -250,6 +230,119 @@
         };
         opart_spe_btn_2[3].onclick = function (){
             oturn(3)
+        };
+        var ke_btn = document.getElementById("ke_choose"),
+            oke = document.getElementById("ke"),
+            ke = oke.querySelectorAll(".page_mid_mid_ul"),
+            kebtn = ke_btn.querySelectorAll(".page_bottom_li"),
+            kebtnstyle = ke_btn.getElementsByTagName("a");
+            kepre = ke_btn.querySelectorAll(".page_bottom_li_special")[0].children[0],
+            kenex = ke_btn.querySelectorAll(".page_bottom_li_special")[1].children[0],
+            keindex = 0,
+            oke1 =  document.getElementById("ke_1"),
+            oke2 =  document.getElementById("ke_2"),
+            oke3 =  document.getElementById("ke_3"),
+            ke1  = oke1.getElementsByTagName("a"),
+            ke2  = oke2.getElementsByTagName("a"),
+            ke3  = oke3.getElementsByTagName("a");
+
+        function oketurn(page){
+            if( page < 0 ){
+                page = 0;
+            }
+            else if(page > 2){
+                page = 2;
+                keindex = 1;
+            }
+            else if(page == 0){
+                kepre.style.display = "none";
+                kenex.style.display = "block";
+            }
+            else if(page == 1){
+                kepre.style.display = "block";
+                kenex.style.display = "block";
+            }
+            else if(page == 2){
+                kepre.style.display = "block";
+                kenex.style.display = "none";
+            }
+            ke[keindex].style.display = "none";
+            ke[page].style.display = "block";
+            kebtnstyle[keindex+1].removeAttribute("class","page_bottom_spe");
+            kebtnstyle[page+1].setAttribute("class","page_bottom_spe");
+            keindex = page;
+        }
+        kepre.onclick = function (){
+            oketurn(keindex-1)
+        };
+        kenex.onclick = function (){
+            oketurn(keindex+1)
+        };
+        kebtn[0].onclick = function (){
+            oketurn(0)
+        };
+        kebtn[1].onclick = function (){
+            oketurn(1)
+        };
+        kebtn[2].onclick = function (){
+            oketurn(2)
+        };
+
+        var she_btn = document.getElementById("she_choose"),
+            oshe = document.getElementById("she"),
+            she_page = oshe.querySelectorAll(".page_mid_mid_ul"),
+            oshebtn = she_btn.querySelectorAll(".page_bottom_li"),
+            oshebtnstyle = she_btn.getElementsByTagName("a");
+            oshepre = she_btn.querySelectorAll(".page_bottom_li_special")[0].children[0],
+            oshenex = she_btn.querySelectorAll(".page_bottom_li_special")[1].children[0],
+            osheindex = 0,
+            oshe1 =  document.getElementById("she_1"),
+            oshe2 =  document.getElementById("she_2"),
+            oshe3 =  document.getElementById("she_3"),
+            she1  = oshe1.getElementsByTagName("a"),
+            she2  = oshe2.getElementsByTagName("a"),
+            she3  = oshe3.getElementsByTagName("a");
+
+        function osheturn(page){
+            if( page < 0 ){
+                page = 0;
+            }
+            else if(page > 2){
+                page = 2;
+                osheindex = 1;
+            }
+            else if(page == 0){
+                oshepre.style.display = "none";
+                oshenex.style.display = "block";
+            }
+            else if(page == 1){
+                oshepre.style.display = "block";
+                oshenex.style.display = "block";
+            }
+            else if(page == 2){
+                oshepre.style.display = "block";
+                oshenex.style.display = "none";
+            }
+            she_page[osheindex].style.display = "none";
+            she_page[page].style.display = "block";
+            oshebtnstyle[osheindex+1].removeAttribute("class","page_bottom_spe");
+            oshebtnstyle[page+1].setAttribute("class","page_bottom_spe");
+            osheindex = page;
+        }
+        oshepre.onclick = function (){
+            osheturn(osheindex-1)
+        };
+        oshenex.onclick = function (){
+            osheturn(osheindex+1)
+        };
+        oshebtn[0].onclick = function (){
+            osheturn(0)
+        };
+        oshebtn[1].onclick = function (){
+            osheturn(1)
+        };
+        oshebtn[2].onclick = function (){
+            osheturn(2)
         };
 
     })();
